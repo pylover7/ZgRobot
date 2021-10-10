@@ -7,18 +7,12 @@ ZgRoBot
 .. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint
     :target: https://github.com/pylover7/ZgRobot/actions/workflows/lint.yml
 .. image:: https://img.shields.io/github/downloads/pylover7/ZgRobot/total
-    :class: center
 .. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
     :target:  https://codecov.io/gh/pylover7/ZgRobot
-    :class: center
 .. image:: https://img.shields.io/github/stars/pylover7/ZgRobot?style=social
-    :class: center
 .. image:: https://img.shields.io/pypi/pyversions/pip
-    :class: center
 .. image:: https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot
-    :class: center
 .. image:: https://img.shields.io/github/license/pylover7/ZgRobot
-    :class: center
     :alt: GitHub
 
 ZgRoBot 是一个微信公众号开发框架，采用MIT协议发布。
