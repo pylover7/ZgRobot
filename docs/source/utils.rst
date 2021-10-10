@@ -5,10 +5,10 @@
 Token 生成器
 ---------------
 
-WeRoBot帮你准备了一个Token生成器： ::
+ZgRoBot帮你准备了一个Token生成器： ::
 
-    import werobot.utils
+    import zgrobot.utils
 
-    print(werobot.utils.generate_token())
+    print(zgrobot.utils.generate_token())
 
 

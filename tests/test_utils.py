@@ -2,8 +2,8 @@
 
 import re
 
-from werobot.utils import generate_token, check_token, to_text, to_binary
-from werobot.utils import pay_sign_dict, make_error_page, is_regex
+from zgrobot.utils import generate_token, check_token, to_text, to_binary
+from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
 
 
 def test_token_generator():

@@ -11,7 +11,7 @@ try:
 except ImportError:
     curses = None
 
-logger = logging.getLogger("WeRoBot")
+logger = logging.getLogger("ZgRoBot")
 
 
 def enable_pretty_logging(logger, level='info'):

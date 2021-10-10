@@ -2,19 +2,19 @@
 
 import warnings
 
-from werobot.config import Config, ConfigAttribute
-from werobot.client import Client
-from werobot.exceptions import ConfigError
-from werobot.parser import parse_xml, process_message
-from werobot.replies import process_function_reply
-from werobot.utils import (
+from zgrobot.config import Config, ConfigAttribute
+from zgrobot.client import Client
+from zgrobot.exceptions import ConfigError
+from zgrobot.parser import parse_xml, process_message
+from zgrobot.replies import process_function_reply
+from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
     is_regex
 )
 
 from inspect import signature
 
-__all__ = ['BaseRoBot', 'WeRoBot']
+__all__ = ['BaseRoBot', 'ZgRoBot']
 
 _DEFAULT_CONFIG = dict(
     TOKEN=None,
@@ -32,16 +32,16 @@ class BaseRoBot(object):
     """
     BaseRoBot 是整个应用的核心对象，负责提供 handler 的维护，消息和事件的处理等核心功能。
 
-    :param logger: 用来输出 log 的 logger，如果是 ``None``，将使用 werobot.logger
-    :param config: 用来设置的 :class:`werobot.config.Config` 对象 \\
+    :param logger: 用来输出 log 的 logger，如果是 ``None``，将使用 zgrobot.logger
+    :param config: 用来设置的 :class:`zgrobot.config.Config` 对象 \\
 
-    .. note:: 对于下面的参数推荐使用 :class:`~werobot.config.Config` 进行设置，\
+    .. note:: 对于下面的参数推荐使用 :class:`~zgrobot.config.Config` 进行设置，\
     并且以下参数均已 **deprecated**。
 
     :param token: 微信公众号设置的 token **(deprecated)**
     :param enable_session: 是否开启 session **(deprecated)**
     :param session_storage: 用来储存 session 的对象，如果为 ``None``，\
-    将使用 werobot.session.sqlitestorage.SQLiteStorage **(deprecated)**
+    将使用 zgrobot.session.sqlitestorage.SQLiteStorage **(deprecated)**
     :param app_id: 微信公众号设置的 app id **(deprecated)**
     :param app_secret: 微信公众号设置的 app secret **(deprecated)**
     :param encoding_aes_key: 用来加解密消息的 aes key **(deprecated)**
@@ -109,8 +109,8 @@ class BaseRoBot(object):
         self.make_error_page = make_error_page
 
         if logger is None:
-            import werobot.logger
-            logger = werobot.logger.logger
+            import zgrobot.logger
+            logger = zgrobot.logger.logger
         self.logger = logger
 
         if config is None:
@@ -557,9 +557,9 @@ class BaseRoBot(object):
         self, body, timestamp=None, nonce=None, msg_signature=None
     ):
         """
-        解析获取到的 Raw XML ，如果需要的话进行解密，返回 WeRoBot Message。
+        解析获取到的 Raw XML ，如果需要的话进行解密，返回 ZgRoBot Message。
         :param body: 微信服务器发来的请求中的 Body。
-        :return: WeRoBot Message
+        :return: ZgRoBot Message
         """
         message_dict = parse_xml(body)
         if "Encrypt" in message_dict:
@@ -601,11 +601,11 @@ class BaseRoBot(object):
 
     def get_encrypted_reply(self, message):
         """
-        对一个指定的 WeRoBot Message ，获取 handlers 处理后得到的 Reply。
+        对一个指定的 ZgRoBot Message ，获取 handlers 处理后得到的 Reply。
         如果可能，对该 Reply 进行加密。
         返回 Reply Render 后的文本。
 
-        :param message: 一个 WeRoBot Message 实例。
+        :param message: 一个 ZgRoBot Message 实例。
         :return: reply （纯文本）
         """
         reply = self.get_reply(message)
@@ -645,9 +645,9 @@ class BaseRoBot(object):
         return f
 
 
-class WeRoBot(BaseRoBot):
+class ZgRoBot(BaseRoBot):
     """
-    WeRoBot 是一个继承自 BaseRoBot 的对象，在 BaseRoBot 的基础上使用了 bottle 框架，
+    ZgRoBot 是一个继承自 BaseRoBot 的对象，在 BaseRoBot 的基础上使用了 bottle 框架，
     提供接收微信服务器发来的请求的功能。
     """
     @cached_property
@@ -655,7 +655,7 @@ class WeRoBot(BaseRoBot):
         if not self._handlers:
             raise RuntimeError('No Handler.')
         from bottle import Bottle
-        from werobot.contrib.bottle import make_view
+        from zgrobot.contrib.bottle import make_view
 
         app = Bottle()
         app.route('<t:path>', ['GET', 'POST'], make_view(self))
@@ -665,7 +665,7 @@ class WeRoBot(BaseRoBot):
         self, server=None, host=None, port=None, enable_pretty_logging=True
     ):
         """
-        运行 WeRoBot。
+        运行 ZgRoBot。
 
         :param server: 传递给 Bottle 框架 run 方法的参数，详情见\
         `bottle 文档 <https://bottlepy.org/docs/dev/deployment.html#switching-the-server-backend>`_
@@ -674,7 +674,7 @@ class WeRoBot(BaseRoBot):
         :param enable_pretty_logging: 是否开启 log 的输出格式优化
         """
         if enable_pretty_logging:
-            from werobot.logger import enable_pretty_logging
+            from zgrobot.logger import enable_pretty_logging
             enable_pretty_logging(self.logger)
         if server is None:
             server = self.config["SERVER"]

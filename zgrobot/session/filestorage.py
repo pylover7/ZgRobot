@@ -7,17 +7,17 @@ try:
 except ImportError:
     import dbm
 
-from werobot.session import SessionStorage
-from werobot.utils import json_loads, json_dumps, to_binary
+from zgrobot.session import SessionStorage
+from zgrobot.utils import json_loads, json_dumps, to_binary
 
 
 class FileStorage(SessionStorage):
     """
     FileStorage 会把你的 Session 数据以 dbm 形式储存在文件中。
 
-    :param filename: 文件名， 默认为 ``werobot_session``
+    :param filename: 文件名， 默认为 ``zgrobot_session``
     """
-    def __init__(self, filename: str = 'werobot_session'):
+    def __init__(self, filename: str = 'zgrobot_session'):
         try:
             self.db = dbm.open(filename, "c")
         except TypeError:  # pragma: no cover

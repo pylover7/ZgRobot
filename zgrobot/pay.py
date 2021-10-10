@@ -3,8 +3,8 @@
 from hashlib import sha1, md5
 from urllib import urlencode
 import time
-from werobot.client import Client
-from werobot.utils import pay_sign_dict, generate_token
+from zgrobot.client import Client
+from zgrobot.utils import pay_sign_dict, generate_token
 from functools import partial
 
 NATIVE_BASE_URL = 'weixin://wxpay/bizpayurl?'

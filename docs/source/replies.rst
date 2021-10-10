@@ -21,7 +21,7 @@ source     信息的来源用户。通常是发送信息的用户。
 time       信息发送的时间，一个UNIX时间戳。默认情况下会使用当前时间。
 ========= ===================================
 
-.. note:: 如果你的handler返回了一个字符串， WeRoBot会自动将其转化为一个文本消息。
+.. note:: 如果你的handler返回了一个字符串， ZgRoBot会自动将其转化为一个文本消息。
 
 ImageReply
 -----------
@@ -83,7 +83,7 @@ time       信息发送的时间，一个UNIX时间戳。默认情况下会使�
 ========= ===================================
 
 你需要给 `ArticlesReply` 添加 `Article` 来增加图文。
-`Article` 类位于 `werobot.reply.Article` 。
+`Article` 类位于 `zgrobot.reply.Article` 。
 
 `Article` 的构造函数的参数如下：
 
@@ -101,24 +101,24 @@ url           点击图片后跳转链接
 
 在构造完一个 `Article` 后， 你需要通过 `ArticlesReply` 的 `add_article` 参数把它添加进去。就像这样： ::
 
-    from werobot.replies import ArticlesReply, Article
+    from zgrobot.replies import ArticlesReply, Article
     reply = ArticlesReply(message=message)
     article = Article(
-        title="WeRoBot",
-        description="WeRoBot是一个微信机器人框架",
+        title="ZgRoBot",
+        description="ZgRoBot是一个微信机器人框架",
         img="https://github.com/apple-touch-icon-144.png",
-        url="https://github.com/whtsky/WeRoBot"
+        url="https://github.com/whtsky/ZgRoBot"
     )
     reply.add_article(article)
 
 .. note:: 根据微信公众平台的 `最新公告 <https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=115383153198yAvN&lang=zh_CN>`_，每个ArticlesReply中 **最多添加1个Article** 。
 
 你也可以让你的 handler 返回一个列表， 里面每一个元素都是一个长度为四的列表，
- WeRoBot 会将其自动转为 ArticlesReply 。就像这样： ::
+ ZgRoBot 会将其自动转为 ArticlesReply 。就像这样： ::
 
-    import werobot
+    import zgrobot
 
-    robot = werobot.WeRoBot(token='tokenhere')
+    robot = zgrobot.ZgRoBot(token='tokenhere')
 
     @robot.text
     def articles(message):
@@ -131,7 +131,7 @@ url           点击图片后跳转链接
             ],
             [
                 "whtsky",
-                "I wrote WeRoBot",
+                "I wrote ZgRoBot",
                 "https://secure.gravatar.com/avatar/0024710771815ef9b74881ab21ba4173?s=420",
                 "http://whouz.com/"
             ]
@@ -158,11 +158,11 @@ hq_url            高质量音乐链接，WIFI环境优先使用该链接播放�
 =============    ======================================================================
 
 你也可以让你的 handler 返回一个长度为三或四的列表， [3]_
- WeRoBot 会将其自动转为 MusicReply 。就像这样： ::
+ ZgRoBot 会将其自动转为 MusicReply 。就像这样： ::
 
-    import werobot
+    import zgrobot
 
-    robot = werobot.WeRoBot(token='tokenhere')
+    robot = zgrobot.ZgRoBot(token='tokenhere')
 
     @robot.text
     def music(message):
@@ -184,7 +184,7 @@ hq_url            高质量音乐链接，WIFI环境优先使用该链接播放�
     robot.run()
 
 
-.. [3] 如果你省略了高质量音乐链接的地址， WeRoBot 会自动将音乐链接的地址用于高质量音乐链接。
+.. [3] 如果你省略了高质量音乐链接的地址， ZgRoBot 会自动将音乐链接的地址用于高质量音乐链接。
 
 TransferCustomerServiceReply
 -----------------------------

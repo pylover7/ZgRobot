@@ -1,18 +1,18 @@
 贡献指南
 ===========================
 
-有许多种为 WeRoBot 做贡献的方式， 包括但并不仅限于
+有许多种为 ZgRoBot 做贡献的方式， 包括但并不仅限于
 
-+ `上报 bug <https://github.com/whtsky/WeRoBot/issues/new?labels=bug>`_
-+ `提交 Feature Request <https://github.com/whtsky/WeRoBot/issues/new?labels=Feature Request>`_
++ `上报 bug <https://github.com/whtsky/ZgRoBot/issues/new?labels=bug>`_
++ `提交 Feature Request <https://github.com/whtsky/ZgRoBot/issues/new?labels=Feature Request>`_
 + :ref:`贡献代码`
-+ 加入 WeRoBot QQ 群(283206829) 帮助解答问题
-+ 把 WeRoBot 安利给你周围的人 :)
++ 加入 ZgRoBot QQ 群(283206829) 帮助解答问题
++ 把 ZgRoBot 安利给你周围的人 :)
 
 贡献代码
 ----------
 
-如果你希望为 WeRoBot 贡献代码， 请现在 GitHub 上 `Fork <https://github.com/whtsky/WeRoBot>`_ WeRoBot 仓库， 然后在 ``master`` 分支上开一个新的分支。
+如果你希望为 ZgRoBot 贡献代码， 请现在 GitHub 上 `Fork <https://github.com/whtsky/ZgRoBot>`_ ZgRoBot 仓库， 然后在 ``master`` 分支上开一个新的分支。
 
 如果你的贡献的代码是修复 Bug ， 请确认这个 Bug 已经有了对应的 Issue （如果没有， 请先创建一个）； 然后在 Pull Request 的描述里面引用这个 Bug 的 Issue ID ， 就像这样(假设 Issue ID 为 153) ::
 
@@ -45,7 +45,7 @@
     # Install yapf
     pip install yapf
     # format code
-    yapf -i -p -r werobot/ tests/ *.py
+    yapf -i -p -r zgrobot/ tests/ *.py
 
 你也可以 `安装 yapf Pre-Commit Hook <https://github.com/google/yapf/tree/master/plugins#git-pre-commit-hook>`_ 来自动进行代码格式化工作。
 
