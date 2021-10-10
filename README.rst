@@ -3,24 +3,17 @@ ZgRoBot
 ====================================
 
 .. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests?label=tests
+    :target: https://github.com/pylover7/ZgRobot/actions/workflows/test.yml
 .. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint
+    :target: https://github.com/pylover7/ZgRobot/actions/workflows/lint.yml
 .. image:: https://img.shields.io/github/downloads/pylover7/ZgRobot/total
 
 .. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
     :target: https://codecov.io/gh/pylover7/ZgRobot
 
 .. image:: https://img.shields.io/github/stars/pylover7/ZgRobot?style=social
-.. image:: https://img.shields.io/github/v/release/pylover7/ZgRobot?include_prereleases
-.. image:: https://img.shields.io/github/v/tag/pylover7/ZgRobot
 .. image:: https://img.shields.io/pypi/pyversions/pip
 .. image:: https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot
-.. image:: https://img.shields.io/github/last-commit/pylover7/ZgRobot
-
-.. image:: https://img.shields.io/github/issues/pylover7/ZgRobot
-.. image:: https://img.shields.io/github/issues-closed/pylover7/ZgRobot
-.. image:: https://img.shields.io/github/issues-pr/pylover7/ZgRobot
-.. image:: https://img.shields.io/github/issues-pr-closed/pylover7/ZgRobot
-
 
 .. image:: https://img.shields.io/github/license/pylover7/ZgRobot
     :alt: GitHub
