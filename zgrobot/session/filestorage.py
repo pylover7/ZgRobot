@@ -7,8 +7,8 @@ try:
 except ImportError:
     import dbm
 
-from werobot.session import SessionStorage
-from werobot.utils import json_loads, json_dumps, to_binary
+from zgrobot.session import SessionStorage
+from zgrobot.utils import json_loads, json_dumps, to_binary
 
 
 class FileStorage(SessionStorage):

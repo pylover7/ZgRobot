@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from werobot.session import SessionStorage
-from werobot.utils import json_loads, json_dumps
+from zgrobot.session import SessionStorage
+from zgrobot.utils import json_loads, json_dumps
 
 
 class RedisStorage(SessionStorage):
@@ -9,12 +9,12 @@ class RedisStorage(SessionStorage):
     RedisStorage 会把你的 Session 数据储存在 Redis 中 ::
 
         import redis
-        import werobot
-        from werobot.session.redisstorage import RedisStorage
+        import zgrobot
+        from zgrobot.session.redisstorage import RedisStorage
 
         db = redis.Redis()
         session_storage = RedisStorage(db, prefix="my_prefix_")
-        robot = werobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.WeRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
 

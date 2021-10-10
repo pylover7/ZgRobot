@@ -10,7 +10,7 @@ def make_view(robot):
 
     Usage ::
 
-        from werobot import WeRoBot
+        from zgrobot import WeRoBot
 
         robot = WeRoBot(token='token')
 
@@ -20,7 +20,7 @@ def make_view(robot):
             return 'Hello World!'
 
         from bottle import Bottle
-        from werobot.contrib.bottle import make_view
+        from zgrobot.contrib.bottle import make_view
 
         app = Bottle()
         app.route(

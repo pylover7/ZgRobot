@@ -5,8 +5,8 @@ import requests
 import urllib.parse
 
 from requests.compat import json as _json
-from werobot.utils import to_text
-from werobot.replies import Article
+from zgrobot.utils import to_text
+from zgrobot.replies import Article
 
 
 class ClientException(Exception):

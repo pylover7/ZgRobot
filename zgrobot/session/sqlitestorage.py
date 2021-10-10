@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from werobot.session import SessionStorage
-from werobot.utils import json_loads, json_dumps
+from zgrobot.session import SessionStorage
+from zgrobot.utils import json_loads, json_dumps
 import sqlite3
 
 __CREATE_TABLE_SQL__ = """
@@ -15,11 +15,11 @@ class SQLiteStorage(SessionStorage):
     """
     SQLiteStorge 会把 Session 数据储存在一个 SQLite 数据库文件中 ::
 
-        import werobot
-        from werobot.session.sqlitestorage import SQLiteStorage
+        import zgrobot
+        from zgrobot.session.sqlitestorage import SQLiteStorage
 
         session_storage = SQLiteStorage
-        robot = werobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.WeRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
     :param filename: SQLite数据库的文件名, 默认是 ``werobot_session.sqlite3``

@@ -1,7 +1,7 @@
 import time
 import logging
 
-from werobot.logger import enable_pretty_logging, _LogFormatter
+from zgrobot.logger import enable_pretty_logging, _LogFormatter
 
 
 def get_new_logger():

@@ -6,15 +6,15 @@ import mockredis
 import pytest
 import sqlite3
 
-import werobot
-import werobot.testing
-import werobot.utils
-from werobot.session import SessionStorage
-from werobot.session import filestorage, mongodbstorage, redisstorage, saekvstorage
-from werobot.session import sqlitestorage
-from werobot.session import mysqlstorage
-from werobot.session import postgresqlstorage
-from werobot.utils import to_binary
+import zgrobot
+import zgrobot.testing
+import zgrobot.utils
+from zgrobot.session import SessionStorage
+from zgrobot.session import filestorage, mongodbstorage, redisstorage, saekvstorage
+from zgrobot.session import sqlitestorage
+from zgrobot.session import mysqlstorage
+from zgrobot.session import postgresqlstorage
+from zgrobot.utils import to_binary
 
 
 def teardown_module():
@@ -33,8 +33,8 @@ def remove_session(session):
 
 
 def test_session():
-    robot = werobot.WeRoBot(
-        token=werobot.utils.generate_token(), enable_session=True
+    robot = zgrobot.WeRoBot(
+        token=zgrobot.utils.generate_token(), enable_session=True
     )
 
     @robot.text
@@ -48,7 +48,7 @@ def test_session():
     def second(_, session):
         return session['last']
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
     xml_1 = """
         <xml>
         <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -105,7 +105,7 @@ class MockPyMySQL:
     def __init__(self):
         self.db = sqlite3.connect("werobot_session.sqlite3")
         self.db.text_factory = str
-        from werobot.session.sqlitestorage import __CREATE_TABLE_SQL__
+        from zgrobot.session.sqlitestorage import __CREATE_TABLE_SQL__
         self.db.execute(__CREATE_TABLE_SQL__)
         self.cache_result = None
 

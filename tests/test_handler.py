@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from werobot import WeRoBot
-from werobot.parser import parse_user_msg
-from werobot.replies import TextReply
+from zgrobot import WeRoBot
+from zgrobot.parser import parse_user_msg
+from zgrobot.replies import TextReply
 import os
 
 werobot = WeRoBot(SESSION_STORAGE=False)

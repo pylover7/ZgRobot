@@ -1,8 +1,8 @@
 import os
 
-from werobot import WeRoBot
-from werobot.config import Config
-from werobot.utils import generate_token
+from zgrobot import WeRoBot
+from zgrobot.config import Config
+from zgrobot.utils import generate_token
 
 basedir = os.path.dirname(os.path.abspath(__file__))
 

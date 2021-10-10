@@ -8,10 +8,10 @@ import multipart
 import urllib.parse
 from io import BytesIO
 
-from werobot import WeRoBot
-from werobot.config import Config
-from werobot.client import Client, check_error, ClientException
-from werobot.utils import cached_property
+from zgrobot import WeRoBot
+from zgrobot.config import Config
+from zgrobot.client import Client, check_error, ClientException
+from zgrobot.utils import cached_property
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 GOD_PIC = os.path.join(os.path.dirname(__file__), '照桥心美.png')
@@ -1086,7 +1086,7 @@ class TestSendArticleMessagesClass(BaseTestClass):
             responses.POST, self.URL, callback=self.article_callback
         )
 
-        from werobot.replies import Article
+        from zgrobot.replies import Article
         articles = []
         for _ in range(0, 8):
             articles.append(

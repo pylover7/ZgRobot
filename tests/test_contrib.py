@@ -11,8 +11,8 @@ import webtest
 from tornado.testing import AsyncHTTPSTestCase
 from webtest.app import AppError
 
-from werobot.parser import parse_xml, process_message
-from werobot.utils import generate_token, get_signature
+from zgrobot.parser import parse_xml, process_message
+from zgrobot.utils import generate_token, get_signature
 
 
 @pytest.fixture
@@ -69,7 +69,7 @@ def wsgi_tester():
 
 @pytest.fixture(scope="module")
 def hello_robot():
-    from werobot import WeRoBot
+    from zgrobot import WeRoBot
     robot = WeRoBot(token='', SESSION_STORAGE=False)
 
     @robot.text
@@ -94,7 +94,7 @@ def test_django():
     from django.test.utils import setup_test_environment
     setup_test_environment()
     from django.test.client import Client
-    from werobot.parser import parse_xml, process_message
+    from zgrobot.parser import parse_xml, process_message
     import django
 
     django.setup()
@@ -147,7 +147,7 @@ def test_django():
 
 def test_flask(wsgi_tester, hello_robot):
     from flask import Flask
-    from werobot.contrib.flask import make_view
+    from zgrobot.contrib.flask import make_view
 
     token = generate_token()
     endpoint = '/werobot_flask'
@@ -158,7 +158,7 @@ def test_flask(wsgi_tester, hello_robot):
 
     flask_app.add_url_rule(
         rule=endpoint,
-        endpoint='werobot',
+        endpoint='zgrobot',
         view_func=make_view(hello_robot),
         methods=['GET', 'POST']
     )
@@ -167,7 +167,7 @@ def test_flask(wsgi_tester, hello_robot):
 
 
 def test_bottle(wsgi_tester, hello_robot):
-    from werobot.contrib.bottle import make_view
+    from zgrobot.contrib.bottle import make_view
     from bottle import Bottle
 
     token = generate_token()
@@ -200,7 +200,7 @@ if tornado.version_info[0] < 6:
     def test_tornado(wsgi_tester, hello_robot):
         from tornado.wsgi import WSGIAdapter
         import tornado.web
-        from werobot.contrib.tornado import make_handler
+        from zgrobot.contrib.tornado import make_handler
 
         token = generate_token()
         endpoint = r'/werobot_tornado'
@@ -220,7 +220,7 @@ else:
 
         @property
         def robot(self):
-            from werobot import WeRoBot
+            from zgrobot import WeRoBot
             robot = WeRoBot(token=self.token, SESSION_STORAGE=False)
 
             @robot.text
@@ -235,7 +235,7 @@ else:
 
         def get_app(self):
             import tornado.web
-            from werobot.contrib.tornado import make_handler
+            from zgrobot.contrib.tornado import make_handler
 
             tornado_app = tornado.web.Application(
                 [

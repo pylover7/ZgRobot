@@ -2,7 +2,7 @@
 # coding=utf-8
 
 import io
-import werobot
+import zgrobot
 
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
@@ -27,17 +27,17 @@ class PyTest(TestCommand):
 
 with io.open("README.rst", encoding="utf8") as f:
     readme = f.read()
-readme = readme.replace("latest", "v" + werobot.__version__)
+readme = readme.replace("latest", "v" + zgrobot.__version__)
 
 install_requires = open("requirements.txt").readlines()
 setup(
     name='WeRoBot',
-    version=werobot.__version__,
-    author=werobot.__author__,
+    version=zgrobot.__version__,
+    author=zgrobot.__author__,
     author_email='whtsky@me.com',
     url='https://github.com/offu/WeRoBot',
     packages=find_packages(),
-    keywords="wechat weixin werobot",
+    keywords="wechat weixin zgrobot",
     description='WeRoBot: writing WeChat Offical Account Robots with fun',
     long_description=readme,
     install_requires=install_requires,
@@ -63,5 +63,5 @@ setup(
     tests_require=['pytest'],
     cmdclass={"pytest": PyTest},
     extras_require={'crypto': ["cryptography"]},
-    package_data={'werobot': ['contrib/*.html']}
+    package_data={'zgrobot': ['contrib/*.html']}
 )

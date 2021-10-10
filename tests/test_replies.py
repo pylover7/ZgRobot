@@ -3,13 +3,13 @@
 import time
 import pytest
 
-from werobot.parser import parse_user_msg
-from werobot.replies import WeChatReply, TextReply, ImageReply, MusicReply
-from werobot.replies import VoiceReply, VideoReply
-from werobot.replies import Article, ArticlesReply
-from werobot.replies import TransferCustomerServiceReply, SuccessReply
-from werobot.replies import process_function_reply
-from werobot.utils import to_binary, to_text
+from zgrobot.parser import parse_user_msg
+from zgrobot.replies import WeChatReply, TextReply, ImageReply, MusicReply
+from zgrobot.replies import VoiceReply, VideoReply
+from zgrobot.replies import Article, ArticlesReply
+from zgrobot.replies import TransferCustomerServiceReply, SuccessReply
+from zgrobot.replies import process_function_reply
+from zgrobot.utils import to_binary, to_text
 
 
 def test_wechat_reply():

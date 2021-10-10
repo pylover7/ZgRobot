@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from werobot import WeRoBot
-from werobot.contrib.django import make_view
-from werobot.utils import generate_token
+from zgrobot import WeRoBot
+from zgrobot.contrib.django import make_view
+from zgrobot.utils import generate_token
 
 robot = WeRoBot(
     SESSION_STORAGE=False,

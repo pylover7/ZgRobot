@@ -5,6 +5,6 @@ __license__ = 'MIT'
 __all__ = ["WeRoBot"]
 
 try:
-    from werobot.robot import WeRoBot
+    from zgrobot.robot import WeRoBot
 except ImportError:  # pragma: no cover
     pass  # pragma: no cover

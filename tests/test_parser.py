@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from werobot.parser import parse_user_msg
+from zgrobot.parser import parse_user_msg
 
 
 def test_none_message():

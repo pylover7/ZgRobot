@@ -23,7 +23,7 @@ https://github.com/ruby-china/How-To-Ask-Questions-The-Smart-Way/blob/master/REA
 * **复现代码或 repo 链接**
 
 ```python
-from werobot import WeRoBot
+from zgrobot import WeRoBot
 
 # 请在这里给出 bug 的复现代码。如有必要，可以创建一个复现 repo 并将链接粘贴到这里。
 ```

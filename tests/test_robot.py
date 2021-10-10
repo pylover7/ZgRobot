@@ -5,8 +5,8 @@ import time
 import os
 import pytest
 
-from werobot import WeRoBot
-from werobot.utils import generate_token, to_text
+from zgrobot import WeRoBot
+from zgrobot.utils import generate_token, to_text
 
 
 def _make_xml(content):
@@ -149,7 +149,7 @@ def test_register_handlers():  # noqa: C901
 
 def test_filter():
     import re
-    import werobot.testing
+    import zgrobot.testing
     robot = WeRoBot(SESSION_STORAGE=False)
 
     @robot.filter("喵")
@@ -170,7 +170,7 @@ def test_filter():
 
     assert len(robot._handlers["text"]) == 3
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("啊"))._args['content'] == u"汪"
     assert tester.send_xml(_make_xml("啊呵呵"))._args['content'] == u"哼"
@@ -196,7 +196,7 @@ def test_filter():
 
     assert len(robot._handlers["text"]) == 4
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("啊"))._args['content'] == u"哦"
     assert tester.send_xml(_make_xml("帮助"))._args['content'] == u"就不帮"
@@ -223,14 +223,14 @@ def test_error_page():
 
 
 def test_config_ignore():
-    from werobot.config import Config
+    from zgrobot.config import Config
     config = Config(TOKEN="token from config")
     robot = WeRoBot(config=config, token="token2333")
     assert robot.token == "token from config"
 
 
 def test_add_filter():
-    import werobot.testing
+    import zgrobot.testing
     import re
 
     robot = WeRoBot()
@@ -240,7 +240,7 @@ def test_add_filter():
 
     robot.add_filter(test_register, ["test", re.compile(u".*?啦.*?")])
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("test"))._args["content"] == "test"
     assert tester.send_xml(_make_xml(u"我要测试啦"))._args["content"] == "test"

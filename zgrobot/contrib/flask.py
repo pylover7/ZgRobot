@@ -11,7 +11,7 @@ def make_view(robot):
 
     Usage ::
 
-        from werobot import WeRoBot
+        from zgrobot import WeRoBot
 
         robot = WeRoBot(token='token')
 
@@ -21,11 +21,11 @@ def make_view(robot):
             return 'Hello World!'
 
         from flask import Flask
-        from werobot.contrib.flask import make_view
+        from zgrobot.contrib.flask import make_view
 
         app = Flask(__name__)
         app.add_url_rule(rule='/robot/', # WeRoBot 的绑定地址
-                        endpoint='werobot', # Flask 的 endpoint
+                        endpoint='zgrobot', # Flask 的 endpoint
                         view_func=make_view(robot),
                         methods=['GET', 'POST'])
 

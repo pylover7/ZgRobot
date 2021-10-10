@@ -13,7 +13,7 @@ def make_handler(robot):
 
         import tornado.ioloop
         import tornado.web
-        from werobot import WeRoBot
+        from zgrobot import WeRoBot
         from tornado_werobot import make_handler
 
         robot = WeRoBot(token='token')
