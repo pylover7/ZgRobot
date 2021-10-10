@@ -17,6 +17,7 @@ class PyTest(TestCommand):
 
     def run_tests(self):
         import shlex
+        import sys
 
         # import here, cause outside the eggs aren't loaded
         import pytest
@@ -34,8 +35,8 @@ setup(
     name='ZgRoBot',
     version=zgrobot.__version__,
     author=zgrobot.__author__,
-    author_email='whtsky@me.com',
-    url='https://github.com/offu/WeRoBot',
+    author_email='shuoshuoyun@foxmail.com',
+    url='https://github.com/offu/ZgRoBot',
     packages=find_packages(),
     keywords="wechat weixin zgrobot",
     description='ZgRoBot: writing WeChat Offical Account Robots with fun',
