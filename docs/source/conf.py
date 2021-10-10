@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'werobot-zg'
+project = 'zgrobot'
 copyright = '2021, pylover'
 author = 'pylover'
 

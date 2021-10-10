@@ -1,3 +1,4 @@
 -r tox-requirements.txt
 Sphinx==4.2.0
+sphinx_rtd_theme
 Django
