@@ -32,11 +32,11 @@ readme = readme.replace("latest", "v" + zgrobot.__version__)
 
 install_requires = open("requirements.txt").readlines()
 setup(
-    name='ZgRoBot',
+    name='zgrobot',
     version=zgrobot.__version__,
     author=zgrobot.__author__,
     author_email='shuoshuoyun@foxmail.com',
-    url='https://github.com/offu/ZgRoBot',
+    url='https://github.com/pylover7/ZgRobot',
     packages=find_packages(),
     keywords="wechat weixin zgrobot",
     description='ZgRoBot: writing WeChat Offical Account Robots with fun',
