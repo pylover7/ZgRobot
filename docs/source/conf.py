@@ -1,12 +1,13 @@
 import sphinx_rtd_theme
+
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 from recommonmark.parser import CommonMarkParser
+
 source_parsers = {
     '.md': CommonMarkParser,
 }
 source_suffix = ['.rst', '.md']
-
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -22,8 +23,9 @@ source_suffix = ['.rst', '.md']
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
+import werobot
 
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
@@ -32,8 +34,7 @@ copyright = '2021, pylover'
 author = 'pylover'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
-
+version = release = werobot.__version__
 
 # -- General configuration ---------------------------------------------------
 
@@ -41,6 +42,8 @@ release = '1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -56,8 +59,7 @@ language = 'zh_CN'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
-
+exclude_patterns = ["_build", "_themes"]
 
 # -- Options for HTML output -------------------------------------------------
 
