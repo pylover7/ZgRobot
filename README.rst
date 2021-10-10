@@ -7,14 +7,11 @@ ZgRoBot
 .. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint
     :target: https://github.com/pylover7/ZgRobot/actions/workflows/lint.yml
 .. image:: https://img.shields.io/github/downloads/pylover7/ZgRobot/total
-
 .. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
     :target: https://codecov.io/gh/pylover7/ZgRobot
-
 .. image:: https://img.shields.io/github/stars/pylover7/ZgRobot?style=social
 .. image:: https://img.shields.io/pypi/pyversions/pip
 .. image:: https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot
-
 .. image:: https://img.shields.io/github/license/pylover7/ZgRobot
     :alt: GitHub
 
