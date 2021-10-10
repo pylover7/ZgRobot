@@ -2,14 +2,28 @@
 ZgRoBot
 ====================================
 
-.. image:: https://github.com/pylover7/zgrobot/workflows/tests/badge.svg
-    :target: https://github.com/pylover7/zgrobot/actions
+.. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests?label=tests   :alt: GitHub Workflow Status
+.. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint   :alt: GitHub Workflow Status
+.. image:: https://img.shields.io/github/downloads/pylover7/ZgRobot/total   :alt: GitHub all releases
 
 .. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
     :target: https://codecov.io/gh/pylover7/ZgRobot
 
-![](https://img.shields.io/badge/language-python3-orange.svg)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+.. image:: https://img.shields.io/github/stars/pylover7/ZgRobot?style=social   :alt: GitHub Repo stars
+.. image:: https://img.shields.io/github/v/release/pylover7/ZgRobot?include_prereleases   :alt: GitHub release (latest by date including pre-releases)
+.. image:: https://img.shields.io/github/v/tag/pylover7/ZgRobot   :alt: GitHub tag (latest by date)
+.. image:: https://img.shields.io/pypi/pyversions/pip   :alt: PyPI - Python Version
+.. image:: https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot   :alt: GitHub commit activity
+.. image:: https://img.shields.io/github/last-commit/pylover7/ZgRobot   :alt: GitHub last commit
+
+.. image:: https://img.shields.io/github/issues/pylover7/ZgRobot   :alt: GitHub issues
+.. image:: https://img.shields.io/github/issues-closed/pylover7/ZgRobot   :alt: GitHub closed issues
+.. image:: https://img.shields.io/github/issues-pr/pylover7/ZgRobot   :alt: GitHub pull requests
+.. image:: https://img.shields.io/github/issues-pr-closed/pylover7/ZgRobot   :alt: GitHub closed pull requests
+
+
+.. image:: https://img.shields.io/github/license/pylover7/ZgRobot
+    :alt: GitHub
 
 ZgRoBot 是一个微信公众号开发框架，采用MIT协议发布。
 
