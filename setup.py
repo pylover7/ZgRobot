@@ -62,9 +62,11 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],
-    project_urls={'Documentation': 'https://zgrobot.readthedocs.io/zh/stable/',
-                  'Source': 'https://github.com/pylover7/ZgRobot',
-                  'Tracker': 'https://github.com/pylover7/ZgRobot/issues'},
+    project_urls={
+        'Documentation': 'https://zgrobot.readthedocs.io/zh/stable/',
+        'Source': 'https://github.com/pylover7/ZgRobot',
+        'Tracker': 'https://github.com/pylover7/ZgRobot/issues'
+    },
     python_requires='>=3',
     tests_require=['pytest'],
     cmdclass={"pytest": PyTest},
