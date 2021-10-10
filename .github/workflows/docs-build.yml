@@ -19,7 +19,7 @@ jobs:
           pip install -r docs-requirements.txt
       - name: Build docs
         run: |
-          sphinx-build -W docs/source docs/_build/html
+          sphinx-build -W docs/source docs/build/html
       - uses: actions/upload-artifact@v1
         with:
           name: docs

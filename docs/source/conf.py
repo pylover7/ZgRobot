@@ -23,9 +23,10 @@ source_suffix = ['.rst', '.md']
 #
 import os
 import sys
-import werobot
 
-sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../..'))
+
+import werobot
 
 # -- Project information -----------------------------------------------------
 
