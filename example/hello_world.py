@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import werobot
+import zgrobot
 
-robot = werobot.WeRoBot(token='tokenhere')
+robot = zgrobot.ZgRoBot(token='tokenhere')
 
 
 @robot.filter("帮助")

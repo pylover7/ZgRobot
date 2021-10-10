@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from werobot.utils import to_binary
+from zgrobot.utils import to_binary
 
 _BLOCK_SIZE = 32
 

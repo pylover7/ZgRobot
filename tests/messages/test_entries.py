@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from werobot.messages.entries import get_value, StringEntry, FloatEntry, IntEntry
-from werobot.utils import to_text
+from zgrobot.messages.entries import get_value, StringEntry, FloatEntry, IntEntry
+from zgrobot.utils import to_text
 
 
 class NoNameMessage(object):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from werobot.crypto import PrpCrypto, MessageCrypt
-from werobot.utils import generate_token, to_binary, to_text
-from werobot.parser import parse_xml
+from zgrobot.crypto import PrpCrypto, MessageCrypt
+from zgrobot.utils import generate_token, to_binary, to_text
+from zgrobot.parser import parse_xml
 import time
 
 

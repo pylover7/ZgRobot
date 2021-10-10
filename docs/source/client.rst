@@ -1,8 +1,8 @@
-``WeRoBot.Client`` —— 微信 API 操作类
+``ZgRoBot.Client`` —— 微信 API 操作类
 =====================================
 有部分接口暂未实现，可自行调用微信接口。
 
-.. module:: werobot.client
+.. module:: zgrobot.client
 
 开始开发
 ------------

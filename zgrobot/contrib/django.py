@@ -14,7 +14,7 @@ def make_view(robot):
     :return: 一个标准的 Django view
     """
     @csrf_exempt
-    def werobot_view(request):
+    def zgrobot_view(request):
         timestamp = request.GET.get("timestamp", "")
         nonce = request.GET.get("nonce", "")
         signature = request.GET.get("signature", "")
@@ -42,4 +42,4 @@ def make_view(robot):
             )
         return HttpResponseNotAllowed(['GET', 'POST'])
 
-    return werobot_view
+    return zgrobot_view

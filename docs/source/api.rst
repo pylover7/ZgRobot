@@ -1,48 +1,48 @@
 API
 ==========
 
-.. module:: werobot
+.. module:: zgrobot
 
 应用对象
 ------------
 
-.. module:: werobot.robot
+.. module:: zgrobot.robot
 .. autoclass:: BaseRoBot
     :members:
-.. autoclass:: WeRoBot
+.. autoclass:: ZgRoBot
     :members:
 
 配置对象
 ------------
 
-.. module:: werobot.config
+.. module:: zgrobot.config
 .. autoclass:: Config
     :members:
 
 Session 对象
 ------------
-.. module:: werobot.session.sqlitestorage
+.. module:: zgrobot.session.sqlitestorage
 .. autoclass:: SQLiteStorage
 
-.. module:: werobot.session.filestorage
+.. module:: zgrobot.session.filestorage
 .. autoclass:: FileStorage
 
-.. module:: werobot.session.mongodbstorage
+.. module:: zgrobot.session.mongodbstorage
 .. autoclass:: MongoDBStorage
 
-.. module:: werobot.session.redisstorage
+.. module:: zgrobot.session.redisstorage
 .. autoclass:: RedisStorage
 
-.. module:: werobot.session.saekvstorage
+.. module:: zgrobot.session.saekvstorage
 .. autoclass:: SaeKVDBStorage
 
-.. module:: werobot.session.mysqlstorage
+.. module:: zgrobot.session.mysqlstorage
 .. autoclass:: MySQLStorage
 
-.. module:: werobot.session.postgresqlstorage
+.. module:: zgrobot.session.postgresqlstorage
 .. autoclass:: PostgreSQLStorage
 
 log
 ------------
-.. module:: werobot.logger
+.. module:: zgrobot.logger
 .. autofunction:: enable_pretty_logging
