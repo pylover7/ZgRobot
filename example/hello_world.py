@@ -2,7 +2,7 @@
 
 import zgrobot
 
-robot = zgrobot.WeRoBot(token='tokenhere')
+robot = zgrobot.ZgRoBot(token='tokenhere')
 
 
 @robot.filter("帮助")

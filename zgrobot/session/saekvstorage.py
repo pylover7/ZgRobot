@@ -11,7 +11,7 @@ class SaeKVDBStorage(SessionStorage):
         from zgrobot.session.saekvstorage import SaeKVDBStorage
 
         session_storage = SaeKVDBStorage()
-        robot = zgrobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.ZgRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
     需要先在后台开启 KVDB 支持

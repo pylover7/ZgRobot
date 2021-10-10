@@ -8,7 +8,7 @@ import multipart
 import urllib.parse
 from io import BytesIO
 
-from zgrobot import WeRoBot
+from zgrobot import ZgRoBot
 from zgrobot.config import Config
 from zgrobot.client import Client, check_error, ClientException
 from zgrobot.utils import cached_property
@@ -68,11 +68,11 @@ class TestClientBaseClass(BaseTestClass):
         assert self.client.appsecret == "321"
 
     def test_robot_client(self):
-        robot = WeRoBot()
+        robot = ZgRoBot()
         assert robot.client.config == robot.config
 
     def test_robot_reuse_client(self):
-        robot = WeRoBot()
+        robot = ZgRoBot()
         client_1 = robot.client
         client_2 = robot.client
         assert client_1 is client_2
@@ -96,8 +96,8 @@ class TestClientBaseClass(BaseTestClass):
     @responses.activate
     @add_token_response
     def test_client_request(self):
-        EMPTY_PARAMS_URL = "http://empty-params.werobot.com/"
-        DATA_EXISTS_URL = "http://data-exists.werobot.com/"
+        EMPTY_PARAMS_URL = "http://empty-params.zgrobot.com/"
+        DATA_EXISTS_URL = "http://data-exists.zgrobot.com/"
 
         def empty_params_callback(request):
             params = urllib.parse.parse_qs(
@@ -136,7 +136,7 @@ class TestClientBaseClassPost(TestClientBaseClass):
     @add_token_response
     @create_pic_file
     def test_post_with_unittest(self):
-        POST_FILE_URL = "http://post_file.werobot.com/"
+        POST_FILE_URL = "http://post_file.zgrobot.com/"
 
         def empty_post_file_callback(request):
             return 200, JSON_HEADER, json.dumps({"test": "test"})
@@ -149,7 +149,7 @@ class TestClientBaseClassPost(TestClientBaseClass):
             self.client.post(url=POST_FILE_URL, files={"media": f})
             self.mocked_request.assert_any_call(
                 method='post',
-                url='http://post_file.werobot.com/',
+                url='http://post_file.zgrobot.com/',
                 files=dict(media=(urllib.parse.quote(GOD_PIC), f))
             )
 
@@ -158,14 +158,14 @@ class TestClientBaseClassPost(TestClientBaseClass):
             self.client.post(url=POST_FILE_URL, files={"gugugu": f})
             self.mocked_request.assert_any_call(
                 method='post',
-                url='http://post_file.werobot.com/',
+                url='http://post_file.zgrobot.com/',
                 files=dict(gugugu=(urllib.parse.quote(GOD_PIC), f))
             )
 
     @responses.activate
     @add_token_response
     def test_post_with_file_object_without_name(self):
-        POST_FILE_URL = "http://post_file.werobot.com/"
+        POST_FILE_URL = "http://post_file.zgrobot.com/"
 
         def empty_post_file_callback(request):
             return 200, JSON_HEADER, json.dumps({"test": "test"})
@@ -178,7 +178,7 @@ class TestClientBaseClassPost(TestClientBaseClass):
         self.client.post(url=POST_FILE_URL, files={"media": f})
         self.mocked_request.assert_any_call(
             method='post',
-            url='http://post_file.werobot.com/',
+            url='http://post_file.zgrobot.com/',
             files=dict(media=f)
         )
 
@@ -186,7 +186,7 @@ class TestClientBaseClassPost(TestClientBaseClass):
     @add_token_response
     @create_pic_file
     def test_post_with_integration_test(self):
-        POST_FILE_URL = "http://post_file.werobot.com/"
+        POST_FILE_URL = "http://post_file.zgrobot.com/"
 
         def post_file_callback(request):
             s = request.body.split(b"\r")[0][2:]

@@ -11,9 +11,9 @@ def make_view(robot):
 
     Usage ::
 
-        from zgrobot import WeRoBot
+        from zgrobot import ZgRoBot
 
-        robot = WeRoBot(token='token')
+        robot = ZgRoBot(token='token')
 
 
         @robot.handler
@@ -24,7 +24,7 @@ def make_view(robot):
         from zgrobot.contrib.flask import make_view
 
         app = Flask(__name__)
-        app.add_url_rule(rule='/robot/', # WeRoBot 的绑定地址
+        app.add_url_rule(rule='/robot/', # ZgRoBot 的绑定地址
                         endpoint='zgrobot', # Flask 的 endpoint
                         view_func=make_view(robot),
                         methods=['GET', 'POST'])
@@ -32,7 +32,7 @@ def make_view(robot):
     :param robot: 一个 BaseRoBot 实例
     :return: 一个标准的 Flask view
     """
-    def werobot_view():
+    def zgrobot_view():
         timestamp = request.args.get('timestamp', '')
         nonce = request.args.get('nonce', '')
         signature = request.args.get('signature', '')
@@ -55,4 +55,4 @@ def make_view(robot):
         response.headers['content_type'] = 'application/xml'
         return response
 
-    return werobot_view
+    return zgrobot_view

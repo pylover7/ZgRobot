@@ -19,8 +19,8 @@ from zgrobot.utils import to_binary
 
 def teardown_module():
     try:
-        os.remove("werobot_session")
-        os.remove("werobot_session.sqlite3")
+        os.remove("zgrobot_session")
+        os.remove("zgrobot_session.sqlite3")
     except:
         pass
 
@@ -33,7 +33,7 @@ def remove_session(session):
 
 
 def test_session():
-    robot = zgrobot.WeRoBot(
+    robot = zgrobot.ZgRoBot(
         token=zgrobot.utils.generate_token(), enable_session=True
     )
 
@@ -103,7 +103,7 @@ def test_session_storage_delete():
 
 class MockPyMySQL:
     def __init__(self):
-        self.db = sqlite3.connect("werobot_session.sqlite3")
+        self.db = sqlite3.connect("zgrobot_session.sqlite3")
         self.db.text_factory = str
         from zgrobot.session.sqlitestorage import __CREATE_TABLE_SQL__
         self.db.execute(__CREATE_TABLE_SQL__)
@@ -120,7 +120,7 @@ class MockPyMySQL:
                 self.cache_result = self.db.execute(*args, **kwargs).fetchone()
             elif "INSERT" in args[0]:
                 args = [
-                    "INSERT OR REPLACE INTO WeRoBot (id, value) VALUES (?,?);",
+                    "INSERT OR REPLACE INTO ZgRoBot (id, value) VALUES (?,?);",
                     (args[1][0], args[1][1])
                 ]
                 self.db.execute(*args, **kwargs)

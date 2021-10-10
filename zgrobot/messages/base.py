@@ -1,4 +1,4 @@
-class WeRoBotMetaClass(type):
+class ZgRoBotMetaClass(type):
     TYPES = {}
 
     def __new__(mcs, name, bases, attrs):

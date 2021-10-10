@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from zgrobot import WeRoBot
+from zgrobot import ZgRoBot
 from zgrobot.contrib.django import make_view
 from zgrobot.utils import generate_token
 
-robot = WeRoBot(
+robot = ZgRoBot(
     SESSION_STORAGE=False,
     token="TestDjango",
     app_id="9998877",

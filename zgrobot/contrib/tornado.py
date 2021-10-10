@@ -13,10 +13,10 @@ def make_handler(robot):
 
         import tornado.ioloop
         import tornado.web
-        from zgrobot import WeRoBot
-        from tornado_werobot import make_handler
+        from zgrobot import ZgRoBot
+        from tornado_zgrobot import make_handler
 
-        robot = WeRoBot(token='token')
+        robot = ZgRoBot(token='token')
 
 
         @robot.handler
@@ -30,7 +30,7 @@ def make_handler(robot):
     :param robot: 一个 BaseRoBot 实例。
     :return: 一个标准的 Tornado Handler
     """
-    class WeRoBotHandler(RequestHandler):
+    class ZgRoBotHandler(RequestHandler):
         def prepare(self):
             timestamp = self.get_argument('timestamp', '')
             nonce = self.get_argument('nonce', '')
@@ -67,4 +67,4 @@ def make_handler(robot):
             self.set_header("Content-Type", "application/xml;charset=utf-8")
             self.write(robot.get_encrypted_reply(message))
 
-    return WeRoBotHandler
+    return ZgRoBotHandler

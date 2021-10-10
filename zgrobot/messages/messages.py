@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from zgrobot.messages.entries import StringEntry, IntEntry, FloatEntry
-from zgrobot.messages.base import WeRoBotMetaClass
+from zgrobot.messages.base import ZgRoBotMetaClass
 
 
-class MessageMetaClass(WeRoBotMetaClass):
+class MessageMetaClass(ZgRoBotMetaClass):
     pass
 
 

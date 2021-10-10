@@ -31,14 +31,14 @@ readme = readme.replace("latest", "v" + zgrobot.__version__)
 
 install_requires = open("requirements.txt").readlines()
 setup(
-    name='WeRoBot',
+    name='ZgRoBot',
     version=zgrobot.__version__,
     author=zgrobot.__author__,
     author_email='whtsky@me.com',
     url='https://github.com/offu/WeRoBot',
     packages=find_packages(),
     keywords="wechat weixin zgrobot",
-    description='WeRoBot: writing WeChat Offical Account Robots with fun',
+    description='ZgRoBot: writing WeChat Offical Account Robots with fun',
     long_description=readme,
     install_requires=install_requires,
     include_package_data=True,

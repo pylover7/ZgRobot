@@ -14,7 +14,7 @@ from zgrobot.utils import (
 
 from inspect import signature
 
-__all__ = ['BaseRoBot', 'WeRoBot']
+__all__ = ['BaseRoBot', 'ZgRoBot']
 
 _DEFAULT_CONFIG = dict(
     TOKEN=None,
@@ -557,9 +557,9 @@ class BaseRoBot(object):
         self, body, timestamp=None, nonce=None, msg_signature=None
     ):
         """
-        解析获取到的 Raw XML ，如果需要的话进行解密，返回 WeRoBot Message。
+        解析获取到的 Raw XML ，如果需要的话进行解密，返回 ZgRoBot Message。
         :param body: 微信服务器发来的请求中的 Body。
-        :return: WeRoBot Message
+        :return: ZgRoBot Message
         """
         message_dict = parse_xml(body)
         if "Encrypt" in message_dict:
@@ -601,11 +601,11 @@ class BaseRoBot(object):
 
     def get_encrypted_reply(self, message):
         """
-        对一个指定的 WeRoBot Message ，获取 handlers 处理后得到的 Reply。
+        对一个指定的 ZgRoBot Message ，获取 handlers 处理后得到的 Reply。
         如果可能，对该 Reply 进行加密。
         返回 Reply Render 后的文本。
 
-        :param message: 一个 WeRoBot Message 实例。
+        :param message: 一个 ZgRoBot Message 实例。
         :return: reply （纯文本）
         """
         reply = self.get_reply(message)
@@ -645,9 +645,9 @@ class BaseRoBot(object):
         return f
 
 
-class WeRoBot(BaseRoBot):
+class ZgRoBot(BaseRoBot):
     """
-    WeRoBot 是一个继承自 BaseRoBot 的对象，在 BaseRoBot 的基础上使用了 bottle 框架，
+    ZgRoBot 是一个继承自 BaseRoBot 的对象，在 BaseRoBot 的基础上使用了 bottle 框架，
     提供接收微信服务器发来的请求的功能。
     """
     @cached_property
@@ -665,7 +665,7 @@ class WeRoBot(BaseRoBot):
         self, server=None, host=None, port=None, enable_pretty_logging=True
     ):
         """
-        运行 WeRoBot。
+        运行 ZgRoBot。
 
         :param server: 传递给 Bottle 框架 run 方法的参数，详情见\
         `bottle 文档 <https://bottlepy.org/docs/dev/deployment.html#switching-the-server-backend>`_

@@ -69,8 +69,8 @@ def wsgi_tester():
 
 @pytest.fixture(scope="module")
 def hello_robot():
-    from zgrobot import WeRoBot
-    robot = WeRoBot(token='', SESSION_STORAGE=False)
+    from zgrobot import ZgRoBot
+    robot = ZgRoBot(token='', SESSION_STORAGE=False)
 
     @robot.text
     def hello():
@@ -150,7 +150,7 @@ def test_flask(wsgi_tester, hello_robot):
     from zgrobot.contrib.flask import make_view
 
     token = generate_token()
-    endpoint = '/werobot_flask'
+    endpoint = '/zgrobot_flask'
 
     hello_robot.token = token
     flask_app = Flask(__name__)
@@ -171,7 +171,7 @@ def test_bottle(wsgi_tester, hello_robot):
     from bottle import Bottle
 
     token = generate_token()
-    endpoint = '/werobot_bottle'
+    endpoint = '/zgrobot_bottle'
 
     hello_robot.token = token
 
@@ -181,7 +181,7 @@ def test_bottle(wsgi_tester, hello_robot):
     wsgi_tester(bottle_app, token=token, endpoint=endpoint)
 
 
-def test_werobot_wsgi(wsgi_tester, hello_robot):
+def test_zgrobot_wsgi(wsgi_tester, hello_robot):
     token = generate_token()
     endpoint = r'/rand'
     hello_robot.token = token
@@ -203,7 +203,7 @@ if tornado.version_info[0] < 6:
         from zgrobot.contrib.tornado import make_handler
 
         token = generate_token()
-        endpoint = r'/werobot_tornado'
+        endpoint = r'/zgrobot_tornado'
         hello_robot.token = token
 
         tornado_app = tornado.web.Application(
@@ -216,12 +216,12 @@ else:
 
     class TestTornado(AsyncHTTPSTestCase):
         token = 'TestTornado'
-        endpoint = '/werobot_tornado'
+        endpoint = '/zgrobot_tornado'
 
         @property
         def robot(self):
-            from zgrobot import WeRoBot
-            robot = WeRoBot(token=self.token, SESSION_STORAGE=False)
+            from zgrobot import ZgRoBot
+            robot = ZgRoBot(token=self.token, SESSION_STORAGE=False)
 
             @robot.text
             def hello():

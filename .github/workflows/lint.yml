@@ -28,4 +28,4 @@ jobs:
             ${{ runner.os }}-pip-
       - name: Run yapf
         run: |
-          yapf -p -r -d docs/ werobot/ tests/ *.py
+          yapf -p -r -d docs/ zgrobot/ tests/ *.py

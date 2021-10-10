@@ -14,7 +14,7 @@ class RedisStorage(SessionStorage):
 
         db = redis.Redis()
         session_storage = RedisStorage(db, prefix="my_prefix_")
-        robot = zgrobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.ZgRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
 

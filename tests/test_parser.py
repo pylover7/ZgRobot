@@ -83,9 +83,9 @@ def test_link_message():
         <FromUserName><![CDATA[fromUser]]></FromUserName>
         <CreateTime>1351776360</CreateTime>
         <MsgType><![CDATA[link]]></MsgType>
-        <Title><![CDATA[WeRoBot]]></Title>
-        <Description><![CDATA[Link to WeRoBot]]></Description>
-        <Url><![CDATA[https://github.com/whtsky/WeRoBot]]></Url>
+        <Title><![CDATA[ZgRoBot]]></Title>
+        <Description><![CDATA[Link to ZgRoBot]]></Description>
+        <Url><![CDATA[https://github.com/whtsky/ZgRoBot]]></Url>
         <MsgId>1234567890123456</MsgId>
     </xml>
     """
@@ -94,9 +94,9 @@ def test_link_message():
     assert message.source == "fromUser"
     assert message.time == 1351776360
     assert message.type == "link"
-    assert message.title == "WeRoBot"
-    assert message.description == "Link to WeRoBot"
-    assert message.url == "https://github.com/whtsky/WeRoBot"
+    assert message.title == "ZgRoBot"
+    assert message.description == "Link to ZgRoBot"
+    assert message.url == "https://github.com/whtsky/ZgRoBot"
     assert message.message_id == 1234567890123456
 
 
@@ -132,9 +132,9 @@ def test_unknown_message():
         <FromUserName><![CDATA[fromUser]]></FromUserName>
         <CreateTime>1351776360</CreateTime>
         <MsgType><![CDATA[unknown]]></MsgType>
-        <Title><![CDATA[WeRoBot]]></Title>
-        <Description><![CDATA[Link to WeRoBot]]></Description>
-        <Url><![CDATA[https://github.com/whtsky/WeRoBot]]></Url>
+        <Title><![CDATA[ZgRoBot]]></Title>
+        <Description><![CDATA[Link to ZgRoBot]]></Description>
+        <Url><![CDATA[https://github.com/whtsky/ZgRoBot]]></Url>
         <MsgId>1234567890123456</MsgId>
     </xml>
     """

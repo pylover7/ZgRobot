@@ -14,7 +14,7 @@ class MongoDBStorage(SessionStorage):
 
         collection = pymongo.MongoClient()["wechat"]["session"]
         session_storage = MongoDBStorage(collection)
-        robot = zgrobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.ZgRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
 

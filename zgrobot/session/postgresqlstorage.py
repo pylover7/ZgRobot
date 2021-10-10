@@ -4,7 +4,7 @@ from zgrobot.session import SessionStorage
 from zgrobot.utils import json_loads, json_dumps
 
 __CREATE_TABLE_SQL__ = """
-CREATE TABLE IF NOT EXISTS WeRoBot
+CREATE TABLE IF NOT EXISTS ZgRoBot
 (
 id VARCHAR(100) PRIMARY KEY,
 value TEXT NOT NULL
@@ -22,7 +22,7 @@ class PostgreSQLStorage(SessionStorage):
 
         conn = psycopg2.connect(host='127.0.0.1', port='5432', dbname='zgrobot', user='nya', password='nyanya')
         session_storage = PostgreSQLStorage(conn)
-        robot = zgrobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.ZgRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
     你需要安装一个 ``PostgreSQL Client`` 才能使用 PostgreSQLStorage，比如 ``psycopg2``。
@@ -45,7 +45,7 @@ class PostgreSQLStorage(SessionStorage):
         :return: 返回取到的数据，如果是空则返回一个空的 ``dict`` 对象
         """
         cur = self.conn.cursor()
-        cur.execute("SELECT value FROM WeRoBot WHERE id=%s LIMIT 1;", (id, ))
+        cur.execute("SELECT value FROM ZgRoBot WHERE id=%s LIMIT 1;", (id, ))
         session_json = cur.fetchone()
         if session_json is None:
             return {}
@@ -60,7 +60,7 @@ class PostgreSQLStorage(SessionStorage):
         """
         value = json_dumps(value)
         self.conn.cursor().execute(
-            "INSERT INTO WeRoBot (id, value) values (%s, %s) ON CONFLICT (id) DO UPDATE SET value = %s;",
+            "INSERT INTO ZgRoBot (id, value) values (%s, %s) ON CONFLICT (id) DO UPDATE SET value = %s;",
             (
                 id,
                 value,
@@ -75,5 +75,5 @@ class PostgreSQLStorage(SessionStorage):
 
         :param id: 要删除的数据的 id
         """
-        self.conn.cursor().execute("DELETE FROM WeRoBot WHERE id=%s", (id, ))
+        self.conn.cursor().execute("DELETE FROM ZgRoBot WHERE id=%s", (id, ))
         self.conn.commit()
