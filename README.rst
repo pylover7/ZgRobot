@@ -4,8 +4,12 @@ ZgRoBot
 
 .. image:: https://github.com/pylover7/zgrobot/workflows/tests/badge.svg
     :target: https://github.com/pylover7/zgrobot/actions
-.. image:: https://codecov.io/gh/pylover7/ZgRoBot/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/pylover7/ZgRoBot
+
+.. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
+    :target: https://codecov.io/gh/pylover7/ZgRobot
+
+![](https://img.shields.io/badge/language-python3-orange.svg)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 ZgRoBot 是一个微信公众号开发框架，采用MIT协议发布。
 
