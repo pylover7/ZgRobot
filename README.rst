@@ -17,7 +17,7 @@ ZgRoBot
 
 ZgRoBot 是一个微信公众号开发框架，采用MIT协议发布。
 
-文档在这里： https://zgrobot.readthedocs.org/zh_CN/latest/
+文档在这里： https://zgrobot.readthedocs.io/zh/stable/
 
 安装
 ========
@@ -48,6 +48,6 @@ Contributors
 Thank you to all the people who have already contributed. 
 |occontributorimage|
 
-.. |occontributorimage| image:: https://opencollective.com/zgrobot/contributors.svg?width=890&button=false
-    :target: https://opencollective.com/zgrobot
+.. |occontributorimage| image:: https://opencollective.com/werobot/contributors.svg?width=890&button=false
+    :target: https://opencollective.com/werobot
     :alt: Repo Contributors
