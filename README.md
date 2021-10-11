@@ -1,26 +1,40 @@
 # ZgRoBot
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests?label=tests)](https://github.com/pylover7/ZgRobot/actions/workflows/test.yml)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint)](https://github.com/pylover7/ZgRobot/actions/workflows/lint.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests)](https://github.com/pylover7/ZgRobot/actions)
 [![codecov](https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU)](https://codecov.io/gh/pylover7/ZgRobot)
 [![GitHub all releases](https://img.shields.io/github/downloads/pylover7/ZgRobot/total)](https://github.com/pylover7/ZgRobot/releases)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pip)](https://www.python.org/)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/commits/feature-update_docs)
-[![GitHub](https://img.shields.io/github/license/pylover7/ZgRobot)]()
+[![GitHub](https://img.shields.io/github/license/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/blob/master/LICENSE)
 
 
-`ZgRoBot` 是一个基于 [`WeRoBot`](https://github.com/offu/WeRoBot) 开发微信公众号开发框架，采用MIT协议发布。
+`ZgRoBot` 是一个基于 [`WeRoBot`](https://github.com/offu/WeRoBot) 开发的微信公众号后台开发框架，采用MIT协议发布。
 
-【 [阅读文档](https://zgrobot.readthedocs.io/zh/stable/) 】
+ > 我是来看【 [使用文档](https://zgrobot.readthedocs.io/zh/stable/) 】的！
 
 ## 安装
-
+### 推荐安装
 推荐使用 `pip` 进行安装：
 ```shell
 pip install zgrobot
 ```
+### 其他安装方法
+1. 手动下载安装包
+    - 下载地址1： [`release`](https://github.com/pylover7/ZgRobot/releases)
+    - 下载地址2：[蓝奏云仓库](https://shuoshuo.lanzoui.com/b016uiu7i) 、 [蓝奏云备用地址](https://shuoshuo.lanzoux.com/b016uiu7i) 【密码：1n86】
+    
+2. 本地安装
+```shell
+pip install zgrobot-XXX.tar.gz
+```
 
-## Hello World
+### 更新
+```shell
+pip install --upgrade zgrobot
+```
+
+## 使用
+### Hello World
 一个非常简单的 `Hello World` 微信公众号，会对收到的所有文本消息回复 `Hello World`
 
 ```python
@@ -35,8 +49,13 @@ def hello_world():
 robot.run()
 ```
 
+### 高级使用
+请参阅【 [使用文档](https://zgrobot.readthedocs.io/zh/stable/) 】
+
 ## Credits
-[![contributors](https://opencollective.com/zgrobot/contributors.svg?width=890&button=false)](https://opencollective.com/zgrobot)
+
+### Contributors
+[![contributors](https://opencollective.com/werobot/contributors.svg?width=890&button=false)](https://opencollective.com/werobot)
 
 ## License
 ```text
