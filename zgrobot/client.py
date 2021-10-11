@@ -52,6 +52,7 @@ class Client(object):
     微信 API 操作类
     通过这个类可以方便的通过微信 API 进行一系列操作，比如主动发送消息、创建自定义菜单等
     """
+
     def __init__(self, config):
         self.config = config
         self._token = None
@@ -106,7 +107,11 @@ class Client(object):
         """
         获取 Access Token。
 
-        :return: 返回的 JSON 数据包
+        :return: 返回的 ``JSON`` 数据包
+
+                正常时返回 ``{"access_token":"ACCESS_TOKEN", "expires_in":7200}``
+
+                错误时返回 ``{"errcode":40013,"errmsg":"invalid appid"}``
         """
         return self.get(
             url="https://api.weixin.qq.com/cgi-bin/token",
@@ -117,21 +122,21 @@ class Client(object):
             }
         )
 
-    def get_access_token(self):
+    def get_access_token(self) -> str:
         """
         判断现有的token是否过期。
         用户需要多进程或者多机部署可以手动重写这个函数
         来自定义token的存储，刷新策略。
 
-        :return: 返回token
+        :return: 返回 ``token``
         """
         if self._token:
             now = time.time()
             if self.token_expires_at - now > 60:
                 return self._token
-        json = self.grant_token()
-        self._token = json["access_token"]
-        self.token_expires_at = int(time.time()) + json["expires_in"]
+        json_str = self.grant_token()
+        self._token = json_str["access_token"]
+        self.token_expires_at = int(time.time()) + json_str["expires_in"]
         return self._token
 
     @property
@@ -143,6 +148,10 @@ class Client(object):
         获取微信服务器IP地址。
 
         :return: 返回的 JSON 数据包
+
+                正常时返回 ``{"ip_list": ["127.0.0.1", "127.0.0.2", "101.226.103.0/25"]}``
+
+                错误时返回 ``{"errcode":40013,"errmsg":"invalid appid"}``
         """
         return self.get(url="https://api.weixin.qq.com/cgi-bin/getcallbackip")
 
@@ -186,6 +195,10 @@ class Client(object):
 
         :param menu_data: Python 字典
         :return: 返回的 JSON 数据包
+
+                正确时返回 ``{"errcode":0,"errmsg":"ok"}``
+
+                错误时返回 ``{"errcode":40018,"errmsg":"invalid button name size"}``
         """
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/menu/create",
@@ -205,6 +218,8 @@ class Client(object):
         删除自定义菜单。
 
         :return: 返回的 JSON 数据包
+
+                正确时返回 ``{"errcode":0,"errmsg":"ok"}``
         """
         return self.get("https://api.weixin.qq.com/cgi-bin/menu/delete")
 
@@ -251,6 +266,10 @@ class Client(object):
         :param menu_data: 如上所示的 Python 字典
         :param matchrule: 如上所示的匹配规则
         :return: 返回的 JSON 数据包
+
+                正确时返回 ``{"menuid":"208379533"}``
+
+                错误时的返回码请见接口返回码说明.
         """
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/menu/addconditional",
@@ -266,6 +285,10 @@ class Client(object):
 
         :param menu_id: 菜单的 ID
         :return: 返回的 JSON 数据包
+
+                正确时返回 ``{"errcode":0,"errmsg":"ok"}``
+
+                错误时的返回码请见接口返回码说明。
         """
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/menu/delconditional",
@@ -276,7 +299,7 @@ class Client(object):
         """
         测试个性化菜单匹配结果。
 
-        :param user_id: 要测试匹配的用户 ID
+        :param user_id: 要测试匹配的用户 ID，也可以是用户的微信号
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -446,6 +469,7 @@ class Client(object):
     def upload_news_picture(self, file):
         """
         上传图文消息内的图片。
+        TODO 修改参数 file: File-object -> 文件路径/文件 url
 
         :param file: 要上传的文件，一个 File-object
         :return: 返回的 JSON 数据包
@@ -459,6 +483,7 @@ class Client(object):
     def upload_permanent_media(self, media_type, media_file):
         """
         上传其他类型永久素材。
+        TODO 修改参数 media_file: File-object -> 文件路径/文件 url
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）和缩略图（thumb）
         :param media_file: 要上传的文件，一个 File-object
@@ -476,6 +501,7 @@ class Client(object):
     def upload_permanent_video(self, title, introduction, video):
         """
         上传永久视频。
+        TODO 修改参数 video: File-object -> 文件路径/文件 url
 
         :param title: 视频素材的标题
         :param introduction: 视频素材的描述
@@ -736,7 +762,7 @@ class Client(object):
     def get_followers(self, first_user_id=None):
         """
         获取关注者列表
-        详情请参考 http://mp.weixin.qq.com/wiki/index.php?title=获取关注者列表
+        详情请参考 https://developers.weixin.qq.com/doc/offiaccount/User_Management/Getting_a_User_List.html
 
         :param first_user_id: 可选。第一个拉取的OPENID，不填默认从头开始拉取
         :return: 返回的 JSON 数据包

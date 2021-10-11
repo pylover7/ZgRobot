@@ -4,7 +4,7 @@
 
 Hello World
 -------------
-最简单的Hello World， 会给收到的每一条信息回复 `Hello World` ::
+最简单的 ``Hello World`` ， 会给收到的每一条信息回复 ``Hello World`` ::
 
     import zgrobot
 
@@ -31,7 +31,7 @@ ZgRoBot 会解析微信服务器发来的消息， 并将消息转换成成 :ref
     def hello(message):
         return 'Hello World!'
 
-就是一个简单的 :ref:`Handler` ， `@robot.handler` 意味着 `robot` 会将所有接收到的消息（ 包括 :ref:`Message` 和 :ref:`Event` ） 都转交给这个 :ref:`Handler` 来处理。
+就是一个简单的 :ref:`Handler` ， ``@robot.handler`` 意味着 ``robot`` 会将所有接收到的消息（ 包括 :ref:`Message` 和 :ref:`Event` ） 都转交给这个 :ref:`Handler` 来处理。
 当然， 你也可以编写一些只能处理特定消息的 :ref:`Handler` ::
 
     # @robot.text 修饰的 Handler 只处理文本消息
