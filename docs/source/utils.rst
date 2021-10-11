@@ -5,7 +5,7 @@
 Token 生成器
 ---------------
 
-ZgRoBot帮你准备了一个Token生成器： ::
+ZgRoBot帮你准备了一个 ``Token`` 生成器： ::
 
     import zgrobot.utils
 

@@ -3,25 +3,25 @@
 
 有许多种为 ZgRoBot 做贡献的方式， 包括但并不仅限于
 
-+ `上报 bug <https://github.com/whtsky/ZgRoBot/issues/new?labels=bug>`_
-+ `提交 Feature Request <https://github.com/whtsky/ZgRoBot/issues/new?labels=Feature Request>`_
++ `上报 bug <https://github.com/pylover7/ZgRobot/issues/new?labels=bug>`_
++ `提交 Feature Request <https://github.com/whtsky/ZgRobot/issues/new?labels=Feature Request>`_
 + :ref:`贡献代码`
-+ 加入 ZgRoBot QQ 群(283206829) 帮助解答问题
 + 把 ZgRoBot 安利给你周围的人 :)
 
 贡献代码
 ----------
 
-如果你希望为 ZgRoBot 贡献代码， 请现在 GitHub 上 `Fork <https://github.com/whtsky/ZgRoBot>`_ ZgRoBot 仓库， 然后在 ``master`` 分支上开一个新的分支。
+如果你希望为 **ZgRoBot** 贡献代码， 请现在 **GitHub** 上 `Fork <https://github.com/pylover7/ZgRobot>`_ **ZgRobot** 仓库， 然后在 ``master`` 分支上开一个新的分支。
 
-如果你的贡献的代码是修复 Bug ， 请确认这个 Bug 已经有了对应的 Issue （如果没有， 请先创建一个）； 然后在 Pull Request 的描述里面引用这个 Bug 的 Issue ID ， 就像这样(假设 Issue ID 为 153) ::
+如果你的贡献的代码是修复 **Bug** ， 请确认这个 **Bug** 已经有了对应的 **Issue** （如果没有， 请先创建一个）； 然后在 **Pull Request** 的 \
+描述里面引用这个 **Bug** 的 **Issue ID** ， 就像这样(假设 **Issue ID** 为 153) ::
 
     Fix #153
 
 环境搭建
 ~~~~~~~~~~~
-建议使用 ``virtualenv`` 创建虚拟环境进行开发, 然后安装开发环境需要的 packages。
-关于 Python 版本, 推荐使用 Python 3.6 进行开发。
+建议使用 ``virtualenv`` 创建虚拟环境进行开发, 然后安装开发环境需要的 ``packages``。
+关于 Python 版本, 推荐使用 **Python 3.6** 进行开发。
 
 如果使用的是 3.x 版本 ::
 
