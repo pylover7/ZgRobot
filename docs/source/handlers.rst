@@ -2,11 +2,11 @@ Handler
 =========
 
 
-ZgRoBot会将合法的请求发送给 handlers 依次执行。
+**ZgRoBot** 会将合法的请求发送给 ``Handlers`` 依次执行。
 
-如果某一个 Handler 返回了非空值， ZgRoBot 就会根据这个值创建回复，后面的 handlers 将不会被执行。
+如果某一个 ``Handler`` 返回了非空值， **ZgRoBot** 就会根据这个值创建回复，后面的 ``handlers`` 将不会被执行。
 
-你可以通过修饰符或 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加 handler ::
+你可以通过修饰符或 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加 ``handler`` ::
 
     import zgrobot
 
@@ -25,9 +25,9 @@ ZgRoBot会将合法的请求发送给 handlers 依次执行。
 类型过滤
 ------------
 
-在大多数情况下， 一个 Handler 并不能处理所有类型的消息。幸运的是， ZgRoBot 可以帮你过滤收到的消息。
+在大多数情况下， 一个 ``Handler`` 并不能处理所有类型的消息。幸运的是， **ZgRoBot** 可以帮你过滤收到的消息。
 
-只想处理被新用户关注的消息？::
+只想处理被新用户关注的消息？ ::
 
     import zgrobot
 
@@ -39,7 +39,7 @@ ZgRoBot会将合法的请求发送给 handlers 依次执行。
 
     robot.run()
 
-或者，你的 handler 只能处理文本？ ::
+或者，你的 ``Handler`` 只能处理文本？ ::
 
     import zgrobot
 
@@ -51,7 +51,7 @@ ZgRoBot会将合法的请求发送给 handlers 依次执行。
 
     robot.run()
 
-在 ZgRobot 中我们把请求分成了 Message 和 Event 两种类型,针对两种类型的请求分别有不同的 Handler。
+在 **ZgRobot** 中我们把请求分成了 :doc:`messages` 和 :doc:`events` 两种类型,针对两种类型的请求分别有不同的 ``Handler``。
 
 ========================================================================================================  =========================================
 修饰符                                                                                                       类型
@@ -95,7 +95,7 @@ ZgRoBot会将合法的请求发送给 handlers 依次执行。
 :func:`robot.unknown_event <zgrobot.robot.BaseRoBot.unknown_event>`                                         未知类型 (Event)
 ========================================================================================================  =========================================
 
-额，这个 handler 想处理文本信息和地理位置信息？ ::
+额，这个 ``handler`` 想处理文本信息和地理位置信息？ ::
 
     import zgrobot
 
@@ -124,14 +124,17 @@ ZgRoBot会将合法的请求发送给 handlers 依次执行。
 
     robot.run()
 
-.. note:: 通过 ``robot.handler`` 添加的 handler 将收到所有信息；只有在其他 handler 没有给出返回值的情况下， 通过 ``robot.handler`` 添加的 handler 才会被调用。
+.. note:: 通过 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加的 handler 将收到所有信息，并且只有在其它 handler 没有给出返回值的情况下， \
+          通过 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加的 handler 才会被调用。
 
-robot.key_click —— 回应自定义菜单
+robot.key_click()
 ---------------------------------
+
+你可以使用 :meth:`~zgrobot.robot.BaseRoBot.key_click` 回应自定义菜单。
 
 :meth:`~zgrobot.robot.BaseRoBot.key_click` 是对 :meth:`~zgrobot.robot.BaseRoBot.click` 修饰符的改进。
 
-如果你在自定义菜单中定义了一个 Key 为 ``abort`` 的菜单，响应这个菜单的 handler 可以写成这样 ::
+如果你在自定义菜单中定义了一个 Key 为 ``abort`` 的菜单，响应这个菜单的 ``handler`` 可以写成这样 ::
 
     @robot.key_click("abort")
     def abort():
@@ -146,8 +149,10 @@ robot.key_click —— 回应自定义菜单
 
 两者是等价的。
 
-robot.filter ——  回应有指定文本的消息
+robot.filter()
 -------------------------------------
+
+你可以使用 :meth:`~zgrobot.robot.BaseRoBot.filter` 回应有指定文本的消息
 
 :meth:`~zgrobot.robot.BaseRoBot.filter` 是对 :meth:`~zgrobot.robot.BaseRoBot.text` 修饰符的改进。
 
@@ -208,4 +213,4 @@ robot.filter ——  回应有指定文本的消息
 
     robot.add_filter(func=say_hello, rules=["hello", "hi", re.compile(".*?hello.*?")])
 
-更多内容详见 :class:`zgrobot.robot.BaseRoBot`
+更多内容详见 :class:`~zgrobot.robot.BaseRoBot()`

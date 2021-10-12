@@ -1,11 +1,11 @@
 与其他 Web 框架集成
 ===================
 
-ZgRoBot 可以作为独立服务运行，也可以集成在其他 Web 框架中一同运行。
+**ZgRoBot** 可以作为独立服务运行，也可以集成在其他 **Web** 框架中一同运行。
 
 Django
 --------
-ZgRoBot 支持 Django 2.2+。
+**ZgRoBot** 支持 **Django 2.2+** 。
 
 首先，在一个文件中写好你的微信机器人 ::
 
@@ -20,7 +20,7 @@ ZgRoBot 支持 Django 2.2+。
     def hello(message):
         return 'Hello World!'
 
-然后，在你 Django 项目中的 ``urls.py`` 中调用 :func:`zgrobot.contrib.django.make_view` ，将 ZgRoBot 集成进 Django ::
+然后，在你 **Django** 项目中的 ``urls.py`` 中调用 :func:`zgrobot.contrib.django.make_view` ，将 **ZgRoBot** 集成进 **Django** ::
 
     from django.conf.urls import patterns, include, url
     from zgrobot.contrib.django import make_view
@@ -48,7 +48,7 @@ Flask
     def hello(message):
         return 'Hello World!'
 
-然后, 在 Flask 项目中为 Flask 实例集成 ZgRoBot ::
+然后, 在 **Flask** 项目中为 **Flask** 实例集成 **ZgRoBot** ::
 
     from flask import Flask
     from robot import myrobot

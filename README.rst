@@ -2,14 +2,22 @@
 ZgRoBot
 ====================================
 
-.. image:: https://github.com/pylover7/zgrobot/workflows/tests/badge.svg
-    :target: https://github.com/pylover7/zgrobot/actions
-.. image:: https://codecov.io/gh/pylover7/ZgRoBot/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/pylover7/ZgRoBot
+.. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests?label=tests
+    :target: https://github.com/pylover7/ZgRobot/actions/workflows/test.yml
+.. image:: https://img.shields.io/github/workflow/status/pylover7/ZgRobot/Lint?label=lint
+    :target: https://github.com/pylover7/ZgRobot/actions/workflows/lint.yml
+.. image:: https://img.shields.io/github/downloads/pylover7/ZgRobot/total
+.. image:: https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU
+    :target:  https://codecov.io/gh/pylover7/ZgRobot
+.. image:: https://img.shields.io/github/stars/pylover7/ZgRobot?style=social
+.. image:: https://img.shields.io/pypi/pyversions/pip
+.. image:: https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot
+.. image:: https://img.shields.io/github/license/pylover7/ZgRobot
+    :alt: GitHub
 
 ZgRoBot 是一个微信公众号开发框架，采用MIT协议发布。
 
-文档在这里： https://zgrobot.readthedocs.org/zh_CN/latest/
+文档在这里： https://zgrobot.readthedocs.io/zh/stable/
 
 安装
 ========
@@ -40,6 +48,6 @@ Contributors
 Thank you to all the people who have already contributed. 
 |occontributorimage|
 
-.. |occontributorimage| image:: https://opencollective.com/zgrobot/contributors.svg?width=890&button=false
-    :target: https://opencollective.com/zgrobot
+.. |occontributorimage| image:: https://opencollective.com/werobot/contributors.svg?width=890&button=false
+    :target: https://opencollective.com/werobot
     :alt: Repo Contributors

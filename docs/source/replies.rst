@@ -2,7 +2,7 @@
 ==============
 
 
-你可以在构建Reply时传入一个合法的 `Message` 对象来自动生成 `source` 和 `target` ::
+你可以在构建``Reply``时传入一个合法的 ``Message`` 对象来自动生成 ``source`` 和 ``target`` ::
 
     reply = TextReply(message=message, content='Hello!')
 
@@ -10,7 +10,7 @@
 TextReply
 -----------
 
-`TextReply` 是简单的文本消息，构造函数的参数如下：
+``TextReply`` 是简单的文本消息，构造函数的参数如下：
 
 ========= ===================================
 name       value
@@ -21,12 +21,12 @@ source     信息的来源用户。通常是发送信息的用户。
 time       信息发送的时间，一个UNIX时间戳。默认情况下会使用当前时间。
 ========= ===================================
 
-.. note:: 如果你的handler返回了一个字符串， ZgRoBot会自动将其转化为一个文本消息。
+.. note:: 如果你的 ``handler`` 返回了一个字符串， **ZgRoBot** 会自动将其转化为一个文本消息。
 
 ImageReply
 -----------
 
-`ImageReply` 为回复图片消息，构造函数的参数如下：
+``ImageReply`` 为回复图片消息，构造函数的参数如下：
 
 ========= ===================================
 name       value
@@ -40,7 +40,7 @@ time       信息发送的时间，一个UNIX时间戳。默认情况下会使�
 VoiceReply
 ----------
 
-`VoiceReply` 为回复语音消息，构造函数的参数如下：
+``VoiceReply`` 为回复语音消息，构造函数的参数如下：
 
 ========= ===================================
 name       value
@@ -54,7 +54,7 @@ time       信息发送的时间，一个UNIX时间戳。默认情况下会使�
 VideoReply
 ----------
 
-`VideoReply` 为回复视频消息，构造函数的参数如下：
+``VideoReply`` 为回复视频消息，构造函数的参数如下：
 
 ============ ===================================
 name          value
@@ -71,7 +71,7 @@ time          信息发送的时间，一个UNIX时间戳。默认情况下会�
 ArticlesReply
 ---------------
 
-`ArticlesReply` 是图文消息，构造函数的参数如下：
+``ArticlesReply`` 是图文消息，构造函数的参数如下：
 
 ========= ===================================
 name       value
@@ -82,10 +82,10 @@ source     信息的来源用户。通常是发送信息的用户。
 time       信息发送的时间，一个UNIX时间戳。默认情况下会使用当前时间。
 ========= ===================================
 
-你需要给 `ArticlesReply` 添加 `Article` 来增加图文。
-`Article` 类位于 `zgrobot.reply.Article` 。
+你需要给 ``ArticlesReply`` 添加 ``Article`` 来增加图文。
+``Article`` 类位于 ``zgrobot.reply.Article`` 。
 
-`Article` 的构造函数的参数如下：
+``Article`` 的构造函数的参数如下：
 
 ============ ===================================
 name          value
@@ -96,10 +96,10 @@ img           图片链接
 url           点击图片后跳转链接
 ============ ===================================
 
-注意，微信公众平台对图片链接有特殊的要求，详情可以在
-`消息接口使用指南 <http://mp.weixin.qq.com/cgi-bin/readtemplate?t=wxm-callbackapi-doc&lang=zh_CN>`_ 里看到。
+.. note:: 微信公众平台对图片链接有特殊的要求，详情可以 \
+        在 `消息接口使用指南 <https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html#5>`_ 里看到。
 
-在构造完一个 `Article` 后， 你需要通过 `ArticlesReply` 的 `add_article` 参数把它添加进去。就像这样： ::
+在构造完一个 ``Article`` 后， 你需要通过 ``ArticlesReply`` 的 ``add_article`` 参数把它添加进去。就像这样： ::
 
     from zgrobot.replies import ArticlesReply, Article
     reply = ArticlesReply(message=message)
@@ -111,10 +111,11 @@ url           点击图片后跳转链接
     )
     reply.add_article(article)
 
-.. note:: 根据微信公众平台的 `最新公告 <https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=115383153198yAvN&lang=zh_CN>`_，每个ArticlesReply中 **最多添加1个Article** 。
+.. note:: 根据微信公众平台 \
+        的 `最新公告 <https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=115383153198yAvN&lang=zh_CN>`_ ，每个ArticlesReply中 **最多添加1个Article** 。
 
-你也可以让你的 handler 返回一个列表， 里面每一个元素都是一个长度为四的列表，
- ZgRoBot 会将其自动转为 ArticlesReply 。就像这样： ::
+你也可以让你的 ``handler`` 返回一个列表， 里面每一个元素都是一个长度为四的列表，
+ **ZgRoBot** 会将其自动转为 ``ArticlesReply`` 。就像这样： ::
 
     import zgrobot
 
@@ -143,7 +144,7 @@ url           点击图片后跳转链接
 MusicReply
 -----------
 
-`MusicReply` 是音乐消息，构造函数的参数如下：
+``MusicReply`` 是音乐消息，构造函数的参数如下：
 
 =============    ======================================================================
 name              value
@@ -157,8 +158,8 @@ url               音乐链接
 hq_url            高质量音乐链接，WIFI环境优先使用该链接播放音乐。可为空 [3]_
 =============    ======================================================================
 
-你也可以让你的 handler 返回一个长度为三或四的列表， [3]_
- ZgRoBot 会将其自动转为 MusicReply 。就像这样： ::
+你也可以让你的 ``handler`` 返回一个长度为三或四的列表， [3]_
+**ZgRoBot** 会将其自动转为 ``MusicReply`` ，就像这样： ::
 
     import zgrobot
 
@@ -184,7 +185,7 @@ hq_url            高质量音乐链接，WIFI环境优先使用该链接播放�
     robot.run()
 
 
-.. [3] 如果你省略了高质量音乐链接的地址， ZgRoBot 会自动将音乐链接的地址用于高质量音乐链接。
+.. [3] 如果你省略了高质量音乐链接的地址， **ZgRoBot** 会自动将音乐链接的地址用于高质量音乐链接。
 
 TransferCustomerServiceReply
 -----------------------------
@@ -202,5 +203,6 @@ account           指定会话接入的客服账号，可以没有此参数，�
 
 SuccessReply
 ---------------
-给微信服务器回复 "success"。
-假如服务器无法保证在五秒内处理并回复，需要回复 `SuccessReply` ，这样微信服务器才不会对此作任何处理，并且不会发起重试。
+给微信服务器回复 ``success``
+
+假如服务器无法保证在五秒内处理并回复，需要回复 ``SuccessReply`` ，这样微信服务器才不会对此作任何处理，并且不会发起重试。

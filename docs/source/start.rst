@@ -4,7 +4,7 @@
 
 Hello World
 -------------
-最简单的Hello World， 会给收到的每一条信息回复 `Hello World` ::
+最简单的 ``Hello World`` 例子， 会给收到的每一条信息回复 ``Hello World`` ::
 
     import zgrobot
 
@@ -21,18 +21,18 @@ Hello World
 
 消息处理
 --------------
-ZgRoBot 会解析微信服务器发来的消息， 并将消息转换成成 :ref:`Message` 或者是 :ref:`Event` 。
+**ZgRoBot** 会解析微信服务器发来的消息， 并将消息转换成成 :ref:`Message` 或者是 :ref:`Event` 。
 :ref:`Message` 表示用户发来的消息，如文本消息、图片消息； :ref:`Event` 则表示用户触发的事件， 如关注事件、扫描二维码事件。
-在消息解析、转换完成后， ZgRoBot 会将消息转交给 :ref:`Handler` 进行处理，并将 :ref:`Handler` 的返回值返回给微信服务器。
+在消息解析、转换完成后， **ZgRoBot** 会将消息转交给 :ref:`Handler` 进行处理，并将 :ref:`Handler` 的返回值返回给微信服务器。
 
-在刚才的 Hello World 中， 我们编写的 ::
+在刚才的 Hello World 中， 我们编写的： ::
 
     @robot.handler
     def hello(message):
         return 'Hello World!'
 
-就是一个简单的 :ref:`Handler` ， `@robot.handler` 意味着 `robot` 会将所有接收到的消息（ 包括 :ref:`Message` 和 :ref:`Event` ） 都转交给这个 :ref:`Handler` 来处理。
-当然， 你也可以编写一些只能处理特定消息的 :ref:`Handler` ::
+就是一个简单的 :ref:`Handler` ， ``@robot.handler`` 意味着 ``robot`` 会将所有接收到的消息（ 包括 :ref:`Message` 和 :ref:`Event` ） 都转交给这个 :ref:`Handler` 来处理。
+当然， 你也可以编写一些只能处理特定消息的 :ref:`Handler`： ::
 
     # @robot.text 修饰的 Handler 只处理文本消息
     @robot.text
@@ -47,8 +47,8 @@ ZgRoBot 会解析微信服务器发来的消息， 并将消息转换成成 :ref
 使用 Session 记录用户状态
 -------------------------
 
-ZgRoBot 提供了 :ref:`Session` 功能， 可以让你方便的记录用户状态。
-比如， 这个 Handler 可以判断发消息的用户之前有没有发送过消息 ::
+**ZgRoBot** 提供了 :ref:`Session` 功能， 可以让你方便的记录用户状态。
+比如， 这个 :ref:`Handler` 可以判断发消息的用户之前有没有发送过消息 ::
 
     @robot.text
     def first(message, session):
@@ -57,13 +57,13 @@ ZgRoBot 提供了 :ref:`Session` 功能， 可以让你方便的记录用户状�
         session['first'] = True
         return '你之前没给我发过消息'
 
-Session 功能默认开启， 并使用 SQLite 存储 Session 数据。 详情请参考 :doc:`session` 文档
+``Session`` 功能默认开启， 并使用 ``SQLite`` 存储 ``Session`` 数据。 详情请参考 :doc:`session` 文档
 
 创建自定义菜单
 --------------
 
-自定义菜单能够帮助公众号丰富界面，让用户更好更快地理解公众号的功能。 :class:`zgrobot.client.Client` 封装了微信的部分 API 接口，我们可以使用 :func:`zgrobot.client.Client.create_menu` 来创建自定义菜单。
-在使用 Client 之前， 我们需要先提供微信公众平台内的 AppID 和 AppSecret ::
+自定义菜单能够帮助公众号丰富界面，让用户更好更快地理解公众号的功能。 :class:`~zgrobot.client.Client` 封装了微信的部分 API 接口，我们可以使用 :func:`~zgrobot.client.Client.create_menu` \
+来创建自定义菜单。在使用 ``Client`` 之前， 我们需要先提供微信公众平台内的 ``AppID`` 和 ``AppSecret`` ::
 
     from zgrobot import ZgRoBot
     robot = ZgRoBot()

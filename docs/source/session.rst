@@ -1,9 +1,9 @@
 Session
 ==========
 
-你可以通过 Session 实现用户状态的记录。
+你可以通过 ``Session`` 实现用户状态的记录。
 
-一个简单的使用 Session 的 Demo ::
+一个简单的使用 ``Session`` 的 Demo ::
 
     from zgrobot import ZgRoBot
     robot = ZgRoBot(token=zgrobot.utils.generate_token())
@@ -20,7 +20,8 @@ Session
 开启/关闭 Session
 -----------------
 
-Session 在 ZgRoBot 中默认开启， 并使用 :class:`zgrobot.session.sqlitestorage.SQLiteStorage` 作为存储后端。 如果想要更换存储后端， 可以修改 :doc:`config` 中的 ``SESSION_STORAGE`` ::
+Session 在 **ZgRoBot** 中默认开启， 并使用 :class:`~zgrobot.session.sqlitestorage.SQLiteStorage()` 作为存储后端。 如果想要更换存储后端， \
+可以修改 :doc:`config` 中的 ``SESSION_STORAGE`` 值： ::
 
     from zgrobot import ZgRoBot
     from zgrobot.session.filestorage import FileStorage
@@ -28,7 +29,7 @@ Session 在 ZgRoBot 中默认开启， 并使用 :class:`zgrobot.session.sqlites
     robot.config['SESSION_STORAGE'] = FileStorage()
 
 
-如果想要关闭 Session 功能， 只需把 ``SESSION_STORAGE`` 设为 False 即可 ::
+如果想要关闭 Session 功能， 只需把 ``SESSION_STORAGE`` 设为 ``False`` 即可 ::
 
     from zgrobot import ZgRoBot
     robot = ZgRoBot(token="token")
@@ -37,13 +38,14 @@ Session 在 ZgRoBot 中默认开启， 并使用 :class:`zgrobot.session.sqlites
 修改 Handler 以使用 Session
 --------------------------------
 
-没有打开 Session 的时候，一个标准的 ZgRoBot Handler 应该是这样的 ::
+没有打开 ``Session`` 的时候，一个标准的 **ZgRoBot** ``Handler`` 应该是这样的 ::
 
     @robot.text
     def hello(message):
         return "Hello!"
 
-而在打开 Session 之后， 如果你的 handler 不需要使用 Session ，可以保持不变； 如果需要使用 Session ，则这个 Handler 需要修改为接受第二个参数： ``session`` ::
+而在打开 ``Session`` 之后， 如果你的 ``handler`` 不需要使用 ``Session`` ，可以保持不变； 如果需要使用 ``Session`` ，则这个 ``Handler`` \
+需要修改为接受第二个参数： ``session`` ::
 
     @robot.subscribe_event
     def intro(message):
