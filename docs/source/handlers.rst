@@ -2,9 +2,9 @@ Handler
 =========
 
 
-ZgRoBot会将合法的请求发送给 Handlers 依次执行。
+**ZgRoBot** 会将合法的请求发送给 ``Handlers`` 依次执行。
 
-如果某一个 Handler 返回了非空值， ZgRoBot 就会根据这个值创建回复，后面的 handlers 将不会被执行。
+如果某一个 ``Handler`` 返回了非空值， **ZgRoBot** 就会根据这个值创建回复，后面的 ``handlers`` 将不会被执行。
 
 你可以通过修饰符或 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加 ``handler`` ::
 
@@ -27,7 +27,7 @@ ZgRoBot会将合法的请求发送给 Handlers 依次执行。
 
 在大多数情况下， 一个 ``Handler`` 并不能处理所有类型的消息。幸运的是， **ZgRoBot** 可以帮你过滤收到的消息。
 
-只想处理被新用户关注的消息？::
+只想处理被新用户关注的消息？ ::
 
     import zgrobot
 
@@ -124,10 +124,13 @@ ZgRoBot会将合法的请求发送给 Handlers 依次执行。
 
     robot.run()
 
-.. note:: 通过 ``robot.handler`` 添加的 handler 将收到所有信息；只有在其他 handler 没有给出返回值的情况下， 通过 ``robot.handler`` 添加的 handler 才会被调用。
+.. note:: 通过 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加的 handler 将收到所有信息，并且只有在其它 handler 没有给出返回值的情况下， \
+          通过 :meth:`~zgrobot.robot.BaseRoBot.add_handler` 添加的 handler 才会被调用。
 
-robot.key_click —— 回应自定义菜单
+robot.key_click()
 ---------------------------------
+
+你可以使用 :meth:`~zgrobot.robot.BaseRoBot.key_click` 回应自定义菜单。
 
 :meth:`~zgrobot.robot.BaseRoBot.key_click` 是对 :meth:`~zgrobot.robot.BaseRoBot.click` 修饰符的改进。
 
@@ -146,8 +149,10 @@ robot.key_click —— 回应自定义菜单
 
 两者是等价的。
 
-robot.filter ——  回应有指定文本的消息
+robot.filter()
 -------------------------------------
+
+你可以使用 :meth:`~zgrobot.robot.BaseRoBot.filter` 回应有指定文本的消息
 
 :meth:`~zgrobot.robot.BaseRoBot.filter` 是对 :meth:`~zgrobot.robot.BaseRoBot.text` 修饰符的改进。
 

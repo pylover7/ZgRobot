@@ -20,7 +20,7 @@ Session
 开启/关闭 Session
 -----------------
 
-Session 在 ZgRoBot 中默认开启， 并使用 :class:`~zgrobot.session.sqlitestorage.SQLiteStorage()` 作为存储后端。 如果想要更换存储后端， \
+Session 在 **ZgRoBot** 中默认开启， 并使用 :class:`~zgrobot.session.sqlitestorage.SQLiteStorage()` 作为存储后端。 如果想要更换存储后端， \
 可以修改 :doc:`config` 中的 ``SESSION_STORAGE`` 值： ::
 
     from zgrobot import ZgRoBot

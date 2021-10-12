@@ -11,7 +11,10 @@
 贡献代码
 ----------
 
-如果你希望为 **ZgRoBot** 贡献代码， 请现在 **GitHub** 上 `Fork <https://github.com/pylover7/ZgRobot>`_ **ZgRobot** 仓库， 然后在 ``master`` 分支上开一个新的分支。
+如果你希望为 **ZgRoBot** 贡献代码， 请现在 **GitHub** 上 `Fork <https://github.com/pylover7/ZgRobot>`_ **ZgRobot** 仓库， 然后 \
+在 ``develop`` 分支上开一个新的分支。
+
+.. note:: 请注意，是在 ``develop`` 分支上新建分支，``master`` 分支仅允许来自 ``develop`` 分支的合并。
 
 如果你的贡献的代码是修复 **Bug** ， 请确认这个 **Bug** 已经有了对应的 **Issue** （如果没有， 请先创建一个）； 然后在 **Pull Request** 的 \
 描述里面引用这个 **Bug** 的 **Issue ID** ， 就像这样(假设 **Issue ID** 为 153) ::
@@ -63,6 +66,6 @@
 
 如果你的 Pull Request 添加了新的模块或者功能，请为这些代码添加必要的测试。 所有的测试文件都在 tests 文件夹下。
 
-当一切开发完成之后, 可以发 Pull Request 到 ``master`` 分支, 我们会为你的代码做 Review。同时 CI 也会自动运行测试。
+当一切开发完成之后, 可以发 Pull Request 到 ``develop`` 分支, 我们会为你的代码做 Review。同时 CI 也会自动运行测试。
 
 .. note:: 我们只会 Merge 通过了测试的代码。

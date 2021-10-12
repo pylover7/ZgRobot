@@ -9,8 +9,8 @@
 使用 ``zgrobot.run`` 来启动 **WSGI** 服务器
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-你可以在  :class:`~zgrobot.config.Config()` 中配置好 ZgRoBot 需要监听的地址和端口号， 然后使用你生成的 ``robot`` 调用 \
- :meth:`~zgrobot.robot.ZgRoBot.run()` 方法来启动服务器 ::
+你可以在  :class:`~zgrobot.config.Config()` 中配置好 ZgRoBot 需要监听的地址和端口号， 然后使用你生成的 ``robot`` 调 \
+用 :meth:`~zgrobot.robot.ZgRoBot.run()` 方法来启动服务器 ::
 
     import zgrobot
 
@@ -127,37 +127,3 @@
     }
 
 .. note:: 在这个例子中， ZgRoBot 的端口号为 12233。你应该在微信管理后台中将服务器地址设为 ``http://example.com`` 。
-
-在SAE上部署
------------------
-
-.. attention:: 从 `Version 1.11.0` 开始，ZgRoBot 停止测试 SAE 相关部分的代码。
-
-新浪云上的 ``Python`` 应用的入口为 ``index.wsgi:application`` ，也就是 ``index.wsgi`` 这个文件中名为 ``application`` 的 ``callable object``。
-
-
-所以，假设你在 ``robot.py`` 中使用了 **ZgRoBot** ::
-
-    # filename: robot.py
-    import zgrobot
-
-    robot = zgrobot.ZgRoBot(token='tokenhere')
-
-
-    @robot.handler
-    def echo(message):
-        return 'Hello World!'
-
-你需要再创建一个 ``index.wsgi`` 文件， 里面写 ::
-
-    import sae
-    from robot import robot
-
-
-    application = sae.create_wsgi_app(robot.wsgi)
-
-然后按照 SAE 的要求编写好 `config.yaml` 文件就可以了。
-可以参考 `示例仓库 <https://github.com/whtsky/WeRoBot-SAE-demo>`_
-
-如果你希望使用 SAE 提供的 KVDB 存储 Session 数据， 可以选择 :class:`~zgrobot.session.saekvstorage.SaeKVDBStorage()` 作为你的 Session Storage.
-

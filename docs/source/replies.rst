@@ -21,7 +21,7 @@ source     信息的来源用户。通常是发送信息的用户。
 time       信息发送的时间，一个UNIX时间戳。默认情况下会使用当前时间。
 ========= ===================================
 
-.. note:: 如果你的handler返回了一个字符串， ZgRoBot会自动将其转化为一个文本消息。
+.. note:: 如果你的 ``handler`` 返回了一个字符串， **ZgRoBot** 会自动将其转化为一个文本消息。
 
 ImageReply
 -----------
@@ -96,8 +96,8 @@ img           图片链接
 url           点击图片后跳转链接
 ============ ===================================
 
-注意，微信公众平台对图片链接有特殊的要求，详情可以在
-` 消息接口使用指南 <https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html#5>`_ 里看到。
+.. note:: 微信公众平台对图片链接有特殊的要求，详情可以 \
+        在 `消息接口使用指南 <https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html#5>`_ 里看到。
 
 在构造完一个 ``Article`` 后， 你需要通过 ``ArticlesReply`` 的 ``add_article`` 参数把它添加进去。就像这样： ::
 
@@ -111,7 +111,8 @@ url           点击图片后跳转链接
     )
     reply.add_article(article)
 
-.. note:: 根据微信公众平台的 ` 最新公告 <https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=115383153198yAvN&lang=zh_CN>`_ ，每个ArticlesReply中 **最多添加1个Article** 。
+.. note:: 根据微信公众平台 \
+        的 `最新公告 <https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=115383153198yAvN&lang=zh_CN>`_ ，每个ArticlesReply中 **最多添加1个Article** 。
 
 你也可以让你的 ``handler`` 返回一个列表， 里面每一个元素都是一个长度为四的列表，
  **ZgRoBot** 会将其自动转为 ``ArticlesReply`` 。就像这样： ::
@@ -158,7 +159,7 @@ hq_url            高质量音乐链接，WIFI环境优先使用该链接播放�
 =============    ======================================================================
 
 你也可以让你的 ``handler`` 返回一个长度为三或四的列表， [3]_
-**ZgRoBot** 会将其自动转为 ``MusicReply`` 。就像这样： ::
+**ZgRoBot** 会将其自动转为 ``MusicReply`` ，就像这样： ::
 
     import zgrobot
 
@@ -202,5 +203,6 @@ account           指定会话接入的客服账号，可以没有此参数，�
 
 SuccessReply
 ---------------
-给微信服务器回复 "success"。
+给微信服务器回复 ``success``
+
 假如服务器无法保证在五秒内处理并回复，需要回复 ``SuccessReply`` ，这样微信服务器才不会对此作任何处理，并且不会发起重试。

@@ -6,7 +6,7 @@
 ZgRobot 使用文档
 ======================================
 
-ZgRobot 是一个基于 `ZgRoBot <https://github.com/offu/ZgRoBot>`_ 而开发的微信公众号开发框架。
+ZgRobot 是一个基于 `WeRoBot <https://github.com/offu/WeRoBot>`_ 而开发的微信公众号开发框架。
 
 建议在使用前先阅读
 【`微信开发平台官方文档 <https://developers.weixin.qq.com/doc/>`_ 】

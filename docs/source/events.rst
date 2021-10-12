@@ -468,4 +468,5 @@ raw        请求的正文部分。标准的XML格式。
 ========= =====================================
 
 
-.. note:: 如果你不为 ZgRoBot 贡献代码，你完全可以无视掉 UnknownEvent 。在正常的使用中，ZgRoBot应该不会收到 `UnknownEvent` ——除非 ZgRoBot 停止开发。
+.. note:: 如果你不为 **ZgRoBot** 贡献代码，你完全可以无视掉 ``UnknownEvent`` 。在正常的使用中， **ZgRoBot** 应该 \
+        不会收到 ``UnknownEvent`` ——除非 **ZgRoBot** 停止开发。
