@@ -1,4 +1,4 @@
-__version__ = '2.0.0.dev3'
+__version__ = '2.0.0'
 __author__ = 'pylover'
 __license__ = 'MIT'
 
