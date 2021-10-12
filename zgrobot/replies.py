@@ -2,7 +2,7 @@
 import time
 
 from collections import defaultdict, namedtuple
-from werobot.utils import is_string, to_text
+from zgrobot.utils import is_string, to_text
 
 
 def renderable_named_tuple(typename, field_names, tempalte):

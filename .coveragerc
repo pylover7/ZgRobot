@@ -1,5 +1,5 @@
 [run]
-source = werobot
+source = zgrobot
 
 [report]
 exclude_lines =

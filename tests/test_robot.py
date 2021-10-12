@@ -5,8 +5,8 @@ import time
 import os
 import pytest
 
-from werobot import WeRoBot
-from werobot.utils import generate_token, to_text
+from zgrobot import ZgRoBot
+from zgrobot.utils import generate_token, to_text
 
 
 def _make_xml(content):
@@ -25,7 +25,7 @@ def _make_xml(content):
 def test_signature_checker():
     token = generate_token()
 
-    robot = WeRoBot(token, SESSION_STORAGE=False)
+    robot = ZgRoBot(token, SESSION_STORAGE=False)
 
     timestamp = str(int(time.time()))
     nonce = '12345678'
@@ -40,7 +40,7 @@ def test_signature_checker():
 
 
 def test_register_handlers():  # noqa: C901
-    robot = WeRoBot(SESSION_STORAGE=False)
+    robot = ZgRoBot(SESSION_STORAGE=False)
 
     for type in robot.message_types:
         assert hasattr(robot,
@@ -149,8 +149,8 @@ def test_register_handlers():  # noqa: C901
 
 def test_filter():
     import re
-    import werobot.testing
-    robot = WeRoBot(SESSION_STORAGE=False)
+    import zgrobot.testing
+    robot = ZgRoBot(SESSION_STORAGE=False)
 
     @robot.filter("喵")
     def _1():
@@ -170,17 +170,17 @@ def test_filter():
 
     assert len(robot._handlers["text"]) == 3
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("啊"))._args['content'] == u"汪"
     assert tester.send_xml(_make_xml("啊呵呵"))._args['content'] == u"哼"
     assert tester.send_xml(_make_xml("喵"))._args['content'] == u"喵"
 
     try:
-        os.remove(os.path.abspath("werobot_session"))
+        os.remove(os.path.abspath("zgrobot_session"))
     except OSError:
         pass
-    robot = WeRoBot(SESSION_STORAGE=False)
+    robot = ZgRoBot(SESSION_STORAGE=False)
 
     @robot.filter("帮助", "跪求帮助", re.compile("(.*?)help.*?"))
     def _(message, session, match):
@@ -196,7 +196,7 @@ def test_filter():
 
     assert len(robot._handlers["text"]) == 4
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("啊"))._args['content'] == u"哦"
     assert tester.send_xml(_make_xml("帮助"))._args['content'] == u"就不帮"
@@ -207,13 +207,13 @@ def test_filter():
 
 
 def test_register_not_callable_object():
-    robot = WeRoBot(SESSION_STORAGE=False)
+    robot = ZgRoBot(SESSION_STORAGE=False)
     with pytest.raises(ValueError):
         robot.add_handler("s")
 
 
 def test_error_page():
-    robot = WeRoBot()
+    robot = ZgRoBot()
 
     @robot.error_page
     def make_error_page(url):
@@ -223,24 +223,24 @@ def test_error_page():
 
 
 def test_config_ignore():
-    from werobot.config import Config
+    from zgrobot.config import Config
     config = Config(TOKEN="token from config")
-    robot = WeRoBot(config=config, token="token2333")
+    robot = ZgRoBot(config=config, token="token2333")
     assert robot.token == "token from config"
 
 
 def test_add_filter():
-    import werobot.testing
+    import zgrobot.testing
     import re
 
-    robot = WeRoBot()
+    robot = ZgRoBot()
 
     def test_register():
         return "test"
 
     robot.add_filter(test_register, ["test", re.compile(u".*?啦.*?")])
 
-    tester = werobot.testing.WeTest(robot)
+    tester = zgrobot.testing.WeTest(robot)
 
     assert tester.send_xml(_make_xml("test"))._args["content"] == "test"
     assert tester.send_xml(_make_xml(u"我要测试啦"))._args["content"] == "test"

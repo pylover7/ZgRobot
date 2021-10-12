@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from werobot.utils import to_text
+from zgrobot.utils import to_text
 
 
 def get_value(instance, path, default=None):

@@ -7,11 +7,11 @@ class SaeKVDBStorage(SessionStorage):
     """
     SaeKVDBStorage 使用SAE 的 KVDB 来保存你的session ::
 
-        import werobot
-        from werobot.session.saekvstorage import SaeKVDBStorage
+        import zgrobot
+        from zgrobot.session.saekvstorage import SaeKVDBStorage
 
         session_storage = SaeKVDBStorage()
-        robot = werobot.WeRoBot(token="token", enable_session=True,
+        robot = zgrobot.ZgRoBot(token="token", enable_session=True,
                                 session_storage=session_storage)
 
     需要先在后台开启 KVDB 支持

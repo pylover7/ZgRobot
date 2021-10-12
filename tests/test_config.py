@@ -1,8 +1,8 @@
 import os
 
-from werobot import WeRoBot
-from werobot.config import Config
-from werobot.utils import generate_token
+from zgrobot import ZgRoBot
+from zgrobot.config import Config
+from zgrobot.utils import generate_token
 
 basedir = os.path.dirname(os.path.abspath(__file__))
 
@@ -28,7 +28,7 @@ def test_from_object():
 
 
 def test_config_attribute():
-    robot = WeRoBot(SESSION_STORAGE=False)
+    robot = ZgRoBot(SESSION_STORAGE=False)
     assert not robot.token
     token = generate_token()
     robot.config["TOKEN"] = token

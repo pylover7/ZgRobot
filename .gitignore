@@ -54,11 +54,11 @@ include/
 Scripts/
 pyvenv.cfg
 
-werobot_session.db
+zgrobot_session.db
 
 .coveralls.yml
 
-werobot_session*
+zgrobot_session*
 pip-selfcheck.json
 venv
 

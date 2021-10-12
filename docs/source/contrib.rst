@@ -1,36 +1,36 @@
 与其他 Web 框架集成
 ===================
 
-WeRoBot 可以作为独立服务运行，也可以集成在其他 Web 框架中一同运行。
+**ZgRoBot** 可以作为独立服务运行，也可以集成在其他 **Web** 框架中一同运行。
 
 Django
 --------
-WeRoBot 支持 Django 2.2+。
+**ZgRoBot** 支持 **Django 2.2+** 。
 
 首先，在一个文件中写好你的微信机器人 ::
 
     # Filename: robot.py
 
-    from werobot import WeRoBot
+    from zgrobot import ZgRoBot
 
-    myrobot = WeRoBot(token='token')
+    myrobot = ZgRoBot(token='token')
 
 
     @myrobot.handler
     def hello(message):
         return 'Hello World!'
 
-然后，在你 Django 项目中的 ``urls.py`` 中调用 :func:`werobot.contrib.django.make_view` ，将 WeRoBot 集成进 Django ::
+然后，在你 **Django** 项目中的 ``urls.py`` 中调用 :func:`zgrobot.contrib.django.make_view` ，将 **ZgRoBot** 集成进 **Django** ::
 
     from django.conf.urls import patterns, include, url
-    from werobot.contrib.django import make_view
+    from zgrobot.contrib.django import make_view
     from robot import myrobot
 
     urlpatterns = patterns('',
         url(r'^robot/', make_view(myrobot)),
     )
 
-.. module:: werobot.contrib.django
+.. module:: zgrobot.contrib.django
 .. autofunction:: make_view
 
 Flask
@@ -39,52 +39,52 @@ Flask
 
     # Filename: robot.py
 
-    from werobot import WeRoBot
+    from zgrobot import ZgRoBot
 
-    myrobot = WeRoBot(token='token')
+    myrobot = ZgRoBot(token='token')
 
 
     @myrobot.handler
     def hello(message):
         return 'Hello World!'
 
-然后, 在 Flask 项目中为 Flask 实例集成 WeRoBot ::
+然后, 在 **Flask** 项目中为 **Flask** 实例集成 **ZgRoBot** ::
 
     from flask import Flask
     from robot import myrobot
-    from werobot.contrib.flask import make_view
+    from zgrobot.contrib.flask import make_view
 
     app = Flask(__name__)
-    app.add_url_rule(rule='/robot/', # WeRoBot 挂载地址
-                     endpoint='werobot', # Flask 的 endpoint
+    app.add_url_rule(rule='/robot/', # ZgRoBot 挂载地址
+                     endpoint='zgrobot', # Flask 的 endpoint
                      view_func=make_view(myrobot),
                      methods=['GET', 'POST'])
 
-.. module:: werobot.contrib.flask
+.. module:: zgrobot.contrib.flask
 .. autofunction:: make_view
 
 
 Bottle
 --------
-在你的 Bottle App 中集成 WeRoBot ::
+在你的 Bottle App 中集成 ZgRoBot ::
 
-    from werobot import WeRoBot
+    from zgrobot import ZgRoBot
 
-    myrobot = WeRoBot(token='token')
+    myrobot = ZgRoBot(token='token')
 
     @myrobot.handler
     def hello(message):
         return 'Hello World!'
 
     from bottle import Bottle
-    from werobot.contrib.bottle import make_view
+    from zgrobot.contrib.bottle import make_view
 
     app = Bottle()
-    app.route('/robot',  # WeRoBot 挂载地址
+    app.route('/robot',  # ZgRoBot 挂载地址
              ['GET', 'POST'],
              make_view(myrobot))
 
-.. module:: werobot.contrib.bottle
+.. module:: zgrobot.contrib.bottle
 .. autofunction:: make_view
 
 Tornado
@@ -93,10 +93,10 @@ Tornado
 
     import tornado.ioloop
     import tornado.web
-    from werobot import WeRoBot
-    from werobot.contrib.tornado import make_handler
+    from zgrobot import ZgRoBot
+    from zgrobot.contrib.tornado import make_handler
 
-    myrobot = WeRoBot(token='token')
+    myrobot = ZgRoBot(token='token')
 
 
     @myrobot.handler
@@ -111,5 +111,5 @@ Tornado
         application.listen(8888)
         tornado.ioloop.IOLoop.instance().start()
 
-.. module:: werobot.contrib.tornado
+.. module:: zgrobot.contrib.tornado
 .. autofunction:: make_handler

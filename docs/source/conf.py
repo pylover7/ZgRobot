@@ -25,8 +25,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath('../..'))
-
-import werobot
+import zgrobot
 
 # -- Project information -----------------------------------------------------
 
@@ -35,7 +34,7 @@ copyright = '2021, pylover'
 author = 'pylover'
 
 # The full version, including alpha/beta/rc tags
-version = release = werobot.__version__
+version = release = zgrobot.__version__
 
 # -- General configuration ---------------------------------------------------
 
