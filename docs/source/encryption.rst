@@ -7,7 +7,11 @@ ZgRoBot 支持对消息的加解密，即微信公众号的安全模式。
 
     pip install cryptography
 
+<<<<<<< HEAD:docs/source/encryption.rst
 之后， 你只需要将开发者 ID(`AppID`) 和微信公众平台后台设置的 `EncodingAESKey` 加到 ZgRoBot 的 Config 里面就可以了 ::
+=======
+之后， 你只需要将开发者 ID(`AppID`) 和微信公众平台后台设置的 `EncodingAESKey` 加到 WeRoBot 的 Config 里面就可以了 ::
+>>>>>>> main:docs/encryption.rst
 
     from zgrobot import ZgRoBot
     robot = ZgRoBot()
