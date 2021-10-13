@@ -3,6 +3,7 @@ name: Feature request
 about: 为 ZgRoBot 的功能提出建议
 labels: enhancement
 title: [Feature] <title>
+
 ---
 
 <!--请注意：请注意：不规范的问题会被部署的 issue bot 自动关闭。-->

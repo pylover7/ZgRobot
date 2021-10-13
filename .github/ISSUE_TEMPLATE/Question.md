@@ -3,6 +3,7 @@ name: 我有问题/疑惑
 about: 提出你的问题或者疑惑
 labels: question, need help
 title: [Question] <title>
+
 ---
 
 <!--请注意：请注意：不规范的问题会被部署的 issue bot 自动关闭。-->
