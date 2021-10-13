@@ -2,6 +2,7 @@
 name:  🐞 Bug
 about: 反馈 ZgRoBot 的 bug
 labels: bug
+title: '[BUG] <title>'
 
 =======
 
