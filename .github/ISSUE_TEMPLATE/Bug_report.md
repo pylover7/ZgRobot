@@ -4,8 +4,7 @@ about: 反馈 ZgRoBot 的 bug
 labels: bug
 title: '[BUG] <title>'
 
-=======
-
+---
 
 <!--请注意：不规范的问题会被部署的 issue bot 自动关闭。-->
 ## 对 `Bug` 的描述
