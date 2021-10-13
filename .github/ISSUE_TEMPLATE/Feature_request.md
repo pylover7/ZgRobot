@@ -2,7 +2,7 @@
 name: Feature request
 about: 为 ZgRoBot 的功能提出建议
 labels: enhancement
-title: [Feature] <title>
+title: '[Feature] <title>'
 
 ---
 
