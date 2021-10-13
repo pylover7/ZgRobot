@@ -1,20 +1,17 @@
 ---
 name: Feature request
 about: 为 ZgRoBot 的功能提出建议
-
+labels: enhancement
+title: [Feature] <title>
 ---
 
-<!--
-Issue tracker 只用于反馈 bug 和 feature request 。
-与 ZgRoBot 用法相关的问题请仔细阅读我们的文档，并推荐阅读《提问的智慧》：
-https://github.com/ruby-china/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md
--->
+<!--请注意：请注意：不规范的问题会被部署的 issue bot 自动关闭。-->
 
-* **遇到的问题**
-<!-- feature 总是要解决问题，来讲讲遇到的问题吧 -->
+## 你的想法
+<!-- 提出你认为好的功能或者建议， 当然，加上你想法的背景（理由、原因）也是很不错的哟-->
 
-* **解决方案**
-<!-- 描述为了解决这个问题需要 ZgRoBot 添加的 feature -->
+## 预期方案
+<!-- 描述为了实现这个目标需要 ZgRoBot 添加的 feature -->
 
-* **其他内容**
+## 其他内容
 <!-- 如相关 issue 或 PR 的引用等信息 -->
