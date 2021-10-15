@@ -18,4 +18,3 @@ issueConfigs:
 
 label: "closed by bot"
 exception:
-  - "pylover7"
