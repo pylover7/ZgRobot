@@ -4,7 +4,7 @@ import time
 import requests
 import urllib.parse
 
-from requests.compat import json as _json
+import json as _json
 from zgrobot.utils import to_text
 from zgrobot.replies import Article
 
