@@ -468,7 +468,6 @@ class Client(object):
     def upload_news_picture(self, file):
         """
         上传图文消息内的图片。
-        TODO 修改参数 file: File-object -> 文件路径/文件 url
 
         :param file: 要上传的文件，一个 File-object
         :return: 返回的 JSON 数据包
@@ -482,7 +481,6 @@ class Client(object):
     def upload_permanent_media(self, media_type, media_file):
         """
         上传其他类型永久素材。
-        TODO 修改参数 media_file: File-object -> 文件路径/文件 url
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）和缩略图（thumb）
         :param media_file: 要上传的文件，一个 File-object
@@ -500,7 +498,6 @@ class Client(object):
     def upload_permanent_video(self, title, introduction, video):
         """
         上传永久视频。
-        TODO 修改参数 video: File-object -> 文件路径/文件 url
 
         :param title: 视频素材的标题
         :param introduction: 视频素材的描述
