@@ -1,12 +1,20 @@
 import zgrobot
 from zgrobot.client import Client
-from zgrobot.replies import ImageReply
+from zgrobot.replies import ImageReply, VoiceReply
 
 # 导入自己的配置
 import config
 
 robot = zgrobot.ZgRoBot(config=config.config)
 my_client = Client(config=config.config)
+
+
+# 获取音频
+@robot.filter("音乐")
+def music_reply(message):
+    with open("./media/track1.mp3", "rb") as f:
+        media_id = my_client.upload_media(media_type="voice", media_file=f)["media_id"]
+    return VoiceReply(message=message, media_id=media_id)
 
 
 # 关注回复
