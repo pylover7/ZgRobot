@@ -15,6 +15,7 @@ ZgRobot 是一个基于 `WeRoBot <https://github.com/offu/WeRoBot>`_ 而开发�
     :maxdepth: 2
 
     start
+    examples
     encryption
     deploy
     handlers

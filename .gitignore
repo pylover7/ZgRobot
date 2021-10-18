@@ -61,6 +61,9 @@ zgrobot_session.db
 zgrobot_session*
 pip-selfcheck.json
 venv
+*.json
+config.*
+*.conf
 
 *.sqlite3
 .pytest_cache
