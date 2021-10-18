@@ -2,7 +2,7 @@
 ===================
 
 
-Hello World
+HelloWorld
 -------------------
 Hello World ::
 
