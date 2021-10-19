@@ -1,12 +1,17 @@
+<div style="text-align: center;">
+
 # ZgRoBot
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pylover7/ZgRobot/tests)](https://github.com/pylover7/ZgRobot/actions)
+[![GitHub Workflow Status](https://github.com/pylover7/zgrobot/workflows/tests/badge.svg)](https://github.com/pylover7/ZgRobot/actions)
 [![codecov](https://codecov.io/gh/pylover7/ZgRobot/branch/master/graph/badge.svg?token=JGB56KZ6CU)](https://codecov.io/gh/pylover7/ZgRobot)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/pylover7/ZgRobot?include_prereleases&sort=semver)](https://github.com/pylover7/ZgRobot/releases)
 [![GitHub all releases](https://img.shields.io/github/downloads/pylover7/ZgRobot/total)](https://github.com/pylover7/ZgRobot/releases)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pip)](https://www.python.org/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/zgrobot)](https://pypi.org/project/zgrobot/)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/commits/feature-update_docs)
+[![wakatime](https://wakatime.com/badge/github/pylover7/ZgRobot.svg)](https://wakatime.com/badge/github/pylover7/ZgRobot)
 [![GitHub](https://img.shields.io/github/license/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/blob/master/LICENSE)
 
+</div>
 
 `ZgRoBot` 是一个基于 [`WeRoBot`](https://github.com/offu/WeRoBot) 开发的微信公众号后台开发框架，采用MIT协议发布。
 
