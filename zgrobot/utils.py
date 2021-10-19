@@ -9,6 +9,7 @@ import string
 import time
 from functools import wraps
 from hashlib import sha1
+from typing import BinaryIO
 
 try:
     from secrets import choice
