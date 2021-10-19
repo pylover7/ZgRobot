@@ -9,6 +9,7 @@ import string
 import time
 from functools import wraps
 from hashlib import sha1
+from typing import BinaryIO
 
 try:
     from secrets import choice
@@ -152,7 +153,7 @@ def is_regex(value):
     return isinstance(value, re_type)
 
 
-def check_file_type_and_size(file_type: str, file_object: _io.BufferedReader):
+def check_file_type_and_size(file_type: str, file_object: BinaryIO):
     file_suffix = file_object.name.split(".")[-1]
     file_size = file_object.__sizeof__()
     file_type_dict = {
@@ -165,7 +166,7 @@ def check_file_type_and_size(file_type: str, file_object: _io.BufferedReader):
     try:
         if file_suffix in file_type_dict[
             file_type] and file_size < file_type_dict[file_type][-1]:
-            pass
+            return True
         else:
             raise Exception(
                 f"File Type error, Please provide the correct type {str(file_type_dict[file_type][:-1])}, "

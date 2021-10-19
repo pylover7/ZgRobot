@@ -4,6 +4,7 @@ import re
 
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
+from zgrobot.utils import check_file_type_and_size, str2button
 
 
 def test_token_generator():
@@ -59,3 +60,12 @@ def test_is_regex():
     regex = re.compile(r"test")
     assert not is_regex("test")
     assert is_regex(regex)
+
+
+def test_check_file_type_and_size():
+    assert check_file_type_and_size(file_type="image", file_object=open("./media/123.png", "rb"))
+
+
+def test_str2button():
+    assert str2button(button_txt="123", reply_txt="456") == "<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucon" \
+                                                            "tent=123'>456</a>"
