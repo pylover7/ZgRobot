@@ -4,6 +4,7 @@ cryptography==35.0.0
 pytest==6.2.5
 WebTest==3.0.0
 Flask
+Django
 tornado
 responses==0.14.0
 multipart==0.1
