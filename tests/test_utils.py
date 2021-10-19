@@ -63,7 +63,9 @@ def test_is_regex():
 
 
 def test_check_file_type_and_size():
-    assert check_file_type_and_size(file_type="image", file_object=open("./media/123.png", "rb"))
+    assert check_file_type_and_size(
+        file_type="image", file_object=open("./media/123.png", "rb")
+    )
 
 
 def test_str2button():
