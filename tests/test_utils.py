@@ -66,12 +66,12 @@ def test_check_file_type_and_size():
     assert check_file_type_and_size(
         file_type="image", file_object=open("./media/123.png", "rb")
     )
-    assert check_file_type_and_size(
+    assert not check_file_type_and_size(
         file_type="iamgea", file_object=open("./media/123.png", "rb")
-    ) is Exception
-    assert check_file_type_and_size(
+    )
+    assert not check_file_type_and_size(
         file_type="image", file_object=open("./media/234.pngw", "rb")
-    ) is TypeError
+    )
 
 
 def test_str2button():
