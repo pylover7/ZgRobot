@@ -150,3 +150,35 @@ def make_error_page(url):
 
 def is_regex(value):
     return isinstance(value, re_type)
+
+
+def check_file_type_and_size(file_type: str, file_path: str):
+    file_suffix = file_path.split(".")[1]
+    file_size = os.path.getsize(file_path)
+    file_type_dict = {
+        "image": ["png", "jpg", "jpeg", "gif", "bmp", 10*1024*1024],
+        "voice": ["mp3", "amr", "wma", "wav", 2*1024*1024],
+        "video": ["mp4", 10*1024*1024],
+        "thumb": ["jpg", 64*1024]
+    }
+    file_size_max = file_type_dict[file_type][-1] / 1024
+    try:
+        if file_suffix in file_type_dict[file_type] and file_size < file_type_dict[file_type][-1]:
+            pass
+        else:
+            raise Exception(f"File Type error, Please provide the correct type {str(file_type_dict[file_type][:-1])}, "
+                            f"or File Size error, Please provide the correct file "
+                            f"size<{str(file_size_max)} Kb")
+    except KeyError:
+        raise TypeError("File Type error, Please provide the correct type: image, voice, video and thumb!")
+
+
+def str2button(button_txt: str, reply_txt: str) -> str:
+    """
+    将普通文本包装为智能按钮
+
+    :param button_txt: 想要转换为智能按钮的文本
+    :param reply_txt: 按下智能按钮后回复的文本
+    :return: 返回智能按钮的字符串
+    """
+    return f"<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucontent={button_txt}'>{reply_txt}</a>"

@@ -5,7 +5,7 @@ import requests
 import urllib.parse
 
 import json as _json
-from zgrobot.utils import to_text
+from zgrobot.utils import to_text, check_file_type_and_size
 from zgrobot.replies import Article
 
 
@@ -370,23 +370,24 @@ class Client(object):
             }
         )
 
-    def upload_custom_service_account_avatar(self, account, avatar):
+    def upload_custom_service_account_avatar(self, account, avatar_path):
         """
         设置客服帐号的头像。
 
         :param account: 客服账号的用户名
-        :param avatar: 头像文件，必须是 jpg 格式
+        :param avatar_path: 头像文件路径，文件必须是 jpg 格式
         :return: 返回的 JSON 数据包
         """
-        return self.post(
-            url=
-            "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
-            params={
-                "access_token": self.token,
-                "kf_account": account
-            },
-            files={"media": avatar}
-        )
+        with open(avatar_path, "rb") as avatar:
+            return self.post(
+                url=
+                "https://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
+                params={
+                    "access_token": self.token,
+                    "kf_account": account
+                },
+                files={"media": avatar}
+            )
 
     def get_custom_service_account_list(self):
         """
@@ -408,22 +409,24 @@ class Client(object):
             url="https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist"
         )
 
-    def upload_media(self, media_type, media_file):
+    def upload_media(self, media_type, media_file_path):
         """
         上传临时多媒体文件。
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object
+        :param media_file_path: 要上传的文件路径（相对路径）
         :return: 返回的 JSON 数据包
         """
-        return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/media/upload",
-            params={
-                "access_token": self.token,
-                "type": media_type
-            },
-            files={"media": media_file}
-        )
+        check_file_type_and_size(file_type=media_type, file_path=media_file_path)
+        with open(media_file_path, "rb") as media_file:
+            return self.post(
+                url="https://api.weixin.qq.com/cgi-bin/media/upload",
+                params={
+                    "access_token": self.token,
+                    "type": media_type
+                },
+                files={"media": media_file}
+            )
 
     def download_media(self, media_id):
         """
@@ -465,62 +468,67 @@ class Client(object):
             data={"articles": articles}
         )
 
-    def upload_news_picture(self, file):
+    def upload_news_picture(self, file_path):
         """
         上传图文消息内的图片。
 
-        :param file: 要上传的文件，一个 File-object
+        :param file_path: 要上传的图片文件路径（相对路径），类型仅支持 jpg/png 格式，大小限制为 <1Mb
         :return: 返回的 JSON 数据包
         """
-        return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/media/uploadimg",
-            params={"access_token": self.token},
-            files={"media": file}
-        )
+        with open(file_path, "rb") as f:
+            return self.post(
+                url="https://api.weixin.qq.com/cgi-bin/media/uploadimg",
+                params={"access_token": self.token},
+                files={"media": f}
+            )
 
-    def upload_permanent_media(self, media_type, media_file):
+    def upload_permanent_media(self, media_type, media_file_path):
         """
         上传其他类型永久素材。
 
-        :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object
+        :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
+        :param media_file_path: 要上传的文件路径（相对路径）
         :return: 返回的 JSON 数据包
         """
-        return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/material/add_material",
-            params={
-                "access_token": self.token,
-                "type": media_type
-            },
-            files={"media": media_file}
-        )
+        check_file_type_and_size(file_type=media_type, file_path=media_file_path)
+        with open(media_file_path, "rb") as media_file:
+            return self.post(
+                url="https://api.weixin.qq.com/cgi-bin/material/add_material",
+                params={
+                    "access_token": self.token,
+                    "type": media_type
+                },
+                files={"media": media_file}
+            )
 
-    def upload_permanent_video(self, title, introduction, video):
+    def upload_permanent_video(self, title, introduction, video_path):
         """
         上传永久视频。
 
         :param title: 视频素材的标题
         :param introduction: 视频素材的描述
-        :param video: 要上传的视频，一个 File-object
+        :param video_path: 要上传的视频路径（相对路径），大小限制 <10Mb
         :return: requests 的 Response 实例
         """
-        return requests.post(
-            url="https://api.weixin.qq.com/cgi-bin/material/add_material",
-            params={
-                "access_token": self.token,
-                "type": "video"
-            },
-            data={
-                "description": _json.dumps(
-                    {
-                        "title": title,
-                        "introduction": introduction
-                    },
-                    ensure_ascii=False
-                ).encode("utf-8")
-            },
-            files={"media": video}
-        )
+        check_file_type_and_size(file_type="video", file_path=video_path)
+        with open(video_path, "rb") as video:
+            return requests.post(
+                url="https://api.weixin.qq.com/cgi-bin/material/add_material",
+                params={
+                    "access_token": self.token,
+                    "type": "video"
+                },
+                data={
+                    "description": _json.dumps(
+                        {
+                            "title": title,
+                            "introduction": introduction
+                        },
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                },
+                files={"media": video}
+            )
 
     def download_permanent_media(self, media_id):
         """

@@ -14,7 +14,9 @@ from zgrobot.client import Client, check_error, ClientException
 from zgrobot.utils import cached_property
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-GOD_PIC = os.path.join(os.path.dirname(__file__), '照桥心美.png')
+GOD_PIC = '../artwork/123.png'
+GOD_VID = '../artwork/456.mp4'
+GOD_VOI = '../artwork/track1.mp3'
 TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token"
 JSON_HEADER = {'content-type': 'application/json'}
 
@@ -758,8 +760,7 @@ class TestClientResourceClass(BaseTestClass):
         responses.add_callback(
             responses.POST, self.UPLOAD_URL, callback=self.upload_callback
         )
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_media('image', f)
+        r = self.client.upload_media('image', GOD_PIC)
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
@@ -789,8 +790,7 @@ class TestClientResourceClass(BaseTestClass):
             self.UPLOAD_PICTURE_URL,
             callback=self.upload_picture_callback
         )
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_news_picture(f)
+        r = self.client.upload_news_picture(GOD_PIC)
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
@@ -802,8 +802,7 @@ class TestClientResourceClass(BaseTestClass):
             self.UPLOAD_P_URL,
             callback=self.upload_p_media_callback
         )
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_permanent_media('image', f)
+        r = self.client.upload_permanent_media('image', GOD_PIC)
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
@@ -861,8 +860,7 @@ class TestUploadVideoClass(BaseTestClass):
             self.UPLOAD_VIDEO_URL,
             callback=self.upload_video_callback
         )
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_permanent_video("test", "test", f)
+        r = self.client.upload_permanent_video("test", "test", GOD_VID)
         assert isinstance(r, requests.Response)
 
 
@@ -1000,8 +998,7 @@ class TestCustomService(BaseTestClass):
         responses.add_callback(
             responses.POST, self.UPLOAD_URL, callback=self.upload_callback
         )
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_custom_service_account_avatar("image", f)
+        r = self.client.upload_custom_service_account_avatar("image", GOD_PIC)
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
