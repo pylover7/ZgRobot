@@ -17,6 +17,7 @@ def music_reply(message):
     return VoiceReply(message=message, media_id=media_id)
 
 
+
 # 关注回复
 @robot.subscribe
 def subscribe_reply(message):
