@@ -417,7 +417,9 @@ class Client(object):
         :param media_file_path: 要上传的文件路径（相对路径）
         :return: 返回的 JSON 数据包
         """
-        check_file_type_and_size(file_type=media_type, file_path=media_file_path)
+        check_file_type_and_size(
+            file_type=media_type, file_path=media_file_path
+        )
         with open(media_file_path, "rb") as media_file:
             return self.post(
                 url="https://api.weixin.qq.com/cgi-bin/media/upload",
@@ -490,7 +492,9 @@ class Client(object):
         :param media_file_path: 要上传的文件路径（相对路径）
         :return: 返回的 JSON 数据包
         """
-        check_file_type_and_size(file_type=media_type, file_path=media_file_path)
+        check_file_type_and_size(
+            file_type=media_type, file_path=media_file_path
+        )
         with open(media_file_path, "rb") as media_file:
             return self.post(
                 url="https://api.weixin.qq.com/cgi-bin/material/add_material",
