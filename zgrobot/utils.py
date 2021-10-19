@@ -162,8 +162,8 @@ def check_file_type_and_size(file_type: str, file_object: BinaryIO):
         "video": ["mp4", 10 * 1024 * 1024],
         "thumb": ["jpg", 64 * 1024]
     }
-    file_size_max = file_type_dict[file_type][-1] / 1024
     try:
+        file_size_max = file_type_dict[file_type][-1] / 1024
         if file_suffix in file_type_dict[
             file_type] and file_size < file_type_dict[file_type][-1]:
             return True
