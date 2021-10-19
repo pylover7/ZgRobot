@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import os
 
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
@@ -64,13 +65,13 @@ def test_is_regex():
 
 def test_check_file_type_and_size():
     assert check_file_type_and_size(
-        file_type="image", file_object=open("./media/123.png", "rb")
+        file_type="image", file_object=open(os.path.join(os.path.abspath(__file__), "media/123.png"), "rb")
     )
     assert not check_file_type_and_size(
-        file_type="iamgea", file_object=open("./media/123.png", "rb")
+        file_type="iamgea", file_object=open(os.path.join(os.path.abspath(__file__), "media/123.png"), "rb")
     )
     assert not check_file_type_and_size(
-        file_type="image", file_object=open("./media/234.pngw", "rb")
+        file_type="image", file_object=open(os.path.join(os.path.abspath(__file__), "media/234.pngw"), "rb")
     )
 
 
