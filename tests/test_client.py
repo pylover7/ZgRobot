@@ -800,12 +800,6 @@ class TestClientResourceClass(BaseTestClass):
         with open(GOD_PIC, 'rb') as f:
             r = self.client.upload_news_picture(f)
         assert r == {"errcode": 0, "errmsg": "ok"}
-        with open(GOD_MP4, "rb") as f:
-            r = self.client.upload_news_picture(f)
-        assert r == {"errcode": 0, "errmsg": "ok"}
-        with open(GOD_PIC, 'rb') as f:
-            r = self.client.upload_news_picture(f)
-        assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
     @add_token_response
