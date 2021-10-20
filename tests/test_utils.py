@@ -72,14 +72,14 @@ def test_check_file_type_and_size():
             ), "rb"
         )
     )
-    assert not check_file_type_and_size(
+    assert check_file_type_and_size(
         file_type="iamgea",
         file_object=open(
             os.path.join(
                 os.path.dirname(__file__), os.path.join("media", "123.png")
             ), "rb"
         )
-    )
+    ) is Exception
     assert not check_file_type_and_size(
         file_type="image",
         file_object=open(
@@ -87,7 +87,7 @@ def test_check_file_type_and_size():
                 os.path.dirname(__file__), os.path.join("media", "234.pngw")
             ), "rb"
         )
-    )
+    ) is TypeError
 
 
 def test_str2button():
