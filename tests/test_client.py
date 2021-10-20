@@ -771,10 +771,10 @@ class TestClientResourceClass(BaseTestClass):
         assert r == {"errcode": 0, "errmsg": "ok"}
         with open(GOD2_PIC, "rb") as f:
             r = self.client.upload_media('image', f)
-        assert not r
+        assert r == {"errcode": 0, "errmsg": "ok"}
         with open(GOD_PIC, 'rb') as f:
             r = self.client.upload_media('imagew', f)
-        assert not r
+        assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
     @add_token_response
@@ -821,10 +821,10 @@ class TestClientResourceClass(BaseTestClass):
         assert r == {"errcode": 0, "errmsg": "ok"}
         with open(GOD2_PIC, "rb") as f:
             r = self.client.upload_permanent_media('image', f)
-        assert not r
+        assert r == {"errcode": 0, "errmsg": "ok"}
         with open(GOD_PIC, 'rb') as f:
             r = self.client.upload_permanent_media('imagew', f)
-        assert not r
+        assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
     @add_token_response
@@ -886,7 +886,7 @@ class TestUploadVideoClass(BaseTestClass):
         assert isinstance(r, requests.Response)
         with open(GOD2_PIC, "rb") as f:
             r = self.client.upload_permanent_video('test', "test", f)
-        assert not r
+        assert isinstance(r, requests.Response)
 
 
 class TestMediaClass(BaseTestClass):
