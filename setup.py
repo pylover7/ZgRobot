@@ -26,7 +26,7 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-with io.open("README.rst", encoding="utf8") as f:
+with io.open("README.md", encoding="utf8") as f:
     readme = f.read()
 readme = readme.replace("latest", "v" + zgrobot.__version__)
 
