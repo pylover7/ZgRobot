@@ -168,13 +168,13 @@ def check_file_type_and_size(file_type: str, file_object: BinaryIO):
             file_type] and file_size < file_type_dict[file_type][-1]:
             return True
         else:
-            Exception(
+            raise Exception(
                 f"File Type error, Please provide the correct type {str(file_type_dict[file_type][:-1])}, "
                 f"or File Size error, Please provide the correct file "
                 f"size<{str(file_size_max)} Kb"
             )
     except KeyError:
-        TypeError(
+        raise TypeError(
             "File Type error, Please provide the correct type: image, voice, video and thumb!"
         )
 
