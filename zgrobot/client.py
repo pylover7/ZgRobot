@@ -5,7 +5,7 @@ import requests
 import urllib.parse
 
 from requests.compat import json as _json
-from zgrobot.utils import to_text
+from zgrobot.utils import to_text, check_file_type_and_size
 from zgrobot.replies import Article
 
 
@@ -416,6 +416,7 @@ class Client(object):
         :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
+        check_file_type_and_size(file_type=media_type, file_object=media_file)
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/media/upload",
             params={
@@ -486,6 +487,7 @@ class Client(object):
         :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
+        check_file_type_and_size(file_type=media_type, file_object=media_file)
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/material/add_material",
             params={
@@ -504,6 +506,7 @@ class Client(object):
         :param video: 要上传的视频，一个 File-object: open('xxx', 'rb')， 大小限制 <10Mb
         :return: requests 的 Response 实例
         """
+        check_file_type_and_size(file_type="video", file_object=video)
         return requests.post(
             url="https://api.weixin.qq.com/cgi-bin/material/add_material",
             params={
