@@ -45,7 +45,7 @@ def create_pic_file(func):
         try:
             func(self, *args, **kwargs)
         finally:
-            os.remove(GOD_PIC)
+            pass
 
     return wrapped_func
 
