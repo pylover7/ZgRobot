@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import re
+import os
 
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
+from zgrobot.utils import check_file_type_and_size, str2button
 
 
 def test_token_generator():
@@ -59,3 +61,34 @@ def test_is_regex():
     regex = re.compile(r"test")
     assert not is_regex("test")
     assert is_regex(regex)
+
+
+def test_check_file_type_and_size():
+    assert check_file_type_and_size(
+        file_type="image",
+        file_object=open(
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "123.png")
+            ), "rb"
+        )
+    )
+    assert not check_file_type_and_size(
+        file_type="iamgea",
+        file_object=open(
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "123.png")
+            ), "rb"
+        )
+    )
+    assert not check_file_type_and_size(
+        file_type="image",
+        file_object=open(
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "234.pngw")
+            ), "rb"
+        )
+    )
+
+
+def test_str2button():
+    assert type(str2button(button_txt="123", reply_txt="456")) is str

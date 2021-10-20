@@ -5,7 +5,7 @@ import requests
 import urllib.parse
 
 from requests.compat import json as _json
-from zgrobot.utils import to_text
+from zgrobot.utils import to_text, check_file_type_and_size
 from zgrobot.replies import Article
 
 
@@ -380,7 +380,7 @@ class Client(object):
         """
         return self.post(
             url=
-            "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
+            "https://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
             params={
                 "access_token": self.token,
                 "kf_account": account
@@ -413,9 +413,10 @@ class Client(object):
         上传临时多媒体文件。
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object
+        :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
+        check_file_type_and_size(file_type=media_type, file_object=media_file)
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/media/upload",
             params={
@@ -468,9 +469,8 @@ class Client(object):
     def upload_news_picture(self, file):
         """
         上传图文消息内的图片。
-        TODO 修改参数 file: File-object -> 文件路径/文件 url
 
-        :param file: 要上传的文件，一个 File-object
+        :param file: 要上传的图片文件，类型仅支持 jpg/png 格式，大小限制为 <10Mb，如：open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -482,12 +482,12 @@ class Client(object):
     def upload_permanent_media(self, media_type, media_file):
         """
         上传其他类型永久素材。
-        TODO 修改参数 media_file: File-object -> 文件路径/文件 url
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object
+        :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
+        check_file_type_and_size(file_type=media_type, file_object=media_file)
         return self.post(
             url="https://api.weixin.qq.com/cgi-bin/material/add_material",
             params={
@@ -500,13 +500,13 @@ class Client(object):
     def upload_permanent_video(self, title, introduction, video):
         """
         上传永久视频。
-        TODO 修改参数 video: File-object -> 文件路径/文件 url
 
         :param title: 视频素材的标题
         :param introduction: 视频素材的描述
-        :param video: 要上传的视频，一个 File-object
+        :param video: 要上传的视频，一个 File-object: open('xxx', 'rb')， 大小限制 <10Mb
         :return: requests 的 Response 实例
         """
+        check_file_type_and_size(file_type="video", file_object=video)
         return requests.post(
             url="https://api.weixin.qq.com/cgi-bin/material/add_material",
             params={
