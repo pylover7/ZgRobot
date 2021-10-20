@@ -80,7 +80,7 @@ def test_check_file_type_and_size():
             ), "rb"
         )
     ) is Exception
-    assert not check_file_type_and_size(
+    assert check_file_type_and_size(
         file_type="image",
         file_object=open(
             os.path.join(
