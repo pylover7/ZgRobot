@@ -67,19 +67,25 @@ def test_check_file_type_and_size():
     assert check_file_type_and_size(
         file_type="image",
         file_object=open(
-            os.path.join(os.path.dirname(__file__), os.path.join("media", "123.png")), "rb"
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "123.png")
+            ), "rb"
         )
     )
     assert not check_file_type_and_size(
         file_type="iamgea",
         file_object=open(
-            os.path.join(os.path.dirname(__file__), os.path.join("media", "123.png")), "rb"
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "123.png")
+            ), "rb"
         )
     )
     assert not check_file_type_and_size(
         file_type="image",
         file_object=open(
-            os.path.join(os.path.dirname(__file__), os.path.join("media", "234.pngw")), "rb"
+            os.path.join(
+                os.path.dirname(__file__), os.path.join("media", "234.pngw")
+            ), "rb"
         )
     )
 
