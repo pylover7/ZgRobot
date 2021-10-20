@@ -14,9 +14,15 @@ from zgrobot.client import Client, check_error, ClientException
 from zgrobot.utils import cached_property
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-GOD_PIC = os.path.join(os.path.dirname(__file__), os.path.join("media", "123.png"))
-GOD2_PIC = os.path.join(os.path.dirname(__file__), os.path.join("media", "234.pngw"))
-GOD_MP4 = os.path.join(os.path.dirname(__file__), os.path.join("media", "456.mp4"))
+GOD_PIC = os.path.join(
+    os.path.dirname(__file__), os.path.join("media", "123.png")
+)
+GOD2_PIC = os.path.join(
+    os.path.dirname(__file__), os.path.join("media", "234.pngw")
+)
+GOD_MP4 = os.path.join(
+    os.path.dirname(__file__), os.path.join("media", "456.mp4")
+)
 TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token"
 JSON_HEADER = {'content-type': 'application/json'}
 
