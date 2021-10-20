@@ -5,7 +5,7 @@ import requests
 import urllib.parse
 
 from requests.compat import json as _json
-from zgrobot.utils import to_text, check_file_type_and_size
+from zgrobot.utils import to_text
 from zgrobot.replies import Article
 
 
@@ -380,7 +380,7 @@ class Client(object):
         """
         return self.post(
             url=
-            "https://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
+            "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg",
             params={
                 "access_token": self.token,
                 "kf_account": account
@@ -413,7 +413,7 @@ class Client(object):
         上传临时多媒体文件。
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
+        :param media_file: 要上传的文件，一个 File-object
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -469,7 +469,7 @@ class Client(object):
         """
         上传图文消息内的图片。
 
-        :param file: 要上传的图片文件，类型仅支持 jpg/png 格式，大小限制为 <10Mb，如：open('xxx', 'rb')
+        :param file: 要上传的文件，一个 File-object
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -483,7 +483,7 @@ class Client(object):
         上传其他类型永久素材。
 
         :param media_type: 媒体文件类型，分别有图片（image）、语音（voice）和缩略图（thumb）
-        :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
+        :param media_file: 要上传的文件，一个 File-object
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -501,7 +501,7 @@ class Client(object):
 
         :param title: 视频素材的标题
         :param introduction: 视频素材的描述
-        :param video: 要上传的视频，一个 File-object: open('xxx', 'rb')， 大小限制 <10Mb
+        :param video: 要上传的视频，一个 File-object
         :return: requests 的 Response 实例
         """
         return requests.post(
