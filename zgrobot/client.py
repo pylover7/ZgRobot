@@ -416,15 +416,18 @@ class Client(object):
         :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
-        check_file_type_and_size(file_type=media_type, file_object=media_file)
-        return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/media/upload",
-            params={
-                "access_token": self.token,
-                "type": media_type
-            },
-            files={"media": media_file}
-        )
+        if check_file_type_and_size(file_type=media_type, file_object=media_file):
+            return self.post(
+                url="https://api.weixin.qq.com/cgi-bin/media/upload",
+                params={
+                    "access_token": self.token,
+                    "type": media_type
+                },
+                files={"media": media_file}
+            )
+        else:
+            print("error")
+            return False
 
     def download_media(self, media_id):
         """
@@ -487,15 +490,18 @@ class Client(object):
         :param media_file: 要上传的文件，一个 File-object: open('xxx', 'rb')
         :return: 返回的 JSON 数据包
         """
-        check_file_type_and_size(file_type=media_type, file_object=media_file)
-        return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/material/add_material",
-            params={
-                "access_token": self.token,
-                "type": media_type
-            },
-            files={"media": media_file}
-        )
+        if check_file_type_and_size(file_type=media_type, file_object=media_file):
+            return self.post(
+                url="https://api.weixin.qq.com/cgi-bin/material/add_material",
+                params={
+                    "access_token": self.token,
+                    "type": media_type
+                },
+                files={"media": media_file}
+            )
+        else:
+            print("error")
+            return False
 
     def upload_permanent_video(self, title, introduction, video):
         """
@@ -506,24 +512,27 @@ class Client(object):
         :param video: 要上传的视频，一个 File-object: open('xxx', 'rb')， 大小限制 <10Mb
         :return: requests 的 Response 实例
         """
-        check_file_type_and_size(file_type="video", file_object=video)
-        return requests.post(
-            url="https://api.weixin.qq.com/cgi-bin/material/add_material",
-            params={
-                "access_token": self.token,
-                "type": "video"
-            },
-            data={
-                "description": _json.dumps(
-                    {
-                        "title": title,
-                        "introduction": introduction
-                    },
-                    ensure_ascii=False
-                ).encode("utf-8")
-            },
-            files={"media": video}
-        )
+        if check_file_type_and_size(file_type="video", file_object=video):
+            return requests.post(
+                url="https://api.weixin.qq.com/cgi-bin/material/add_material",
+                params={
+                    "access_token": self.token,
+                    "type": "video"
+                },
+                data={
+                    "description": _json.dumps(
+                        {
+                            "title": title,
+                            "introduction": introduction
+                        },
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                },
+                files={"media": video}
+            )
+        else:
+            print("error")
+            return False
 
     def download_permanent_media(self, media_id):
         """

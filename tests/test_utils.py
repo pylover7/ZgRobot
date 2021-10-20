@@ -79,7 +79,7 @@ def test_check_file_type_and_size():
                 os.path.dirname(__file__), os.path.join("media", "123.png")
             ), "rb"
         )
-    ) is Exception
+    )
     assert not check_file_type_and_size(
         file_type="image",
         file_object=open(
