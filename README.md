@@ -25,10 +25,7 @@ pip install zgrobot
 
 ### 其他安装方法
 
-1. 手动下载安装包
-    - 下载地址1： [`release`](https://github.com/pylover7/ZgRobot/releases)
-    - 下载地址2：[蓝奏云仓库](https://shuoshuo.lanzoui.com/b016uiu7i) 、 [蓝奏云备用地址](https://shuoshuo.lanzoux.com/b016uiu7i) 【密码：1n86】
-    
+1. 手动下载安装包 ，下载地址： [`release`](https://github.com/pylover7/ZgRobot/releases) 
 2. 本地安装
 ```shell
 pip install zgrobot-XXX.tar.gz

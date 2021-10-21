@@ -28,7 +28,6 @@ class PyTest(TestCommand):
 
 with io.open("README.md", encoding="utf8") as f:
     readme = f.read()
-readme = readme.replace("latest", "v" + zgrobot.__version__)
 
 install_requires = open("requirements.txt").readlines()
 setup(
