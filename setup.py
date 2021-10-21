@@ -28,7 +28,6 @@ class PyTest(TestCommand):
 
 with io.open("README.md", encoding="utf8") as f:
     readme = f.read()
-readme = readme.replace("latest", "v" + zgrobot.__version__)
 
 install_requires = open("requirements.txt").readlines()
 setup(
@@ -41,7 +40,7 @@ setup(
     keywords="wechat weixin zgrobot",
     description='ZgRoBot: writing WeChat Offical Account Robots with fun',
     long_description=readme,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     install_requires=install_requires,
     include_package_data=True,
     license='MIT License',
