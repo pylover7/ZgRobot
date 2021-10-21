@@ -1,5 +1,5 @@
 include requirements.txt
-include README.rst
+include README.md
 include LICENSE
 include zgrobot/contrib/error.html
 recursive-include tests *

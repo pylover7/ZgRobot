@@ -10,7 +10,7 @@
 
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/zgrobot)](https://pypi.org/project/zgrobot/)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/commits/feature-update_docs)
-[![wakatime](https://wakatime.com/badge/github/pylover7/ZgRobot.svg)](https://wakatime.com/badge/github/pylover7/ZgRobot)
+[![wakatime](https://wakatime.com/badge/user/1d39df6a-cef0-41f7-a903-ef4b9dd13fb0.svg)](https://wakatime.com/@1d39df6a-cef0-41f7-a903-ef4b9dd13fb0)
 
 </b>
 
@@ -20,13 +20,7 @@
 
 ## 安装
 ### 推荐安装
-
-<center>
-    
 推荐使用 `pip` 进行安装：
-    
-</center>
-
 ```shell
 pip install zgrobot
 ```
