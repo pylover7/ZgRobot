@@ -949,7 +949,6 @@ class TestCustomService(BaseTestClass):
         body = json.loads(request.body.decode("utf-8"))
         assert "kf_account" in body.keys()
         assert "nickname" in body.keys()
-        assert "password" in body.keys()
         return 200, JSON_HEADER, json.dumps({"errcode": 0, "errmsg": "ok"})
 
     @staticmethod
