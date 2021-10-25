@@ -321,13 +321,12 @@ class Client(object):
             url="https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info"
         )
 
-    def add_custom_service_account(self, account, nickname, password):
+    def add_custom_service_account(self, account, nickname):
         """
         添加客服帐号。
 
         :param account: 客服账号的用户名
         :param nickname: 客服账号的昵称
-        :param password: 客服账号的密码
         :return: 返回的 JSON 数据包
         """
         return self.post(
@@ -335,7 +334,6 @@ class Client(object):
             data={
                 "kf_account": account,
                 "nickname": nickname,
-                "password": password
             }
         )
 
