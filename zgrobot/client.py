@@ -3,10 +3,14 @@
 import time
 import requests
 import urllib.parse
+from multiprocessing import Lock
 
 from requests.compat import json as _json
 from zgrobot.utils import to_text, check_file_type_and_size
 from zgrobot.replies import Article
+
+LOCK = Lock()
+SEND_MESSAGE_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send"
 
 
 class ClientException(Exception):
@@ -133,9 +137,10 @@ class Client(object):
             now = time.time()
             if self.token_expires_at - now > 60:
                 return self._token
-        json_str = self.grant_token()
-        self._token = json_str["access_token"]
-        self.token_expires_at = int(time.time()) + json_str["expires_in"]
+        with LOCK:
+            json_str = self.grant_token()
+            self._token = json_str["access_token"]
+            self.token_expires_at = int(time.time()) + json_str["expires_in"]
         return self._token
 
     @property
@@ -815,7 +820,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -838,7 +843,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -871,7 +876,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -913,7 +918,7 @@ class Client(object):
             data['customservice'] = {'kf_account': kf_account}
 
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -960,7 +965,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -983,7 +988,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
@@ -1020,7 +1025,7 @@ class Client(object):
         if kf_account is not None:
             data["customservice"] = {"kf_account": kf_account}
         return self.post(
-            url="https://api.weixin.qq.com/cgi-bin/message/custom/send",
+            url=SEND_MESSAGE_URL,
             data=data
         )
 
