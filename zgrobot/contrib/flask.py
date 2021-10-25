@@ -24,7 +24,7 @@ def make_view(robot):
         from zgrobot.contrib.flask import make_view
 
         app = Flask(__name__)
-        app.add_url_rule(rule='/robot/', # ZgRoBot 的绑定地址
+        app.add_url_rule(rule='/robot', # ZgRoBot 的绑定地址
                         endpoint='zgrobot', # Flask 的 endpoint
                         view_func=make_view(robot),
                         methods=['GET', 'POST'])

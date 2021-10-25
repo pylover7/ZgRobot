@@ -7,6 +7,7 @@ import random
 import re
 import string
 import time
+import signal
 from functools import wraps
 from hashlib import sha1
 from typing import BinaryIO
@@ -188,3 +189,26 @@ def str2button(button_txt: str, reply_txt: str) -> str:
     :return: 返回智能按钮的字符串
     """
     return f"<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucontent={button_txt}'>{reply_txt}</a>"
+
+
+def set_timeout(func):
+    """
+    信息返回超时检测，由于现有机制，超时检测将微信的超时时间 5s 缩短为 4s
+    """
+    def handle(
+        signum, frame
+    ):  # 收到信号 SIGALRM 后的回调函数，第一个参数是信号的数字，第二个参数是the interrupted stack frame.
+        raise TimeoutError
+
+    @wraps(func)
+    def to_do(*args, **kwargs):
+        try:
+            signal.signal(signal.SIGALRM, handle)  # 设置信号和回调函数
+            signal.alarm(4)  # 设置 num 秒的闹钟
+            r = func(*args, **kwargs)
+            signal.alarm(0)  # 关闭闹钟
+            return r
+        except:
+            return "success"
+
+    return to_do
