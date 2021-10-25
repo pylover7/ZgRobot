@@ -819,10 +819,7 @@ class Client(object):
         }
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_voice_message(self, user_id, media_id, kf_account=None):
         """
@@ -842,10 +839,7 @@ class Client(object):
         }
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_video_message(
         self,
@@ -875,10 +869,7 @@ class Client(object):
         data = {"touser": user_id, "msgtype": "video", "video": video_data}
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_music_message(
         self,
@@ -917,10 +908,7 @@ class Client(object):
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
 
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_article_message(self, user_id, articles, kf_account=None):
         """
@@ -964,10 +952,7 @@ class Client(object):
         }
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_news_message(self, user_id, media_id, kf_account=None):
         """
@@ -987,10 +972,7 @@ class Client(object):
         }
         if kf_account is not None:
             data['customservice'] = {'kf_account': kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def send_miniprogrampage_message(
         self,
@@ -1024,10 +1006,7 @@ class Client(object):
         }
         if kf_account is not None:
             data["customservice"] = {"kf_account": kf_account}
-        return self.post(
-            url=SEND_MESSAGE_URL,
-            data=data
-        )
+        return self.post(url=SEND_MESSAGE_URL, data=data)
 
     def create_qrcode(self, data):
         """
