@@ -976,7 +976,7 @@ class TestCustomService(BaseTestClass):
             self.ADD_URL,
             callback=self.add_update_delete_callback
         )
-        r = self.client.add_custom_service_account("test", "test", "test")
+        r = self.client.add_custom_service_account("test", "test")
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
