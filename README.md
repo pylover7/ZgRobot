@@ -8,6 +8,7 @@
 [![GitHub all releases](https://img.shields.io/github/downloads/pylover7/ZgRobot/total)](https://github.com/pylover7/ZgRobot/releases)
 [![GitHub](https://img.shields.io/github/license/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/blob/master/LICENSE)
 
+[![Documentation Status](https://readthedocs.org/projects/zgrobot/badge/?version=latest)](https://zgrobot.readthedocs.io/zh/latest/?badge=latest)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/zgrobot)](https://pypi.org/project/zgrobot/)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/commits/feature-update_docs)
 [![wakatime](https://wakatime.com/badge/user/1d39df6a-cef0-41f7-a903-ef4b9dd13fb0.svg)](https://wakatime.com/@1d39df6a-cef0-41f7-a903-ef4b9dd13fb0)

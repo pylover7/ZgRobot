@@ -949,7 +949,6 @@ class TestCustomService(BaseTestClass):
         body = json.loads(request.body.decode("utf-8"))
         assert "kf_account" in body.keys()
         assert "nickname" in body.keys()
-        assert "password" in body.keys()
         return 200, JSON_HEADER, json.dumps({"errcode": 0, "errmsg": "ok"})
 
     @staticmethod
@@ -976,7 +975,7 @@ class TestCustomService(BaseTestClass):
             self.ADD_URL,
             callback=self.add_update_delete_callback
         )
-        r = self.client.add_custom_service_account("test", "test", "test")
+        r = self.client.add_custom_service_account("test", "test")
         assert r == {"errcode": 0, "errmsg": "ok"}
 
     @responses.activate
