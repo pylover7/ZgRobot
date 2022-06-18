@@ -618,7 +618,10 @@ class BaseRoBot(object):
         if self.use_encryption:
             return self.crypto.encrypt_message(reply)
         else:
-            return reply.render()
+            if type(reply) == str:
+                return reply
+            else:
+                return reply.render()
 
     def check_signature(self, timestamp, nonce, signature):
         """
