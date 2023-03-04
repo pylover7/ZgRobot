@@ -3,8 +3,9 @@ import asyncio
 import html
 
 from fastapi import Request, Body
-from zgrobot.robot import BaseRoBot
 from fastapi.responses import HTMLResponse, Response
+
+from zgrobot.robot import BaseRoBot
 
 
 def make_view(robot: BaseRoBot):

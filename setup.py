@@ -2,10 +2,11 @@
 # coding=utf-8
 
 import io
-import zgrobot
 
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
+
+import zgrobot
 
 
 class PyTest(TestCommand):

@@ -1,5 +1,5 @@
-import time
 import logging
+import time
 
 from zgrobot.logger import enable_pretty_logging, _LogFormatter
 

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import re
 import os
+import re
 import time
 
+from zgrobot.utils import check_file_type_and_size, str2button, exit_after
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
-from zgrobot.utils import check_file_type_and_size, str2button, exit_after
 
 
 def test_token_generator():

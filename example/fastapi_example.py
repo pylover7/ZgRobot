@@ -1,9 +1,8 @@
 import uvicorn as uvicorn
+from fastapi import FastAPI
 
 from zgrobot import ZgRoBot
-from fastapi import FastAPI
 from zgrobot.contrib.fastapi import make_view
-from fastapi.middleware.wsgi import WSGIMiddleware
 
 app = FastAPI()
 robot = ZgRoBot(token="qazxswedc")
