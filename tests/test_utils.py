@@ -6,7 +6,7 @@ import time
 
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
-from zgrobot.utils import check_file_type_and_size, str2button, set_timeout
+from zgrobot.utils import check_file_type_and_size, str2button, exit_after
 
 
 def test_token_generator():
@@ -95,8 +95,16 @@ def test_str2button():
     assert type(str2button(button_txt="123", reply_txt="456")) is str
 
 
-def test_set_timeout():
-    def timeout_func():
-        time.sleep(5)
+def test_exit_after():
+    def timeout_func(s: int):
+        @exit_after()
+        def handle():
+            time.sleep(s)
+            return "false"
+        try:
+            return handle()
+        except KeyboardInterrupt:
+            return "true"
 
-    assert set_timeout(timeout_func)() == "success"
+    assert timeout_func(1) == "false"
+    assert timeout_func(6) == "true"

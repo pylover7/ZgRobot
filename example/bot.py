@@ -3,10 +3,10 @@ from zgrobot.client import Client
 from zgrobot.replies import ImageReply, VoiceReply
 
 # 导入自己的配置
-import config
+import local_config
 
-robot = zgrobot.ZgRoBot(config=config.config)
-my_client = Client(config=config.config)
+robot = zgrobot.ZgRoBot(config=local_config.config)
+my_client = Client(config=local_config.config)
 
 
 # 获取音频
