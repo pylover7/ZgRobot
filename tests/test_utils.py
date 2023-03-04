@@ -101,6 +101,7 @@ def test_exit_after():
         def handle():
             time.sleep(s)
             return "false"
+
         try:
             return handle()
         except KeyboardInterrupt:

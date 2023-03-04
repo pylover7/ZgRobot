@@ -3,8 +3,8 @@ coverage==6.0.2
 cryptography==35.0.0
 pytest==6.2.5
 WebTest==3.0.0
-Flask
-tornado
+Flask~=2.2.2
+tornado~=6.2.0
 responses==0.14.0
 multipart==0.1
 pytest-mock==3.6.1
