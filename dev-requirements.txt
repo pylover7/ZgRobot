@@ -3,4 +3,3 @@
 yapf==0.31.0
 tox==3.24.4
 Django
-fastapi~=0.92.0

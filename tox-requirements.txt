@@ -10,3 +10,4 @@ multipart==0.1
 pytest-mock==3.6.1
 mongomock==3.23.0
 mockredispy==2.9.3
+fastapi
