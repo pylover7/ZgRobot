@@ -57,6 +57,6 @@ jobs:
               ${{ matrix.os }}-tox-${{ matrix.python-version }}
       - name: Test with tox
         run: |
-          tox
+          tox -s
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
