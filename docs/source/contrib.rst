@@ -3,6 +3,51 @@
 
 **ZgRoBot** 可以作为独立服务运行，也可以集成在其他 **Web** 框架中一同运行。
 
+FastApi
+--------
+**ZgRoBot** 支持 **fastapi 0.78+**
+
+先写好你的机器人 ::
+
+    # Filename: robot.py
+
+    from zgrobot import ZgRoBot
+
+    myrobot = ZgRoBot(token='token')
+
+    @myrobot.handler
+    def hello():
+        return "Hello World"
+
+然后创建最简单的 **FastApi** 项目 ``main.py`` ::
+
+    # Filename: main.py
+
+    from zgrobot.contrib.fastapi import make_view
+    from fastapi import FastAPI
+
+    from robot import myrobot
+
+    app = FastAPI()
+
+    app.add_route("/", make_view(robot=robot), methods=["GET", "POST"])
+
+或者使用 **FastApi** 的中间件 ::
+
+    # Filename: main.py
+
+    from fastapi import FastAPI
+    from fastapi.middleware.wsgi import WSGIMiddleware
+
+    from robot import myrobot
+
+    app = FastAPI()
+
+    app.mount("/", WSGIMiddleware(myrobot.wsgi))
+
+.. module:: zgrobot.contrib.fastapi
+.. autofunction:: make_view
+
 Django
 --------
 **ZgRoBot** 支持 **Django 2.2+** 。
