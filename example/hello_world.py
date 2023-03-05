@@ -18,4 +18,5 @@ def hello_world(message):
     return 'Hello World!'
 
 
-robot.run()
+if __name__ == '__main__':
+    robot.run()

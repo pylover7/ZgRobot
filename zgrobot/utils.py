@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-
+import _thread
 import io
 import json
 import os
 import random
 import re
 import string
+import sys
+import threading
 import time
-import signal
 from functools import wraps
 from hashlib import sha1
 from typing import BinaryIO
@@ -191,24 +192,30 @@ def str2button(button_txt: str, reply_txt: str) -> str:
     return f"<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucontent={button_txt}'>{reply_txt}</a>"
 
 
-def set_timeout(func):
+def exit_after(second=5):
     """
-    信息返回超时检测，由于现有机制，超时检测将微信的超时时间 5s 缩短为 4s
+    如果函数超过 second（5）秒，则出现 KeyboardInterrupt 异常
+    use as decorator to exit process if function takes longer than s seconds
+
+    :param: second 设置超时时间，默认为五秒
+    :return: None
     """
-    def handle(
-        signum, frame
-    ):  # 收到信号 SIGALRM 后的回调函数，第一个参数是信号的数字，第二个参数是the interrupted stack frame.
-        raise TimeoutError
+    def quit_function(fn_name):
+        # print to stderr, unbuffered in Python 2.
+        print('{0} took too long'.format(fn_name), file=sys.stderr)
+        sys.stderr.flush()  # Python 3 stderr is likely buffered.
+        _thread.interrupt_main()  # raises KeyboardInterrupt
 
-    @wraps(func)
-    def to_do(*args, **kwargs):
-        try:
-            signal.signal(signal.SIGALRM, handle)  # 设置信号和回调函数
-            signal.alarm(4)  # 设置 num 秒的闹钟
-            r = func(*args, **kwargs)
-            signal.alarm(0)  # 关闭闹钟
-            return r
-        except:
-            return "success"
+    def outer(fn):
+        def inner(*args, **kwargs):
+            timer = threading.Timer(second, quit_function, args=[fn.__name__])
+            timer.start()
+            try:
+                result = fn(*args, **kwargs)
+            finally:
+                timer.cancel()
+            return result
 
-    return to_do
+        return inner
+
+    return outer
