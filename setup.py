@@ -2,10 +2,11 @@
 # coding=utf-8
 
 import io
-import zgrobot
 
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
+
+import zgrobot
 
 
 class PyTest(TestCommand):
@@ -51,7 +52,6 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',

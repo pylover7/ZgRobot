@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import sqlite3
+
 from zgrobot.session import SessionStorage
 from zgrobot.utils import json_loads, json_dumps
-import sqlite3
 
 __CREATE_TABLE_SQL__ = """
 CREATE TABLE IF NOT EXISTS ZgRoBot

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
-
 from collections import defaultdict, namedtuple
+
 from zgrobot.utils import is_string, to_text
 
 

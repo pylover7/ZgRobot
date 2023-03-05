@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import os
-import mongomock
-import mockredis
-import pytest
 import sqlite3
+
+import mockredis
+import mongomock
+import pytest
 
 import zgrobot
 import zgrobot.testing
 import zgrobot.utils
 from zgrobot.session import SessionStorage
-from zgrobot.session import filestorage, mongodbstorage, redisstorage, saekvstorage
-from zgrobot.session import sqlitestorage
+from zgrobot.session import filestorage, mongodbstorage, redisstorage
 from zgrobot.session import mysqlstorage
 from zgrobot.session import postgresqlstorage
+from zgrobot.session import sqlitestorage
 from zgrobot.utils import to_binary
 
 

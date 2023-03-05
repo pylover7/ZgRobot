@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-import os
-import responses
 import json
-import pytest
-import requests
-import multipart
+import os
 import urllib.parse
 from io import BytesIO
 
+import multipart
+import pytest
+import requests
+import responses
+
 from zgrobot import ZgRoBot
-from zgrobot.config import Config
 from zgrobot.client import Client, check_error, ClientException
+from zgrobot.config import Config
 from zgrobot.utils import cached_property
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

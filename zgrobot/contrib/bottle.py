@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from bottle import request, HTTPResponse
-
 import html
+
+from bottle import request, HTTPResponse
 
 
 def make_view(robot):

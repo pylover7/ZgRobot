@@ -1,13 +1,14 @@
 # -*- coding:utf-8 -*-
 
 import time
+
 import pytest
 
 from zgrobot.parser import parse_user_msg
-from zgrobot.replies import WeChatReply, TextReply, ImageReply, MusicReply
-from zgrobot.replies import VoiceReply, VideoReply
 from zgrobot.replies import Article, ArticlesReply
 from zgrobot.replies import TransferCustomerServiceReply, SuccessReply
+from zgrobot.replies import VoiceReply, VideoReply
+from zgrobot.replies import WeChatReply, TextReply, ImageReply, MusicReply
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import to_binary, to_text
 

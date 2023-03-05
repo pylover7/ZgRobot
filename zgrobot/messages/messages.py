@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from zgrobot.messages.entries import StringEntry, IntEntry, FloatEntry
 from zgrobot.messages.base import ZgRoBotMetaClass
+from zgrobot.messages.entries import StringEntry, IntEntry, FloatEntry
 
 
 class MessageMetaClass(ZgRoBotMetaClass):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from tornado.web import RequestHandler
-
 import html
+
+from tornado.web import RequestHandler
 
 
 def make_handler(robot):
