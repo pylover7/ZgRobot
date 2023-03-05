@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import html
+
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
-
-import html
 
 
 def make_view(robot):

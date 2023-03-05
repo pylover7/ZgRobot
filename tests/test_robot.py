@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 
 import hashlib
-import time
 import os
+import time
+
 import pytest
 
 from zgrobot import ZgRoBot

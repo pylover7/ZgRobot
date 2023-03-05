@@ -6,13 +6,6 @@ def create_menu(robot: zgrobot.ZgRoBot, client: Client):
     client.create_menu({
         "button": [
             {
-                "type": "miniprogram",
-                "name": "打卡",
-                "url": "https://www.dengtadaka.com/website/index.html",
-                "appid": "wxf3ca7ea27608450c",
-                "pagepath": "/pages/supervise/groupDetail?id=10025"
-            },
-            {
                 "type": "view",
                 "name": "主页",
                 "url": "https://mp.weixin.qq.com/s?__biz=Mzg3NzU1MjgxOA==&mid=100002639&idx=1&sn"

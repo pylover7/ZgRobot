@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import xmltodict
-from zgrobot.messages.messages import MessageMetaClass, UnknownMessage
+
 from zgrobot.messages.events import EventMetaClass, UnknownEvent
+from zgrobot.messages.messages import MessageMetaClass, UnknownMessage
 
 
 def parse_user_msg(xml):

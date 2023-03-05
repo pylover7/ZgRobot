@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import time
-import requests
 import urllib.parse
 from multiprocessing import Lock
 
+import requests
 from requests.compat import json as _json
-from zgrobot.utils import to_text, check_file_type_and_size
+
 from zgrobot.replies import Article
+from zgrobot.utils import to_text, check_file_type_and_size
 
 LOCK = Lock()
 SEND_MESSAGE_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send"

@@ -83,6 +83,49 @@ def hello_robot():
     return robot
 
 
+def test_fastapi(hello_robot):
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+    from zgrobot.contrib.fastapi import make_view
+
+    fastapi_app = FastAPI()
+    client = TestClient(fastapi_app)
+
+    fastapi_app.add_route(
+        "/", make_view(robot=hello_robot), methods=["GET", "POST"]
+    )
+
+    token = generate_token()
+    hello_robot.token = token
+    timestamp = str(time.time())
+    nonce = str(random.randint(0, 10000))
+    signature = get_signature(token, timestamp, nonce)
+
+    response = client.post(
+        url="/",
+        params=f"timestamp={timestamp}&nonce={nonce}&signature={signature}",
+        data="""<xml>
+                                        <ToUserName><![CDATA[123]]></ToUserName>
+                                        <FromUserName><![CDATA[456]]></FromUserName>
+                                        <CreateTime>1348831860</CreateTime>
+                                        <MsgType><![CDATA[text]]></MsgType>
+                                        <Content><![CDATA[nihao]]></Content>
+                                    </xml>
+                            """
+    )
+    assert response.status_code == 200
+    assert process_message(parse_xml(response.content)).content == 'hello'
+
+    response = client.get("/")
+    assert response.status_code == 403
+    assert response.content.decode('utf-8') == u'喵'
+
+    response = client.options("/")
+    assert response.status_code == 405
+    assert eval(response.content.decode('utf-8')
+                )["detail"] == "Method Not Allowed"
+
+
 def test_django():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_test.settings")
     sys.path.append(
@@ -193,6 +236,7 @@ def test_zgrobot_wsgi(wsgi_tester, hello_robot):
 # https://github.com/tornadoweb/tornado/issues/2608
 if sys.platform == 'win32' and sys.version_info >= (3, 8):
     import asyncio
+
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 if tornado.version_info[0] < 6:

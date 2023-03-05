@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from flask import request, make_response
-
 import html
+
+from flask import request, make_response
 
 
 def make_view(robot):

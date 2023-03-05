@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 from zgrobot import ZgRoBot
 from zgrobot.parser import parse_user_msg
 from zgrobot.replies import TextReply
-import os
 
 zgrobot = ZgRoBot(SESSION_STORAGE=False)
 

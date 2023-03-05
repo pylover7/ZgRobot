@@ -13,6 +13,8 @@
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pylover7/ZgRobot)](https://github.com/pylover7/ZgRobot/commits/feature-update_docs)
 [![wakatime](https://wakatime.com/badge/user/1d39df6a-cef0-41f7-a903-ef4b9dd13fb0.svg)](https://wakatime.com/@1d39df6a-cef0-41f7-a903-ef4b9dd13fb0)
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://pylover7-upgraded-space-chainsaw-pwgxxw54w6ph6jj.github.dev/)
+
 </b>
 
 `ZgRoBot` 是一个基于 [`WeRoBot`](https://github.com/offu/WeRoBot) 开发的微信公众号后台开发框架，采用MIT协议发布。
@@ -59,18 +61,10 @@ robot.run()
 ### 高级使用
 请参阅【 [使用文档](https://zgrobot.readthedocs.io/zh/stable/) 】
 
-## Credits
+## Status
 
-### Contributors
-[![contributors](https://opencollective.com/werobot/contributors.svg?width=890&button=false)](https://opencollective.com/werobot)
+![Alt](https://repobeats.axiom.co/api/embed/1fb76725ce62ccf8879ab82b24b09d18f47664f2.svg "Repobeats analytics image")
 
-## License
-```text
-Copyright (c) 2013 whtsky
+## Star History
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
+[![Star History Chart](https://api.star-history.com/svg?repos=pylover7/ZgRobot&type=Date)](https://star-history.com/#pylover7/ZgRobot&Date)

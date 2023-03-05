@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from zgrobot.crypto import PrpCrypto, MessageCrypt
-from zgrobot.utils import generate_token, to_binary, to_text
-from zgrobot.parser import parse_xml
 import time
+
+from zgrobot.crypto import PrpCrypto, MessageCrypt
+from zgrobot.parser import parse_xml
+from zgrobot.utils import generate_token, to_binary, to_text
 
 
 def test_prpcrypto():

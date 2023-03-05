@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
 import warnings
+from inspect import signature
 
-from zgrobot.config import Config, ConfigAttribute
 from zgrobot.client import Client
+from zgrobot.config import Config, ConfigAttribute
 from zgrobot.exceptions import ConfigError
 from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
-    is_regex, set_timeout
+    is_regex, exit_after
 )
-
-from inspect import signature
 
 __all__ = ['BaseRoBot', 'ZgRoBot']
 
@@ -572,7 +571,7 @@ class BaseRoBot(object):
             message_dict = parse_xml(xml)
         return process_message(message_dict)
 
-    @set_timeout
+    @exit_after(4.5)
     def get_reply(self, message):
         """
         根据 message 的内容获取 Reply 对象。
@@ -597,10 +596,10 @@ class BaseRoBot(object):
                     session_storage[id] = session
                 if reply:
                     return process_function_reply(reply, message=message)
-        except TimeoutError:
+        except KeyboardInterrupt:
             return "success"
-        except:
-            self.logger.exception("Catch an exception")
+        except Exception as e:
+            self.logger.exception(f"Catch an exception: {e}")
 
     def get_encrypted_reply(self, message):
         """
@@ -618,7 +617,10 @@ class BaseRoBot(object):
         if self.use_encryption:
             return self.crypto.encrypt_message(reply)
         else:
-            return reply.render()
+            if type(reply) == str:
+                return reply
+            else:
+                return reply.render()
 
     def check_signature(self, timestamp, nonce, signature):
         """
