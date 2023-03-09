@@ -1,8 +1,8 @@
-name: Docs-BUild
+name: Docs-Build
 on:
   pull_request:
     branches:
-      - develop-docs
+      - docs
 jobs:
   docs:
     runs-on: ubuntu-latest
