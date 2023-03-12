@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-import _thread
 import io
 import json
 import os
 import random
 import re
 import string
-import sys
-import threading
 import time
 from functools import wraps
 from hashlib import sha1
@@ -190,32 +187,3 @@ def str2button(button_txt: str, reply_txt: str) -> str:
     :return: 返回智能按钮的字符串
     """
     return f"<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucontent={button_txt}'>{reply_txt}</a>"
-
-
-def exit_after(second=5):
-    """
-    如果函数超过 second（5）秒，则出现 KeyboardInterrupt 异常
-    use as decorator to exit process if function takes longer than s seconds
-
-    :param: second 设置超时时间，默认为五秒
-    :return: None
-    """
-    def quit_function(fn_name):
-        # print to stderr, unbuffered in Python 2.
-        print('{0} took too long'.format(fn_name), file=sys.stderr)
-        sys.stderr.flush()  # Python 3 stderr is likely buffered.
-        _thread.interrupt_main()  # raises KeyboardInterrupt
-
-    def outer(fn):
-        def inner(*args, **kwargs):
-            timer = threading.Timer(second, quit_function, args=[fn.__name__])
-            timer.start()
-            try:
-                result = fn(*args, **kwargs)
-            finally:
-                timer.cancel()
-            return result
-
-        return inner
-
-    return outer

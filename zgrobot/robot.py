@@ -571,7 +571,6 @@ class BaseRoBot(object):
             message_dict = parse_xml(xml)
         return process_message(message_dict)
 
-    @exit_after(4.5)
     def get_reply(self, message):
         """
         根据 message 的内容获取 Reply 对象。
@@ -596,10 +595,9 @@ class BaseRoBot(object):
                     session_storage[id] = session
                 if reply:
                     return process_function_reply(reply, message=message)
-        except KeyboardInterrupt:
-            return "success"
         except Exception as e:
             self.logger.exception(f"Catch an exception: {e}")
+            return "success"
 
     def get_encrypted_reply(self, message):
         """
