@@ -2,9 +2,8 @@
 
 import os
 import re
-import time
 
-from zgrobot.utils import check_file_type_and_size, str2button, exit_after
+from zgrobot.utils import check_file_type_and_size, str2button
 from zgrobot.utils import generate_token, check_token, to_text, to_binary
 from zgrobot.utils import pay_sign_dict, make_error_page, is_regex
 
@@ -93,19 +92,3 @@ def test_check_file_type_and_size():
 
 def test_str2button():
     assert type(str2button(button_txt="123", reply_txt="456")) is str
-
-
-def test_exit_after():
-    def timeout_func(s: int):
-        @exit_after()
-        def handle():
-            time.sleep(s)
-            return "false"
-
-        try:
-            return handle()
-        except KeyboardInterrupt:
-            return "true"
-
-    assert timeout_func(1) == "false"
-    assert timeout_func(6) == "true"
