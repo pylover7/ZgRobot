@@ -10,7 +10,7 @@ from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
-    is_regex, exit_after
+    is_regex
 )
 
 __all__ = ['BaseRoBot', 'ZgRoBot']
