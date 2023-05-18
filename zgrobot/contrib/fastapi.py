@@ -46,7 +46,7 @@ def make_view(robot: BaseRoBot):
                 status_code=403
             )
         if request.method != "POST":
-            return request.path_params.get("echostr")
+            return request.query_params.get("echostr")
 
         message = robot.parse_message(
             body=asyncio.run(request.body()),
