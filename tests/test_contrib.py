@@ -128,7 +128,8 @@ def test_fastapi(hello_robot):
 
     response = client.get(
         url="/",
-        params=f"timestamp={timestamp}&nonce={nonce}&signature={signature}&echostr={echostr}"
+        params=
+        f"timestamp={timestamp}&nonce={nonce}&signature={signature}&echostr={echostr}"
     )
     assert response.content.decode('utf-8') == echostr
 
