@@ -1,5 +1,7 @@
-# -*- coding: utf-8 -*-
-import asyncio
+# coding=utf-8
+# @FileName  :fastapi_router.py
+# @Time      :2023/5/19 22:18
+# @Author    :Pylover
 import html
 
 from fastapi import Request
@@ -8,7 +10,7 @@ from fastapi.responses import HTMLResponse, Response, PlainTextResponse
 from zgrobot.robot import BaseRoBot
 
 
-def make_view(robot: BaseRoBot):
+async def make_view(robot: BaseRoBot):
     """
     为一个 BaseRobot 生成 FastApi View。
 
@@ -26,12 +28,15 @@ def make_view(robot: BaseRoBot):
         def hello():
             return "Hello World"
 
-        app.add_route("/", make_view(robot=robot), methods=["GET", "POST"])
+        @app.get("/")
+        @app.post("/")
+        async def index(request: Request):
+            return await (await fastapi_router.make_view(robot=robot))(request)
 
     :param robot: 一个 BaseRoBot 实例
     :return: 一个 FastApi Response 对象
     """
-    def zgrobot_view(request: Request):
+    async def zgrobot_view(request: Request):
         timestamp = request.query_params.get("timestamp")
         nonce = request.query_params.get("nonce")
         signature = request.query_params.get("signature")
@@ -48,8 +53,9 @@ def make_view(robot: BaseRoBot):
         if request.method != "POST":
             return PlainTextResponse(request.query_params.get("echostr"))
 
+        body = await request.body()
         message = robot.parse_message(
-            body=asyncio.run(request.body()),
+            body=body,
             timestamp=timestamp,
             nonce=nonce,
             msg_signature=request.path_params.get("msg_signature")
