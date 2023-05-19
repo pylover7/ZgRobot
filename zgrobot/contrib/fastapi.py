@@ -3,7 +3,7 @@ import asyncio
 import html
 
 from fastapi import Request, Body
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse, Response, PlainTextResponse
 
 from zgrobot.robot import BaseRoBot
 
@@ -46,7 +46,7 @@ def make_view(robot: BaseRoBot):
                 status_code=403
             )
         if request.method != "POST":
-            return request.query_params.get("echostr")
+            return PlainTextResponse(request.query_params.get("echostr"))
 
         message = robot.parse_message(
             body=asyncio.run(request.body()),
