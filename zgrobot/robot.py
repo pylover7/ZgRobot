@@ -10,7 +10,7 @@ from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
-    is_regex, exit_after
+    is_regex
 )
 
 __all__ = ['BaseRoBot', 'ZgRoBot']
@@ -571,7 +571,6 @@ class BaseRoBot(object):
             message_dict = parse_xml(xml)
         return process_message(message_dict)
 
-    @exit_after(4.5)
     def get_reply(self, message):
         """
         根据 message 的内容获取 Reply 对象。
@@ -596,10 +595,9 @@ class BaseRoBot(object):
                     session_storage[id] = session
                 if reply:
                     return process_function_reply(reply, message=message)
-        except KeyboardInterrupt:
-            return "success"
         except Exception as e:
             self.logger.exception(f"Catch an exception: {e}")
+            return "success"
 
     def get_encrypted_reply(self, message):
         """

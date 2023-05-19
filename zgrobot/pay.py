@@ -3,7 +3,7 @@
 import time
 from functools import partial
 from hashlib import sha1, md5
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from zgrobot.client import Client
 from zgrobot.utils import pay_sign_dict, generate_token

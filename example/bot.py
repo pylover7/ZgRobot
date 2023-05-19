@@ -16,7 +16,6 @@ def music_reply(message):
     return VoiceReply(message=message, media_id=media_id)
 
 
-
 # 关注回复
 @robot.subscribe
 def subscribe_reply(message):
@@ -45,7 +44,7 @@ def key_reply(message):
 @robot.filter("多次回复")
 def reply_again(message):
     kf_account = my_client.get_custom_service_account_list().get("kf_list")
-    my_client.send_text_message(user_id=message.source, content="这是客服发的消息", kf_account=kf_account)
+    my_client.send_text_message(user_id=message.source, content="这是客服发的消息", kf_account=None)
     return "这是第二次回复哦"
 
 

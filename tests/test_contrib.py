@@ -99,6 +99,7 @@ def test_fastapi(hello_robot):
     hello_robot.token = token
     timestamp = str(time.time())
     nonce = str(random.randint(0, 10000))
+    echostr = str(random.randint(0, 10000))
     signature = get_signature(token, timestamp, nonce)
 
     response = client.post(
@@ -124,6 +125,13 @@ def test_fastapi(hello_robot):
     assert response.status_code == 405
     assert eval(response.content.decode('utf-8')
                 )["detail"] == "Method Not Allowed"
+
+    response = client.get(
+        url="/",
+        params=
+        f"timestamp={timestamp}&nonce={nonce}&signature={signature}&echostr={echostr}"
+    )
+    assert response.content.decode('utf-8') == echostr
 
 
 def test_django():
