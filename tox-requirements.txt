@@ -6,7 +6,7 @@ WebTest==3.0.0
 Fastapi
 Flask
 httpx
-tornado~=6.2.0
+tornado~=6.3.3
 responses==0.14.0
 multipart==0.1
 pytest-mock==3.11.1
