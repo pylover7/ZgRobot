@@ -7,7 +7,7 @@ Fastapi
 Flask
 httpx
 tornado~=6.2.0
-responses==0.14.0
+responses==0.25.0
 multipart==0.1
 pytest-mock==3.11.1
 mongomock==4.1.2
