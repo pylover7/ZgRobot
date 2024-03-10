@@ -10,7 +10,7 @@ from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
-    is_regex
+    is_regex, timeout
 )
 
 __all__ = ['BaseRoBot', 'ZgRoBot']
@@ -599,6 +599,7 @@ class BaseRoBot(object):
             self.logger.exception(f"Catch an exception: {e}")
             return "success"
 
+    @timeout(4.5)
     def get_encrypted_reply(self, message):
         """
         对一个指定的 ZgRoBot Message ，获取 handlers 处理后得到的 Reply。

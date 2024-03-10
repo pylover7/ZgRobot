@@ -72,3 +72,4 @@ local_config.*
 
 *.sqlite3
 .pytest_cache
+*.env
