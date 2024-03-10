@@ -15,7 +15,7 @@ def hello():
     return "Hello World"
 
 # 关键词回复
-@robot.filter("2")
+@robot.filter("3")
 def key_reply(message):
     time.sleep(3)
     return "你也好呀"
