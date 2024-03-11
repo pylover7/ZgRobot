@@ -1,7 +1,7 @@
 -r requirements.txt
 coverage==7.2.1
 cryptography==42.0.5
-pytest==7.4.3
+pytest==8.1.1
 WebTest==3.0.0
 Fastapi
 Flask
