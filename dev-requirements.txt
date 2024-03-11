@@ -2,5 +2,5 @@
 -r docs-requirements.txt
 yapf==0.31.0
 tox==3.24.4
-Django
+Fastapi
 uvicorn

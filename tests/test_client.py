@@ -195,13 +195,13 @@ class TestClientBaseClassPost(TestClientBaseClass):
     @add_token_response
     @create_pic_file
     def test_post_with_integration_test(self):
-        POST_FILE_URL = "http://post_file.zgrobot.com/"
+        POST_FILE_URL = "https://gitee.com/shuoshuoyun/tower-defense-game/raw/master/resource/imgs/game/arrow1.png"
 
         def post_file_callback(request):
             s = request.body.split(b"\r")[0][2:]
             p = list(
                 multipart.MultipartParser(
-                    BytesIO(multipart.tob(request.body)), s
+                    BytesIO(multipart.to_bytes(request.body)), s
                 )
             )[0]
             assert "filename" in p.options
