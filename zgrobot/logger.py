@@ -39,6 +39,7 @@ def enable_pretty_logging(logger, level='info'):
 
 
 class _LogFormatter(logging.Formatter):
+
     def __init__(self, color, *args, **kwargs):
         logging.Formatter.__init__(self, *args, **kwargs)
         self._color = color

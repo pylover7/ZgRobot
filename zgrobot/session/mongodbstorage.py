@@ -22,6 +22,7 @@ class MongoDBStorage(SessionStorage):
 
     :param collection: 一个 MongoDB Collection。
     """
+
     def __init__(self, collection):
         self.collection = collection
         collection.create_index("wechat_id")

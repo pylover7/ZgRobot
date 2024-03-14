@@ -17,6 +17,7 @@ def teardown_module(module):
 
 
 def test_subscribe_handler():
+
     @zgrobot.subscribe
     def subscribe(message):
         return '关注'
@@ -40,6 +41,7 @@ def test_subscribe_handler():
 
 
 def test_unsubscribe_handler():
+
     @zgrobot.unsubscribe
     def unsubscribe(message):
         return '取消关注'
@@ -63,6 +65,7 @@ def test_unsubscribe_handler():
 
 
 def test_scan_push_handler():
+
     @zgrobot.scancode_push
     def scancode_push(message):
         return '扫描推送'
@@ -91,6 +94,7 @@ def test_scan_push_handler():
 
 
 def test_scan_waitmsg_handler():
+
     @zgrobot.scancode_waitmsg
     def scancode_waitmsg(message):
         return '扫描弹消息'
@@ -119,6 +123,7 @@ def test_scan_waitmsg_handler():
 
 
 def test_pic_sysphoto_handler():
+
     @zgrobot.pic_sysphoto
     def pic_sysphoto():
         return '瞧一瞧系统拍照'
@@ -151,6 +156,7 @@ def test_pic_sysphoto_handler():
 
 
 def test_pic_photo_or_album_handler():
+
     @zgrobot.pic_photo_or_album
     def pic_photo_or_album():
         return '瞧一瞧拍照或者相册'
@@ -183,6 +189,7 @@ def test_pic_photo_or_album_handler():
 
 
 def test_pic_weixin_handler():
+
     @zgrobot.pic_weixin
     def pic_weixin():
         return '瞧一瞧微信相册'
@@ -215,6 +222,7 @@ def test_pic_weixin_handler():
 
 
 def test_location_select_handler():
+
     @zgrobot.location_select
     def location_select():
         return '瞧一瞧地理位置'
@@ -246,6 +254,7 @@ def test_location_select_handler():
 
 
 def test_click_handler():
+
     @zgrobot.click
     def scan(message):
         return '喵喵'
@@ -270,6 +279,7 @@ def test_click_handler():
 
 
 def test_view_handler():
+
     @zgrobot.view
     def view(message):
         return '汪汪'
@@ -293,6 +303,7 @@ def test_view_handler():
 
 
 def test_location_event_handler():
+
     @zgrobot.location_event
     def location_event(message):
         return '位置喵喵'
@@ -319,6 +330,7 @@ def test_location_event_handler():
 
 
 def test_card_pass_check_handler():
+
     @zgrobot.card_pass_check
     def card_pass_check():
         return '瞧一瞧通过了'
@@ -344,6 +356,7 @@ def test_card_pass_check_handler():
 
 
 def test_card_not_pass_check_handler():
+
     @zgrobot.card_not_pass_check
     def card_pass_not_check():
         return '瞧一瞧没过'
@@ -369,6 +382,7 @@ def test_card_not_pass_check_handler():
 
 
 def test_user_get_card_handler():
+
     @zgrobot.user_get_card
     def user_get_card():
         return '恭喜入坑'
@@ -401,6 +415,7 @@ def test_user_get_card_handler():
 
 
 def test_user_gifting_card_handler():
+
     @zgrobot.user_gifting_card
     def user_gifting_card():
         return '锅从天上来'
@@ -429,6 +444,7 @@ def test_user_gifting_card_handler():
 
 
 def test_user_del_card_handler():
+
     @zgrobot.user_del_card
     def user_del_card():
         return '摆脱负担'
@@ -454,6 +470,7 @@ def test_user_del_card_handler():
 
 
 def test_user_consume_card_handler():
+
     @zgrobot.user_consume_card
     def user_consume_card():
         return '恭喜脱坑'
@@ -485,6 +502,7 @@ def test_user_consume_card_handler():
 
 
 def test_user_pay_from_pay_cell_handler():
+
     @zgrobot.user_pay_from_pay_cell
     def user_pay_from_pay_cell():
         return '冲动消费'
@@ -514,6 +532,7 @@ def test_user_pay_from_pay_cell_handler():
 
 
 def test_user_view_card_handler():
+
     @zgrobot.user_view_card
     def user_view_card():
         return '我就瞧一瞧，不买'
@@ -540,6 +559,7 @@ def test_user_view_card_handler():
 
 
 def test_user_enter_session_from_card_handler():
+
     @zgrobot.user_enter_session_from_card
     def user_enter_session_from_card():
         return '退货是不可能退货的'
@@ -565,6 +585,7 @@ def test_user_enter_session_from_card_handler():
 
 
 def test_update_member_card_handler():
+
     @zgrobot.update_member_card
     def update_member_card():
         return '冲动消费导致余额减少'
@@ -592,6 +613,7 @@ def test_update_member_card_handler():
 
 
 def test_card_sku_remind_handler():
+
     @zgrobot.card_sku_remind
     def card_sku_remind():
         return '骗钱大成功'
@@ -617,6 +639,7 @@ def test_card_sku_remind_handler():
 
 
 def test_card_pay_order_handler():
+
     @zgrobot.card_pay_order
     def card_pay_order():
         return '冲动消费的凭证'
@@ -652,6 +675,7 @@ def test_card_pay_order_handler():
 
 
 def test_submit_membercard_user_info_handler():
+
     @zgrobot.submit_membercard_user_info
     def submit_membercard_user_info():
         return '现在醒一醒还来得及'
@@ -677,6 +701,7 @@ def test_submit_membercard_user_info_handler():
 
 
 def test_templatesendjobfinish_event_handler():
+
     @zgrobot.templatesendjobfinish_event
     def templatesendjobfinish_event():
         return '喵喵~模板消息已经推送'
@@ -702,6 +727,7 @@ def test_templatesendjobfinish_event_handler():
 
 
 def test_unknown_event():
+
     @zgrobot.unknown_event
     def unknown_event(message):
         return '不知道的事件喵'
@@ -725,6 +751,7 @@ def test_unknown_event():
 
 
 def test_text():
+
     @zgrobot.text
     def text(message):
         return '普通的Text喵'
@@ -749,6 +776,7 @@ def test_text():
 
 
 def test_image():
+
     @zgrobot.image
     def image(message):
         return '图片喵'
@@ -773,6 +801,7 @@ def test_image():
 
 
 def test_location():
+
     @zgrobot.location
     def location(message):
         return '地理位置汪'
@@ -800,6 +829,7 @@ def test_location():
 
 
 def test_link():
+
     @zgrobot.link
     def link(message):
         return '链接喵'
@@ -826,6 +856,7 @@ def test_link():
 
 
 def test_voice():
+
     @zgrobot.voice
     def voice(message):
         return '声音喵'
@@ -852,6 +883,7 @@ def test_voice():
 
 
 def test_video():
+
     @zgrobot.video
     def video():
         return '请收下这一段榴莲的视频'
@@ -876,6 +908,7 @@ def test_video():
 
 
 def test_shortvideo():
+
     @zgrobot.shortvideo
     def shortvideo():
         return '请收下这一段榴莲的小视频'
@@ -901,6 +934,7 @@ def test_shortvideo():
 
 
 def test_user_scan_product():
+
     @zgrobot.user_scan_product
     def user_scan_product():
         return '打扰了'
@@ -932,6 +966,7 @@ def test_user_scan_product():
 
 
 def test_user_scan_product_enter_session():
+
     @zgrobot.user_scan_product_enter_session
     def user_scan_product_enter_session():
         return '再次打扰了'
@@ -958,6 +993,7 @@ def test_user_scan_product_enter_session():
 
 
 def test_user_scan_product_async():
+
     @zgrobot.user_scan_product_async
     def user_scan_product_async():
         return '异步的地理位置喵'
@@ -985,6 +1021,7 @@ def test_user_scan_product_async():
 
 
 def test_user_scan_product_verify_action():
+
     @zgrobot.user_scan_product_verify_action
     def user_scan_product_verify_action():
         return '审核通过了喵'
@@ -1012,6 +1049,7 @@ def test_user_scan_product_verify_action():
 
 
 def test_unknown():
+
     @zgrobot.unknown
     def unknown(message):
         return '不知道喵'

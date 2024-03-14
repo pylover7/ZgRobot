@@ -10,7 +10,7 @@ from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
-    is_regex
+    is_regex, timeout
 )
 
 __all__ = ['BaseRoBot', 'ZgRoBot']
@@ -471,6 +471,7 @@ class BaseRoBot(object):
 
         **@key_click('KEYNAME')** 用来为特定 key 的点击事件添加 handler 方法。
         """
+
         def wraps(f):
             argc = len(signature(f).parameters.keys())
 
@@ -490,6 +491,7 @@ class BaseRoBot(object):
         使用 ``@filter("xxx")``, ``@filter(re.compile("xxx"))``
         或 ``@filter("xxx", "xxx2")`` 的形式为特定内容添加 handler。
         """
+
         def wraps(f):
             self.add_filter(func=f, rules=list(args))
             return f
@@ -599,6 +601,7 @@ class BaseRoBot(object):
             self.logger.exception(f"Catch an exception: {e}")
             return "success"
 
+    @timeout(4.5)
     def get_encrypted_reply(self, message):
         """
         对一个指定的 ZgRoBot Message ，获取 handlers 处理后得到的 Reply。
@@ -653,6 +656,7 @@ class ZgRoBot(BaseRoBot):
     ZgRoBot 是一个继承自 BaseRoBot 的对象，在 BaseRoBot 的基础上使用了 bottle 框架，
     提供接收微信服务器发来的请求的功能。
     """
+
     @cached_property
     def wsgi(self):
         if not self._handlers:

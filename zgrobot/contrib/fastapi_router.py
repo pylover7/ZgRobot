@@ -36,6 +36,7 @@ async def make_view(robot: BaseRoBot):
     :param robot: 一个 BaseRoBot 实例
     :return: 一个 FastApi Response 对象
     """
+
     async def zgrobot_view(request: Request):
         timestamp = request.query_params.get("timestamp")
         nonce = request.query_params.get("nonce")

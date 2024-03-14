@@ -7,6 +7,7 @@ class ConfigAttribute(object):
     """
     让一个属性指向一个配置
     """
+
     def __init__(self, name):
         self.__name__ = name
 
@@ -21,6 +22,7 @@ class ConfigAttribute(object):
 
 
 class Config(dict):
+
     def from_pyfile(self, filename):
         """
         在一个 Python 文件中读取配置。

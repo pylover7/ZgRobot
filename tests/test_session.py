@@ -103,6 +103,7 @@ def test_session_storage_delete():
 
 
 class MockPyMySQL:
+
     def __init__(self):
         self.db = sqlite3.connect("zgrobot_session.sqlite3")
         self.db.text_factory = str
