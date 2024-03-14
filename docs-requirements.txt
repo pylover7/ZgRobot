@@ -1,5 +1,4 @@
--r tox-requirements.txt
-Sphinx==4.2.0
-sphinx_rtd_theme
-recommonmark
-Django
+mkdocs
+mkdocs-material
+mkdocs-git-authors-plugin
+mkdocstrings[python]

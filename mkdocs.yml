@@ -1,0 +1,102 @@
+site_name: zgrobot
+repo_name: pylover7/ZgRobot
+repo_url: https://github.com/pylover7/ZgRobot.git
+site_description: "zgrobot 使用指南"
+use_directory_urls: false
+nav:
+  - 介绍: index.md
+  - 教程: 
+    - 开始: tutorial/start.md
+    - 例子: tutorial/examples.md
+    - 消息加解密: tutorial/encryption.md
+    - 处理器: tutorial/handlers.md
+    - 会话: tutorial/session.md
+    - 配置: tutorial/config.md
+    - 开发: tutorial/develop.md
+    - 部署: tutorial/deploy.md
+    - 集成: tutorial/contrib.md
+  - API:
+    - api/utils.md
+    - api/robot.md
+    - api/messages.md
+    - api/session.md
+    - api/client.md
+theme:
+  name: material
+  logo: image/logo.png
+  favicon: image/logo.png
+  language: zh
+  icon:
+    repo: fontawesome/brands/github  # 仓库图标
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: 暗黑模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: 光亮模式
+  features:
+    - content.code.annotate  # 代码注释
+    - content.code.copy  # 代码复制
+    - content.code.select  # 代码选择
+    - navigation.tabs  # 顶部导航
+    - navigation.top  # 返回顶部
+    - navigation.instant  # 即时加载
+    - navigation.footer  # 尾部导航
+    - navigation.path  # 导航路径
+    # - navigation.instant.progress  # 进度指示
+    - search.highlight  # 搜索高亮
+    - search.share  # 搜索分享
+    - toc.follow  # 目录跟随
+plugins:
+  - search
+  - mkdocstrings
+markdown_extensions:
+  - admonition
+  - meta  # 定义元数据，通过文章上下文控制，如disqus
+  - footnotes  # 脚注
+  - pymdownx.caret  # 下划线上标
+  - pymdownx.tilde  # 删除线下标
+  - pymdownx.critic  # 增加删除修改高亮注释，可修饰行内或段落
+  - pymdownx.details  # 提示块可折叠
+  - pymdownx.inlinehilite  # 行内代码高亮
+  - pymdownx.mark  # 文本高亮
+  - pymdownx.smartsymbols  # 符号转换
+  - pymdownx.superfences  # 代码嵌套在列表里
+  - pymdownx.highlight:
+      anchor_linenums: true #对代码块显示行号
+      line_spans: __span 
+      pygments_lang_class: true #显示代码所属语言
+  - pymdownx.snippets  # 读取代码文件
+  - pymdownx.superfences
+  - codehilite:    # 代码高亮，显示行号
+      guess_lang: false  # 盲才语言
+      linenums: true  # 显示行数
+  - toc:  # 锚点
+      permalink: true  # 永久链接
+      title: 目录  # 目录标题
+      toc_depth: 3  # 目录深度
+      permalink_title: 锚点～  # 永久目录标题
+      slugify: !!python/object/apply:pymdownx.slugs.slugify  # 更好的处理永久链接
+        kwds:
+          case: fold
+#  - pymdownx.arithmatex  # 数学公式
+  - pymdownx.betterem:  # 对加粗和斜体更好的检测
+      smart_enable: all
+#  - pymdownx.emoji:  # 表情
+#      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.magiclink  # 自动识别超链接
+  - pymdownx.tasklist:  # 复选框checklist
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+# extra:
+#   version:
+#     provider: mike  # 启用文档版本控制
+extra_css:  # 扩展 css
+  - stylesheets/extra.css
+

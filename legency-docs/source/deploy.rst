@@ -131,4 +131,3 @@
 
 .. note:: 在这个例子中， ZgRoBot 的端口号为 12233。你应该在微信管理后台中将服务器地址设为 ``http://example.com`` 。
 
-更多的 ``Nginx`` 配置请参看 `万字长文看Nginx配置详解! <https://mp.weixin.qq.com/s/8c4EraI-X6i_o-3AxTUBLg>`_

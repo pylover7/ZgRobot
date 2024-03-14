@@ -1,16 +1,16 @@
 name: Docs-Build
 on:
-  pull_request:
+  push:
     branches:
-      - docs
+      - master
 jobs:
-  docs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
-      - uses: actions/cache@v1
+        uses: actions/setup-python@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-docs-${{ hashFiles('**/*requirements.txt') }}
@@ -21,9 +21,4 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install -r docs-requirements.txt
       - name: Build docs
-        run: |
-          sphinx-build -W docs/source docs/build/html
-      - uses: actions/upload-artifact@v1
-        with:
-          name: docs
-          path: docs/build/html
+        run: mkdocs gh-deploy --force
