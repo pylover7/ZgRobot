@@ -92,7 +92,7 @@ menu.create_menu(robot, my_client)
 robot.run()
 ```
 
-```py title="menut.py"
+```py title="menu.py"
 import zgrobot
 from zgrobot.client import Client
 

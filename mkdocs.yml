@@ -15,12 +15,19 @@ nav:
     - 开发: tutorial/develop.md
     - 部署: tutorial/deploy.md
     - 集成: tutorial/contrib.md
+    - 错误页面: tutorial/error-page.md
+    - 小工具: tutorial/utils.md
+    - 贡献指南: tutorial/contribution-guide.md
+    - Q&A: tutorial/QA.md
   - API:
-    - api/utils.md
-    - api/robot.md
-    - api/messages.md
-    - api/session.md
-    - api/client.md
+    - 应用: api/robot.md
+    - 配置: api/config.md
+    - 会话: api/session.md
+    - 消息:
+      - 消息: api/messages/messages.md
+      - 事件: api/messages/events.md
+    - 客户端: api/client.md
+    - 工具: api/utils.md
 theme:
   name: material
   logo: image/logo.png
