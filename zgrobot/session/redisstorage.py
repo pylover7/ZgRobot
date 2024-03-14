@@ -23,6 +23,7 @@ class RedisStorage(SessionStorage):
     :param redis: 一个 Redis Client。
     :param prefix: Reids 中 Session 数据 key 的 prefix 。默认为 ``ws_``
     """
+
     def __init__(self, redis, prefix='ws_'):
         for method_name in ['get', 'set', 'delete']:
             assert hasattr(redis, method_name)

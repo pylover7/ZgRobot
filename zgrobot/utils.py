@@ -183,18 +183,22 @@ def check_file_type_and_size(file_type: str, file_object: BinaryIO):
 def str2button(button_txt: str, reply_txt: str) -> str:
     """
     将普通文本包装为智能按钮
-
-    :param button_txt: 想要转换为智能按钮的文本
-    :param reply_txt: 按下智能按钮后回复的文本
-    :return: 返回智能按钮的字符串
+    
+    Args:
+        button_txt (str): 想要转换为智能按钮的文本
+        reply_txt (str): 按下智能按钮后回复的文本
+    
+    Returns:
+        str: 智能按钮的字符串
     """
     return f"<a href='weixin://bizmsgmenu?msgmenuid=1&msgmenucontent={button_txt}'>{reply_txt}</a>"
+
 
 class timeout:
     """超时返回 success
 
-    Args:
-        secconds(float): 超时时间
+    Attributes:
+        secconds (float): 超时时间
     """
     __executor = futures.ThreadPoolExecutor(1)
 
@@ -202,16 +206,16 @@ class timeout:
         self.seconds = seconds
 
     def __call__(self, func):
+
         @functools.wraps(func)
         def wrapper(*args, **kw):
             future = timeout.__executor.submit(func, *args, **kw)
-            try: 
+            try:
                 result = future.result(timeout=self.seconds)
                 print(f"成功输出！{self.seconds}")
             except Exception as e:
                 print(e, "======")
                 result = "success"
             return result
+
         return wrapper
-
-

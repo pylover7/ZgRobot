@@ -33,6 +33,7 @@ def make_view(robot):
     :param robot: 一个 BaseRoBot 实例
     :return: 一个标准的 Bottle view
     """
+
     def zgrobot_view(*args, **kwargs):
         if not robot.check_signature(
             request.query.timestamp, request.query.nonce,

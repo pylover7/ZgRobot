@@ -28,6 +28,12 @@ class WeChatMessage(object, metaclass=MessageMetaClass):
 
 
 class TextMessage(WeChatMessage):
+    """文本信息
+
+    Attributes:
+        type (str): text
+        content (str): 信息的内容
+    """
     __type__ = 'text'
     content = StringEntry('Content')
 
@@ -80,7 +86,7 @@ class Message(WeChatMessage):
 
     Attributes:
         __type__: 【公共属性】消息类型
-        content: 【文本信息】文本消息内容
+        content (str): 【文本信息】文本消息内容
         img: 【图片信息】图片链接
         title: 【链接信息】消息标题
         description: 【链接信息】消息描述

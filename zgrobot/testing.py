@@ -4,6 +4,7 @@ __all__ = ['WeTest']
 
 
 class WeTest(object):
+
     def __init__(self, app):
         self._app = app
 

@@ -12,12 +12,14 @@ def get_value(instance, path, default=None):
 
 
 class BaseEntry(object):
+
     def __init__(self, entry, default=None):
         self.entry = entry
         self.default = default
 
 
 class IntEntry(BaseEntry):
+
     def __get__(self, instance, owner):
         try:
             return int(get_value(instance, self.entry, self.default))
@@ -26,6 +28,7 @@ class IntEntry(BaseEntry):
 
 
 class FloatEntry(BaseEntry):
+
     def __get__(self, instance, owner):
         try:
             return float(get_value(instance, self.entry, self.default))
@@ -34,6 +37,7 @@ class FloatEntry(BaseEntry):
 
 
 class StringEntry(BaseEntry):
+
     def __get__(self, instance, owner):
         v = get_value(instance, self.entry, self.default)
         if v is not None:

@@ -17,6 +17,7 @@ from zgrobot.utils import generate_token, get_signature
 
 @pytest.fixture
 def wsgi_tester():
+
     def tester(app, token, endpoint):
         test_app = webtest.TestApp(app)
 
