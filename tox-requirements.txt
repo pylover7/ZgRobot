@@ -14,4 +14,3 @@ pytest-mock==3.12.0
 mongomock==4.1.2
 mockredispy==2.9.3
 codecov
-codecov-cli
