@@ -1,5 +1,6 @@
 -r tox-requirements.txt
 -r docs-requirements.txt
-yapf==0.31.0
-tox==3.24.4
-Django
+yapf==0.40.2
+tox==4.14.1
+Fastapi
+uvicorn

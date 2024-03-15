@@ -1,4 +1,5 @@
 class SessionStorage(object):
+
     def get(self, id):
         raise NotImplementedError()
 

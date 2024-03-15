@@ -17,6 +17,7 @@ class FileStorage(SessionStorage):
 
     :param filename: 文件名， 默认为 ``zgrobot_session``
     """
+
     def __init__(self, filename: str = 'zgrobot_session'):
         try:
             self.db = dbm.open(filename, "c")

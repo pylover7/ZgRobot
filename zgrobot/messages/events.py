@@ -9,6 +9,15 @@ class EventMetaClass(ZgRoBotMetaClass):
 
 
 class WeChatEvent(object, metaclass=EventMetaClass):
+    """基础事件，除了 UnknownEvent, 每一种 Event 都包括以下属性
+
+    Attributes:
+        message_id (int): 消息id
+        target (str): 开发者账号(OpenID)
+        source (str): 发送方账号(OpenID)
+        time (int): 信息发送的时间，一个UNIX时间戳
+        raw (str): 信息的原始 XML 格式
+    """
     target = StringEntry('ToUserName')
     source = StringEntry('FromUserName')
     time = IntEntry('CreateTime')
@@ -23,6 +32,8 @@ class SimpleEvent(WeChatEvent):
 
 
 class TicketEvent(WeChatEvent):
+    """点击事件
+    """
     key = StringEntry('EventKey')
     ticket = StringEntry('Ticket')
 

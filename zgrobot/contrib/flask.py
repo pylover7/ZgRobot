@@ -32,6 +32,7 @@ def make_view(robot):
     :param robot: 一个 BaseRoBot 实例
     :return: 一个标准的 Flask view
     """
+
     def zgrobot_view():
         timestamp = request.args.get('timestamp', '')
         nonce = request.args.get('nonce', '')

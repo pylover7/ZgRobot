@@ -38,6 +38,7 @@ def token_callback(request):
 
 
 def add_token_response(method):
+
     def wrapped_func(self, *args, **kwargs):
         responses.add_callback(
             responses.GET, TOKEN_URL, callback=token_callback
@@ -48,6 +49,7 @@ def add_token_response(method):
 
 
 def create_pic_file(func):
+
     def wrapped_func(self, *args, **kwargs):
         with open(GOD_PIC, 'a') as f:
             f.write("just a test")
@@ -60,6 +62,7 @@ def create_pic_file(func):
 
 
 class BaseTestClass:
+
     @cached_property
     def client(self):
         config = Config()
@@ -72,6 +75,7 @@ class BaseTestClass:
 
 
 class TestClientBaseClass(BaseTestClass):
+
     def test_id_and_secret(self):
         assert self.client.appid == "123"
         assert self.client.appsecret == "321"
@@ -137,6 +141,7 @@ class TestClientBaseClass(BaseTestClass):
 
 
 class TestClientBaseClassPost(TestClientBaseClass):
+
     @pytest.fixture(autouse=True)
     def mock_request(self, mocker):
         self.mocked_request = mocker.spy(self.client, 'request')
@@ -195,13 +200,13 @@ class TestClientBaseClassPost(TestClientBaseClass):
     @add_token_response
     @create_pic_file
     def test_post_with_integration_test(self):
-        POST_FILE_URL = "http://post_file.zgrobot.com/"
+        POST_FILE_URL = "https://gitee.com/shuoshuoyun/tower-defense-game/raw/master/resource/imgs/game/arrow1.png"
 
         def post_file_callback(request):
             s = request.body.split(b"\r")[0][2:]
             p = list(
                 multipart.MultipartParser(
-                    BytesIO(multipart.tob(request.body)), s
+                    BytesIO(multipart.to_bytes(request.body)), s
                 )
             )[0]
             assert "filename" in p.options
@@ -253,6 +258,7 @@ class TestClientMenuClass(BaseTestClass):
 
     @staticmethod
     def create_menu_callback(request):
+
         def check_menu_data(item):
             keys = item.keys()
             assert "name" in keys

@@ -2,7 +2,7 @@
 import asyncio
 import html
 
-from fastapi import Request, Body
+from fastapi import Request
 from fastapi.responses import HTMLResponse, Response, PlainTextResponse
 
 from zgrobot.robot import BaseRoBot
@@ -31,7 +31,8 @@ def make_view(robot: BaseRoBot):
     :param robot: 一个 BaseRoBot 实例
     :return: 一个 FastApi Response 对象
     """
-    def zgrobot_view(request: Request, body=Body()):
+
+    def zgrobot_view(request: Request):
         timestamp = request.query_params.get("timestamp")
         nonce = request.query_params.get("nonce")
         signature = request.query_params.get("signature")

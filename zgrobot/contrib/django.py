@@ -13,6 +13,7 @@ def make_view(robot):
     :param robot: 一个 BaseRoBot 实例。
     :return: 一个标准的 Django view
     """
+
     @csrf_exempt
     def zgrobot_view(request):
         timestamp = request.GET.get("timestamp", "")

@@ -1,14 +1,16 @@
 -r requirements.txt
-coverage==7.2.1
+coverage==7.4.3
 cryptography==42.0.5
-pytest==7.4.3
+pytest==8.1.1
 WebTest==3.0.0
-Fastapi
+Django
 Flask
 httpx
-tornado~=6.2.0
-responses==0.14.0
-multipart==0.1
-pytest-mock==3.11.1
+Fastapi
+tornado~=6.4.0
+responses==0.25.0
+multipart==0.2.4
+pytest-mock==3.12.0
 mongomock==4.1.2
 mockredispy==2.9.3
+codecov

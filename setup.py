@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+# python setup.py sdist bdist_wheel
 
 import io
 

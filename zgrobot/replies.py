@@ -6,6 +6,7 @@ from zgrobot.utils import is_string, to_text
 
 
 def renderable_named_tuple(typename, field_names, tempalte):
+
     class TMP(namedtuple(typename=typename, field_names=field_names)):
         __TEMPLATE__ = tempalte
 
@@ -32,6 +33,7 @@ def renderable_named_tuple(typename, field_names, tempalte):
 
 
 class WeChatReply(object):
+
     def process_args(self, args):
         pass
 
@@ -208,6 +210,7 @@ class MusicReply(WeChatReply):
 
 
 class TransferCustomerServiceReply(WeChatReply):
+
     @property
     def TEMPLATE(self):
         if 'account' in self._args:
@@ -238,6 +241,7 @@ class TransferCustomerServiceReply(WeChatReply):
 
 
 class SuccessReply(WeChatReply):
+
     def render(self):
         return "success"
 
