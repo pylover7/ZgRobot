@@ -56,7 +56,6 @@ jobs:
           restore-keys: |
               ${{ matrix.os }}-tox-${{ matrix.python-version }}
       - name: Test with tox
-        run: |
-          tox -s
+        run: tox -s
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
