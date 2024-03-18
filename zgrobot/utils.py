@@ -212,9 +212,9 @@ class timeout:
             future = timeout.__executor.submit(func, *args, **kw)
             try:
                 result = future.result(timeout=self.seconds)
-                print(f"成功输出！{self.seconds}")
-            except Exception as e:
-                print(e, "======")
+                # print(f"成功输出！{self.seconds}")
+            except TimeoutError as e:
+                # print(e, "======")
                 result = "success"
             return result
 

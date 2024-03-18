@@ -98,6 +98,7 @@ class MessageCrypt(object):
 
     def __init__(self, token, encoding_aes_key, app_id):
         key = base64.b64decode(to_binary(encoding_aes_key + '='))
+        print(key)
         if len(key) != 32:
             raise UnvalidEncodingAESKey(encoding_aes_key)
         self.prp_crypto = PrpCrypto(key)
@@ -115,6 +116,7 @@ class MessageCrypt(object):
         :return: 解密后的 XML 文本
         """
         signature = get_signature(self.token, timestamp, nonce, encrypt_msg)
+        print(signature, msg_signature)
         if signature != msg_signature:
             raise InvalidSignature(msg_signature)
         return self.prp_crypto.decrypt(encrypt_msg, self.app_id)

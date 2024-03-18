@@ -559,8 +559,12 @@ class BaseRoBot(object):
     ):
         """
         解析获取到的 Raw XML ，如果需要的话进行解密，返回 ZgRoBot Message。
-        :param body: 微信服务器发来的请求中的 Body。
-        :return: ZgRoBot Message
+        
+        Args:
+            body: 微信服务器发来的请求中的 Body。
+        
+        Returns: 
+            ZgRoBot Message: Message 类型数据
         """
         message_dict = parse_xml(body)
         if "Encrypt" in message_dict:
@@ -577,8 +581,11 @@ class BaseRoBot(object):
         """
         根据 message 的内容获取 Reply 对象。
 
-        :param message: 要处理的 message
-        :return: 获取的 Reply 对象
+        Args:
+            message: 要处理的 message
+            
+        Returns:
+            result: 获取的 Reply 对象
         """
         session_storage = self.session_storage
 
@@ -598,7 +605,7 @@ class BaseRoBot(object):
                 if reply:
                     return process_function_reply(reply, message=message)
         except Exception as e:
-            self.logger.exception(f"Catch an exception: {e}")
+            self.logger.warning(f"Catch an exception: {e}")
             return "success"
 
     @timeout(4.5)
@@ -608,13 +615,17 @@ class BaseRoBot(object):
         如果可能，对该 Reply 进行加密。
         返回 Reply Render 后的文本。
 
-        :param message: 一个 ZgRoBot Message 实例。
-        :return: reply （纯文本）
+        Args:
+            message: 一个 ZgRoBot Message 实例。
+        
+        Returns:
+            reply: （纯文本）
         """
         reply = self.get_reply(message)
+        print(reply)
         if not reply:
             self.logger.warning("No handler responded message %s" % message)
-            return ''
+            return 'success'
         if self.use_encryption:
             return self.crypto.encrypt_message(reply)
         else:

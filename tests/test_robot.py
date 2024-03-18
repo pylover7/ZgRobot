@@ -38,6 +38,31 @@ def test_signature_checker():
     sign = hashlib.sha1(sign).hexdigest()
 
     assert robot.check_signature(timestamp, nonce, sign)
+    
+def test_robot_config():
+    robot = ZgRoBot(enable_session=False)
+    assert robot.config.get('SESSION_STORAGE') == False
+    
+    robot = ZgRoBot(session_storage=True)
+    assert robot.config.get('SESSION_STORAGE') == True
+    
+def test_crypto():
+    from zgrobot.exceptions import ConfigError
+    
+    robot = ZgRoBot()
+    with pytest.raises(ConfigError):
+        robot.crypto()
+        
+    robot = ZgRoBot(app_id="xxxxxx")
+    with pytest.raises(ConfigError):
+        robot.crypto()
+        
+    robot = ZgRoBot(app_id="xxxxxx",
+                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+                    token="xxxxxx"
+                )
+    r = robot.crypto
+    assert r.__class__.__name__ == "MessageCrypt"
 
 
 def test_register_handlers():  # noqa: C901
@@ -258,3 +283,69 @@ def test_add_filter():
     with pytest.raises(TypeError) as e:
         robot.add_filter(test_register, [["bazinga"]])
     assert e.value.args[0] == "[\'bazinga\'] is not a valid rule"
+
+def test_parse_message():
+    from zgrobot.messages.base import ZgRoBotMetaClass
+    from zgrobot.utils import get_signature
+    from zgrobot.crypto.exceptions import AppIdValidationError
+    
+    token = "xxxxx"
+    timestamp = "xxxxxx"
+    nonce = "xxxxxx"
+    
+    robot = ZgRoBot(app_id="xxxxxx",
+                    app_secret="xxxxxx",
+                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+                    token=token
+                )
+    encrypt_msg ="""<xml>
+                    <ToUserName></ToUserName>
+                    <Encrypt><![CDATA[LDFAmKFr7U/RMmwRbsR676wjym90byw7+hhh226e8bu6KVYy00HheIsVER4eMgz/VBtofSaeXXQBz6fVdkN2CzBUaTtjJeTCXEIDfTBNxpw/QRLGLq
+qMZHA3I+JiBxrrSzd2yXuXst7TdkVgY4lZEHQcWk85x1niT79XLaWQog+OnBV31eZbXGPPv8dZciKqGo0meTYi+fkMEJdyS8OE7NjO79vpIyIw7hMBtEXPBK/tJGN5m5SoAS
+6I4rRZ8Zl8umKxXqgr7N8ZOs6DB9tokpvSl9wT9T3E62rufaKP5EL1imJUd1pngxy09EP24O8Th4bCrdUcZpJio2l11vE6bWK2s5WrLuO0cKY2GP2unQ4fDxh0L4ePmNOVFJ
+wp9Hyvd0BAsleXA4jWeOMw5nH3Vn49/Q/ZAQ2HN3dB0bMA+6KJYLvIzTz/Iz6vEjk8ZkK+AbhW5eldnyRDXP/OWfZH2P3WQZUwc/G/LGmS3ekqMwQThhS2Eg5t4yHv0mAIei
+07Lknip8nnwgEeF4R9hOGutE9ETsGG4CP1LHTQ4fgYchOMfB3wANOjIt9xendbhHbu51Z4OKnA0F+MlgZomiqweT1v/+LUxcsFAZ1J+Vtt0FQXElDKg+YyQnRCiLl3I+GJ/c
+xSj86XwClZC3NNhAkVU11SvxcXEYh9smckV/qRP2Acsvdls0UqZVWnPtzgx8hc8QBZaeH+JeiaPQD88frNvA==]]></Encrypt>
+                    </xml>"""
+    signature = "1f90c73385e0ee747446c4656c7ebd71601401c7"
+    with pytest.raises(AppIdValidationError):
+        r =  robot.parse_message(encrypt_msg, timestamp, nonce, signature)
+
+def test_get_encrypted_reply():
+    import time
+    from zgrobot.messages.messages import TextMessage
+    
+    robot = ZgRoBot(app_id="xxxxxx",
+                    app_secret="xxxxxx",
+                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+                    token="token"
+                )
+    message = TextMessage({"type": "text", "content": "hello", "source": "xxx", "time": 1234})
+    
+    r = robot.get_encrypted_reply(message)
+    assert r == "success"
+    
+    @robot.text
+    def handle(message):
+        return "nihao"
+    r = robot.get_encrypted_reply(message)
+    assert r == f"""
+    <xml>
+    <ToUserName><![CDATA[xxx]]></ToUserName>
+    <FromUserName><![CDATA[None]]></FromUserName>
+    <CreateTime>{int(time.time())}</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[nihao]]></Content>
+    </xml>
+    """
+
+def test_run():
+    from zgrobot.config import Config
+    config = Config(
+    SERVER="auto",
+    HOST=None,
+    PORT=8080
+    )
+    robot = ZgRoBot(config=config)
+    with pytest.raises(ValueError):
+        robot.run()

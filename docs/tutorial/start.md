@@ -12,7 +12,7 @@ def hello_world(message):
 
 if __name__ == '__main__':
     # 让服务器监听在 127.0.0.1:8080
-    robot.run(host='127.0.0.1', port=8080)
+    robot.run(host='127.0.0.1', port=8080, reloader=True)
 ```
 
 ## 消息处理
