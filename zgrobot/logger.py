@@ -2,7 +2,9 @@ import logging
 from datetime import datetime
 from loguru import logger
 
+
 class Logger:
+
     def __init__(self, level: str = "DEBUG"):
         logging.getLogger().handlers.clear()
         self.logger = logger
@@ -10,7 +12,8 @@ class Logger:
             f"log/{datetime.now().strftime('%Y-%m-%d')}.log",
             rotation="10 MB",
             retention="10 days",
-            compression="zip",            format="{time} | {level} | {message}",
+            compression="zip",
+            format="{time} | {level} | {message}",
             level=level,
         )
 
@@ -28,6 +31,6 @@ class Logger:
 
     def critical(self, message):
         self.logger.critical(message)
-    
+
 
 zglogger = Logger()

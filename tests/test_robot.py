@@ -38,29 +38,32 @@ def test_signature_checker():
     sign = hashlib.sha1(sign).hexdigest()
 
     assert robot.check_signature(timestamp, nonce, sign)
-    
+
+
 def test_robot_config():
     robot = ZgRoBot(enable_session=False)
     assert robot.config.get('SESSION_STORAGE') == False
-    
+
     robot = ZgRoBot(session_storage=True)
     assert robot.config.get('SESSION_STORAGE') == True
-    
+
+
 def test_crypto():
     from zgrobot.exceptions import ConfigError
-    
+
     robot = ZgRoBot()
     with pytest.raises(ConfigError):
         robot.crypto()
-        
+
     robot = ZgRoBot(app_id="xxxxxx")
     with pytest.raises(ConfigError):
         robot.crypto()
-        
-    robot = ZgRoBot(app_id="xxxxxx",
-                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
-                    token="xxxxxx"
-                )
+
+    robot = ZgRoBot(
+        app_id="xxxxxx",
+        encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+        token="xxxxxx"
+    )
     r = robot.crypto
     assert r.__class__.__name__ == "MessageCrypt"
 
@@ -284,21 +287,23 @@ def test_add_filter():
         robot.add_filter(test_register, [["bazinga"]])
     assert e.value.args[0] == "[\'bazinga\'] is not a valid rule"
 
+
 def test_parse_message():
     from zgrobot.messages.base import ZgRoBotMetaClass
     from zgrobot.utils import get_signature
     from zgrobot.crypto.exceptions import AppIdValidationError
-    
+
     token = "xxxxx"
     timestamp = "xxxxxx"
     nonce = "xxxxxx"
-    
-    robot = ZgRoBot(app_id="xxxxxx",
-                    app_secret="xxxxxx",
-                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
-                    token=token
-                )
-    encrypt_msg ="""<xml>
+
+    robot = ZgRoBot(
+        app_id="xxxxxx",
+        app_secret="xxxxxx",
+        encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+        token=token
+    )
+    encrypt_msg = """<xml>
                     <ToUserName></ToUserName>
                     <Encrypt><![CDATA[LDFAmKFr7U/RMmwRbsR676wjym90byw7+hhh226e8bu6KVYy00HheIsVER4eMgz/VBtofSaeXXQBz6fVdkN2CzBUaTtjJeTCXEIDfTBNxpw/QRLGLq
 qMZHA3I+JiBxrrSzd2yXuXst7TdkVgY4lZEHQcWk85x1niT79XLaWQog+OnBV31eZbXGPPv8dZciKqGo0meTYi+fkMEJdyS8OE7NjO79vpIyIw7hMBtEXPBK/tJGN5m5SoAS
@@ -309,25 +314,35 @@ xSj86XwClZC3NNhAkVU11SvxcXEYh9smckV/qRP2Acsvdls0UqZVWnPtzgx8hc8QBZaeH+JeiaPQD88f
                     </xml>"""
     signature = "1f90c73385e0ee747446c4656c7ebd71601401c7"
     with pytest.raises(AppIdValidationError):
-        r =  robot.parse_message(encrypt_msg, timestamp, nonce, signature)
+        r = robot.parse_message(encrypt_msg, timestamp, nonce, signature)
+
 
 def test_get_encrypted_reply():
     import time
     from zgrobot.messages.messages import TextMessage
-    
-    robot = ZgRoBot(app_id="xxxxxx",
-                    app_secret="xxxxxx",
-                    encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
-                    token="token"
-                )
-    message = TextMessage({"type": "text", "content": "hello", "source": "xxx", "time": 1234})
-    
+
+    robot = ZgRoBot(
+        app_id="xxxxxx",
+        app_secret="xxxxxx",
+        encoding_aes_key="eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=",
+        token="token"
+    )
+    message = TextMessage(
+        {
+            "type": "text",
+            "content": "hello",
+            "source": "xxx",
+            "time": 1234
+        }
+    )
+
     r = robot.get_encrypted_reply(message)
     assert r == "success"
-    
+
     @robot.text
     def handle(message):
         return "nihao"
+
     r = robot.get_encrypted_reply(message)
     assert r == f"""
     <xml>
@@ -339,13 +354,10 @@ def test_get_encrypted_reply():
     </xml>
     """
 
+
 def test_run():
     from zgrobot.config import Config
-    config = Config(
-    SERVER="auto",
-    HOST=None,
-    PORT=8080
-    )
+    config = Config(SERVER="auto", HOST=None, PORT=8080)
     robot = ZgRoBot(config=config)
     with pytest.raises(ValueError):
         robot.run()

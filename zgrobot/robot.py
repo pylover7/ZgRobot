@@ -679,9 +679,7 @@ class ZgRoBot(BaseRoBot):
         app.route('<t:path>', ['GET', 'POST'], make_view(self))
         return app
 
-    def run(
-        self, server=None, host=None, port=None
-    ):
+    def run(self, server=None, host=None, port=None):
         """
         运行 ZgRoBot。
 

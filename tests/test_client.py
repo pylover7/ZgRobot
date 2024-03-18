@@ -1102,13 +1102,13 @@ class TestSendArticleMessagesClass(BaseTestClass):
 
         from zgrobot.replies import Article
         article = Article(
-                    *[
-                        "test_title",
-                        "test_description",
-                        "test_img",
-                        "test_url",
-                    ]
-                )
+            *[
+                "test_title",
+                "test_description",
+                "test_img",
+                "test_url",
+            ]
+        )
 
         r = self.client.send_article_message("test_id", article)
         assert r == {"errcode": 0, "errmsg": "ok"}
@@ -1851,8 +1851,14 @@ class TestClientMass(BaseTestClass):
         }
         assert types[body['msgtype']] in body[body['msgtype']]
         if "clientmsgid" in body:
-            return 200, JSON_HEADER, json.dumps({'errcode': 45065, 'errmsg': 'clientmsgid exist', "msg_id":123456})
-        else: 
+            return 200, JSON_HEADER, json.dumps(
+                {
+                    'errcode': 45065,
+                    'errmsg': 'clientmsgid exist',
+                    "msg_id": 123456
+                }
+            )
+        else:
             return 200, JSON_HEADER, json.dumps({'errcode': 0, 'errmsg': 'ok'})
 
     def delete_callback(self, request):
@@ -1977,19 +1983,18 @@ class TestClientMass(BaseTestClass):
         r = self.client.send_mass_msg('mpnews', 'hgbkjnlkmlkn', None, 0)
         assert r == {'errcode': 0, 'errmsg': 'ok'}
         with pytest.raises(ClientException):
-            r2 = self.client.send_mass_msg('mpnews', 'hgbkjnlkmlkn', 0, 0, "clientmsgid")
-        
+            r2 = self.client.send_mass_msg(
+                'mpnews', 'hgbkjnlkmlkn', 0, 0, "clientmsgid"
+            )
+
     @responses.activate
     @add_token_response
     def test_delete_mass_msg(self):
         responses.add_callback(
-            responses.POST,
-            self.DELETE_URL,
-            callback=self.delete_callback
+            responses.POST, self.DELETE_URL, callback=self.delete_callback
         )
         r = self.client.delete_mass_msg(123456)
         assert r == {'errcode': 0, 'errmsg': 'ok'}
-    
 
     @responses.activate
     @add_token_response
