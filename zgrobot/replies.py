@@ -5,17 +5,30 @@ from collections import defaultdict, namedtuple
 from zgrobot.utils import is_string, to_text
 
 
-def renderable_named_tuple(typename, field_names, tempalte):
+def renderable_named_tuple(typename: str, field_names: str, tempalte):
 
     class TMP(namedtuple(typename=typename, field_names=field_names)):
         __TEMPLATE__ = tempalte
 
         @property
-        def args(self):
+        def args(self) -> dict[str, str]:
+            """返回一个字典
+
+            Returns:
+                dict[str, str]: 键是字段名称，值是初始化后传入的字段值
+            """
             # https://bugs.python.org/issue24931
             return dict(zip(self._fields, self))
 
         def process_args(self, kwargs):
+            """接收参数并将其转换为字典，如果参数中的值是字符串，它则会调用 `to_text` 函数将其转换为编码格式为 utf-8 的文本
+
+            Args:
+                kwargs (dict): 键值对
+
+            Returns:
+                dict: 处理过的键值对
+            """
             args = defaultdict(str)
             for k, v in kwargs.items():
                 if is_string(v):
@@ -24,6 +37,11 @@ def renderable_named_tuple(typename, field_names, tempalte):
             return args
 
         def render(self):
+            """将传入的字段处理后填入模板中，并将整个模板进行编码处理
+
+            Returns:
+                text: 处理后的模板文本
+            """
             return to_text(
                 self.__TEMPLATE__.format(**self.process_args(self.args))
             )

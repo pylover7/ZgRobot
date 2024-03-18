@@ -1101,10 +1101,7 @@ class TestSendArticleMessagesClass(BaseTestClass):
         )
 
         from zgrobot.replies import Article
-        articles = []
-        for _ in range(0, 8):
-            articles.append(
-                Article(
+        article = Article(
                     *[
                         "test_title",
                         "test_description",
@@ -1112,23 +1109,10 @@ class TestSendArticleMessagesClass(BaseTestClass):
                         "test_url",
                     ]
                 )
-            )
 
-        r = self.client.send_article_message("test_id", articles)
+        r = self.client.send_article_message("test_id", article)
         assert r == {"errcode": 0, "errmsg": "ok"}
-
-        articles = []
-        for _ in range(0, 8):
-            articles.append(
-                {
-                    "title": "test_title",
-                    "description": "test_description",
-                    "url": "test_url",
-                    "picurl": "test_pic_url"
-                }
-            )
-
-        r = self.client.send_article_message("test_id", articles)
+        r = self.client.send_article_message("test_id", article, "kf_id")
         assert r == {"errcode": 0, "errmsg": "ok"}
 
 
@@ -1500,6 +1484,14 @@ class TestTemplateMessage(BaseTestClass):
             url="test_url"
         )
         assert r == {"errcode": 0, "errmsg": "ok"}
+        r = self.client.send_template_message(
+            user_id="test_id",
+            template_id="test_template_id",
+            data="test_data",
+            url="test_url",
+            miniprogram="miniprogram_data"
+        )
+        assert r == {"errcode": 0, "errmsg": "ok"}
 
 
 class TestMiniprogrampageMessage(BaseTestClass):
@@ -1533,6 +1525,15 @@ class TestMiniprogrampageMessage(BaseTestClass):
             appid="test_appid",
             pagepath="test_pagepath",
             thumb_media_id="test_id"
+        )
+        assert r == {"errcode": 0, "errmsg": "ok"}
+        r = self.client.send_miniprogrampage_message(
+            user_id="test_id",
+            title="test_title",
+            appid="test_appid",
+            pagepath="test_pagepath",
+            thumb_media_id="test_id",
+            kf_account="kf_id"
         )
         assert r == {"errcode": 0, "errmsg": "ok"}
 
@@ -1849,7 +1850,10 @@ class TestClientMass(BaseTestClass):
             'text': 'content',
         }
         assert types[body['msgtype']] in body[body['msgtype']]
-        return 200, JSON_HEADER, json.dumps({'errcode': 0, 'errmsg': 'ok'})
+        if "clientmsgid" in body:
+            return 200, JSON_HEADER, json.dumps({'errcode': 45065, 'errmsg': 'clientmsgid exist', "msg_id":123456})
+        else: 
+            return 200, JSON_HEADER, json.dumps({'errcode': 0, 'errmsg': 'ok'})
 
     def delete_callback(self, request):
         params = urllib.parse.parse_qs(
@@ -1970,6 +1974,22 @@ class TestClientMass(BaseTestClass):
         )
         r = self.client.send_mass_msg('mpnews', 'hgbkjnlkmlkn', 0, 0)
         assert r == {'errcode': 0, 'errmsg': 'ok'}
+        r = self.client.send_mass_msg('mpnews', 'hgbkjnlkmlkn', None, 0)
+        assert r == {'errcode': 0, 'errmsg': 'ok'}
+        with pytest.raises(ClientException):
+            r2 = self.client.send_mass_msg('mpnews', 'hgbkjnlkmlkn', 0, 0, "clientmsgid")
+        
+    @responses.activate
+    @add_token_response
+    def test_delete_mass_msg(self):
+        responses.add_callback(
+            responses.POST,
+            self.DELETE_URL,
+            callback=self.delete_callback
+        )
+        r = self.client.delete_mass_msg(123456)
+        assert r == {'errcode': 0, 'errmsg': 'ok'}
+    
 
     @responses.activate
     @add_token_response

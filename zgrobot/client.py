@@ -910,44 +910,37 @@ class Client(object):
 
         return self.post(url=SEND_MESSAGE_URL, data=data)
 
-    def send_article_message(self, user_id, articles, kf_account=None):
+    def send_article_message(self, user_id, article, kf_account=None):
         """
-        发送图文消息::
-
-            articles = [
-                {
-                    "title":"Happy Day",
-                    "description":"Is Really A Happy Day",
-                    "url":"URL",
-                    "picurl":"PIC_URL"
-                },
-                {
-                    "title":"Happy Day",
-                    "description":"Is Really A Happy Day",
-                    "url":"URL",
-                    "picurl":"PIC_URL"
-                }
-            ]
-            client.send_acticle_message("user_id", acticles)
-
-        :param user_id: 用户 ID 。 就是你收到的 `Message` 的 source
-        :param articles: 一个包含至多8个 article 字典或 Article 对象的数组
-        :param kf_account: 发送消息的客服账户，默认值为 None，None 为不指定
-        :return: 返回的 JSON 数据包
+        发送图文消息
+        ```py
+        article = {
+                "title":"Happy Day",
+                "description":"Is Really A Happy Day",
+                "url":"URL",
+                "picurl":"PIC_URL"
+            }
+        client.send_acticle_message("user_id", acticle)
+        ```
+        
+        Args:
+            user_id: 用户 ID 。 就是你收到的 `Message` 的 source
+            article: 一个 Article 对象
+            kf_account: 发送消息的客服账户，默认值为 None，None 为不指定
+        
+        Returns: 
+            result: 返回的 JSON 数据包
         """
-        if isinstance(articles[0], Article):
-            formatted_articles = []
-            for article in articles:
-                result = article.args
-                result["picurl"] = result.pop("img")
-                formatted_articles.append(result)
+        if isinstance(article[0], Article):
+            formatted_article = article[0].args
         else:
-            formatted_articles = articles
+            formatted_article = article.args
+        formatted_article["picurl"] = formatted_article.pop("img")
         data = {
             "touser": user_id,
             "msgtype": "news",
             "news": {
-                "articles": formatted_articles
+                "articles": [formatted_article]
             }
         }
         if kf_account is not None:
@@ -976,23 +969,26 @@ class Client(object):
 
     def send_miniprogrampage_message(
         self,
-        user_id,
-        title,
-        appid,
-        pagepath,
-        thumb_media_id,
+        user_id: str,
+        title: str,
+        appid: str,
+        pagepath: str,
+        thumb_media_id: str,
         kf_account=None
     ):
         """
         发送小程序卡片（要求小程序与公众号已关联）
-
-        :param user_id: 用户 ID 。 就是你收到的 `Message` 的 source
-        :param title: 小程序卡片的标题
-        :param appid: 小程序的 appid，要求小程序的 appid 需要与公众号有关联关系
-        :param pagepath: 小程序的页面路径，跟 app.json 对齐，支持参数，比如 pages/index/index?foo=bar
-        :param thumb_media_id: 小程序卡片图片的媒体 ID，小程序卡片图片建议大小为 520*416
-        :param kf_account: 需要以某个客服帐号来发消息时指定的客服账户
-        :return: 返回的 JSON 数据包
+        
+        Args:
+            user_id: 用户 ID 。 就是你收到的 `Message` 的 source
+            title (str): 小程序卡片的标题
+            appid (str): 小程序的 appid，要求小程序的 appid 需要与公众号有关联关系
+            pagepath (str): 小程序的页面路径，跟 app.json 对齐，支持参数，比如 pages/index/index?foo=bar
+            thumb_media_id (str): 小程序卡片图片的媒体 ID，小程序卡片图片建议大小为 520*416
+            kf_account (str): 需要以某个客服帐号来发消息时指定的客服账户
+            
+        Returns:
+            result (json): 返回的 JSON 数据包
         """
         data = {
             "touser": user_id,
@@ -1212,11 +1208,12 @@ class Client(object):
         """
         向指定对象群发信息。
 
-        :param msg_type: 群发类型，图文消息为 mpnews，文本消息为 text，语音为 voice，音乐为 music，图片为 image，视频为 video，卡券为 wxcard。
-        :param content: 群发内容。
-        :param user_list: 发送对象，整型代表用户组，列表代表指定用户，如果为 None 则代表全部发送。
-        :param send_ignore_reprint: 图文消息被判定为转载时，是否继续群发。 True 为继续群发（转载），False 为停止群发。 该参数默认为 False。
-        :param client_msg_id: 群发时，微信后台将对 24 小时内的群发记录进行检查，如果该 clientmsgid 已经存在一条群发记录，则会拒绝本次群发请求，返回已存在的群发 msgid, 控制再 64 个字符内。
+        Args:
+            msg_type: 群发类型，图文消息为 mpnews，文本消息为 text，语音为 voice，音乐为 music，图片为 image，视频为 video，卡券为 wxcard。
+            content: 群发内容。
+            user_list: 发送对象，整型代表用户组，列表代表指定用户，如果为 None 则代表全部发送。
+            send_ignore_reprint: 图文消息被判定为转载时，是否继续群发。 True 为继续群发（转载），False 为停止群发。 该参数默认为 False。
+            client_msg_id: 群发时，微信后台将对 24 小时内的群发记录进行检查，如果该 clientmsgid 已经存在一条群发记录，则会拒绝本次群发请求，返回已存在的群发 msgid, 控制再 64 个字符内。
         :return: 返回的 JSON 数据包。
         """
         send_data = _build_send_data(msg_type, content)
