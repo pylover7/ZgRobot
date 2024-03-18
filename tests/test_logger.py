@@ -1,21 +1,39 @@
-import logging
-import time
+from datetime import datetime
+from zgrobot.logger import zglogger
 
-from zgrobot.logger import enable_pretty_logging, _LogFormatter
+tody = datetime.now().strftime("%Y-%m-%d")
 
+def test_debug():
+    zglogger.debug("Test debug message")
+    with open(f"log/{tody}.log", "r") as f:
+        lines = f.readlines()
+        assert lines[-1].split(" | ")[-2] == "DEBUG"
+        assert lines[-1].split(" | ")[-1][:-1] == "Test debug message"
+        
+def test_info():
+    zglogger.info("Test info message")
+    with open(f"log/{tody}.log", "r") as f:
+        lines = f.readlines()
+        assert lines[-1].split(" | ")[-2] == "INFO"
+        assert lines[-1].split(" | ")[-1][:-1] == "Test info message"
+        
+def test_warning():
+    zglogger.warning("Test warning message")
+    with open(f"log/{tody}.log", "r") as f:
+        lines = f.readlines()
+        assert lines[-1].split(" | ")[-2] == "WARNING"
+        assert lines[-1].split(" | ")[-1][:-1] == "Test warning message"
 
-def get_new_logger():
-    return logging.getLogger(str(time.time()))
-
-
-def test_logger_level():
-    for level in ('debug', 'info', 'warning', 'error'):
-        logger = get_new_logger()
-        enable_pretty_logging(logger, level=level)
-        assert logger.level == getattr(logging, level.upper())
-
-
-def test_handlers():
-    logger = get_new_logger()
-    enable_pretty_logging(logger)
-    assert isinstance(logger.handlers[0].formatter, _LogFormatter)
+def test_error():
+    zglogger.error("Test error message")
+    with open(f"log/{tody}.log", "r") as f:
+        lines = f.readlines()
+        assert lines[-1].split(" | ")[-2] == "ERROR"
+        assert lines[-1].split(" | ")[-1][:-1] == "Test error message"
+        
+def test_critical():
+    zglogger.critical("Test critical message")
+    with open(f"log/{tody}.log", "r") as f:
+        lines = f.readlines()
+        assert lines[-1].split(" | ")[-2] == "CRITICAL"
+        assert lines[-1].split(" | ")[-1][:-1] == "Test critical message"

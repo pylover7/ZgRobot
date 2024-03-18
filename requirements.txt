@@ -1,3 +1,4 @@
 bottle
 requests
 xmltodict
+loguru

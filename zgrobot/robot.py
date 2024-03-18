@@ -109,7 +109,7 @@ class BaseRoBot(object):
 
         if logger is None:
             import zgrobot.logger
-            logger = zgrobot.logger.logger
+            logger = zgrobot.logger.zglogger
         self.logger = logger
 
         if config is None:
@@ -669,7 +669,7 @@ class ZgRoBot(BaseRoBot):
         return app
 
     def run(
-        self, server=None, host=None, port=None, enable_pretty_logging=True
+        self, server=None, host=None, port=None
     ):
         """
         运行 ZgRoBot。
@@ -678,11 +678,7 @@ class ZgRoBot(BaseRoBot):
         `bottle 文档 <https://bottlepy.org/docs/dev/deployment.html#switching-the-server-backend>`_
         :param host: 运行时绑定的主机地址
         :param port: 运行时绑定的主机端口
-        :param enable_pretty_logging: 是否开启 log 的输出格式优化
         """
-        if enable_pretty_logging:
-            from zgrobot.logger import enable_pretty_logging
-            enable_pretty_logging(self.logger)
         if server is None:
             server = self.config["SERVER"]
         if host is None:
