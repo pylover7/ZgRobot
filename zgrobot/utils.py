@@ -11,11 +11,7 @@ from hashlib import sha1
 from typing import BinaryIO
 import functools
 from concurrent import futures
-
-try:
-    from secrets import choice
-except ImportError:
-    from random import choice
+from random import choice
 
 string_types = (str, bytes)
 
