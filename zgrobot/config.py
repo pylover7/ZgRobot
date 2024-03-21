@@ -12,8 +12,6 @@ class ConfigAttribute(object):
         self.__name__ = name
 
     def __get__(self, obj, type=None):
-        if obj is None:
-            return self
         rv = obj.config[self.__name__]
         return rv
 
@@ -27,8 +25,11 @@ class Config(dict):
         """
         在一个 Python 文件中读取配置。
 
-        :param filename: 配置文件的文件名
-        :return: 如果读取成功，返回 ``True``，如果失败，会抛出错误异常
+        Args:
+        filename (str): 配置文件的文件名
+        
+        Returns:
+            result: 如果读取成功，返回 ``True``，如果失败，会抛出错误异常
         """
         d = types.ModuleType('config')
         d.__file__ = filename
@@ -41,7 +42,8 @@ class Config(dict):
         """
         在给定的 Python 对象中读取配置。
 
-        :param obj: 一个 Python 对象
+        Args:
+            obj: 一个 Python 对象
         """
         for key in dir(obj):
             if key.isupper():
