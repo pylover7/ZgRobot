@@ -24,6 +24,17 @@ class WeixinPayClient(Client):
 
         self._token = None
         self.token_expires_at = None
+    
+    
+    def __get_order_code():
+        """生成订单号
+
+        Returns:
+            result (str): 订单号，年月日时分秒+time.time()的后7位，例如：202104241949042979896
+        """
+        #  年月日时分秒+time.time()的后7位
+        order_no = str(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + str(time.time()).replace('.', '')[-7:])
+        return order_no
 
     def create_js_pay_package(self, **package):
         """

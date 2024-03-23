@@ -27,6 +27,7 @@ lib64
 
 # Installer logs
 log/*
+payImgLog/
 *.log
 pip-log.txt
 
