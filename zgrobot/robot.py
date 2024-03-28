@@ -8,6 +8,7 @@ from zgrobot.config import Config, ConfigAttribute
 from zgrobot.exceptions import ConfigError
 from zgrobot.parser import parse_xml, process_message
 from zgrobot.replies import process_function_reply
+from zgrobot.pay import WeixinPayClient
 from zgrobot.utils import (
     to_binary, to_text, check_signature, make_error_page, cached_property,
     is_regex, timeout
@@ -166,6 +167,19 @@ class BaseRoBot(object):
     @cached_property
     def client(self):
         return Client(self.config)
+    
+    @cached_property
+    def payClient(self, mchid, serial_no):
+        """获取支付客户端
+
+        Args:
+            mchid (str): _description_
+            serial_no (str): _description_
+
+        Returns:
+            WeixinPayClient (zgrobot.pay.WeixinPayClient): WeixinPayClient 实例
+        """
+        return WeixinPayClient(mchid, serial_no, self.config)
 
     @cached_property
     def session_storage(self):

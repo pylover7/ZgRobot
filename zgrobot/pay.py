@@ -1,216 +1,66 @@
 # -*- coding:utf-8 -*-
 
 import time
-from functools import partial
-from hashlib import sha1, md5
-from urllib.parse import urlencode
+from hashlib import sha256
+import base64
+
+import httpx
 
 from zgrobot.client import Client
-from zgrobot.utils import pay_sign_dict, generate_token
 
-NATIVE_BASE_URL = 'weixin://wxpay/bizpayurl?'
+SIGIN_URL = '/v3/certificates'
+
+#  hexdump -n 16 -e '4/4 "%08X" 1 "\n"' /dev/random 
+nonce_str = '69FEE29DB5856BF7D21ABA69D571859C'
 
 
 class WeixinPayClient(Client):
     """
-    简化微信支付API操作
+    微信支付
+    
+    Attributes:
+        mchid (str): 发起请求的商户（包括直连商户、服务商或渠道商）的商户号mchid
+        serial_no (str): 商户API证书序列号serial_no，用于声明所使用的证书
     """
 
-    def __init__(self, appid, pay_sign_key, pay_partner_id, pay_partner_key):
-        self.pay_sign_key = pay_sign_key
-        self.pay_partner_id = pay_partner_id
-        self.pay_partner_key = pay_partner_key
-        self._pay_sign_dict = partial(pay_sign_dict, appid, pay_sign_key)
-
-        self._token = None
-        self.token_expires_at = None
-    
+    def __init__(self, mchid: str, serial_no: str, config):
+        super().__init__(config)
+        self.mchid = mchid
+        self.serial_no = serial_no
     
     def __get_order_code():
         """生成订单号
 
         Returns:
-            result (str): 订单号，年月日时分秒+time.time()的后7位，例如：202104241949042979896
+            order_code (str): 订单号，年月日时分秒+time.time()的后7位，例如：202104241949042979896
         """
         #  年月日时分秒+time.time()的后7位
-        order_no = str(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + str(time.time()).replace('.', '')[-7:])
-        return order_no
+        order_code = str(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + str(time.time()).replace('.', '')[-7:])
+        return order_code
+    
+    def sign(self, timestamp: str, nonce_str: str, apiclient_key_path: str, methon: str = 'GET', url: str = '/v3/certificates', data: dict = None):
+        """使用商户私钥对待签名串进行SHA256 with RSA签名，并对签名结果进行Base64编码得到签名值
 
-    def create_js_pay_package(self, **package):
+        Args:
+            methon (str): 请求方法，默认为：GET
+            url (str): 请求地址，默认为：/v3/certificates
+            timestamp (str): 时间戳
+            nonce_str (str): 随机字符串
+            apiclient_key_path (str): 私钥文件路径
+            data (dict, optional): 请求报文主体，默认为 None.
+
+        Returns:
+            rsa_signature (str): 签名值
         """
-        签名 pay package 需要的参数
-        详情请参考 支付开发文档
-
-        :param package: 需要签名的的参数
-        :return: 可以使用的packagestr
-        """
-        assert self.pay_partner_id, "PAY_PARTNER_ID IS EMPTY"
-        assert self.pay_partner_key, "PAY_PARTNER_KEY IS EMPTY"
-
-        package.update({
-            'partner': self.pay_partner_id,
-        })
-
-        package.setdefault('bank_type', 'WX')
-        package.setdefault('fee_type', '1')
-        package.setdefault('input_charset', 'UTF-8')
-
-        params = package.items()
-        params.sort()
-
-        sign = md5(
-            '&'.join(
-                [
-                    "%s=%s" % (str(p[0]), str(p[1]))
-                    for p in params + [('key', self.pay_partner_key)]
-                ]
-            )
-        ).hexdigest().upper()
-
-        return urlencode(params + [('sign', sign)])
-
-    def create_js_pay_params(self, **package):
-        """
-        签名 js 需要的参数
-        详情请参考 支付开发文档
-
-        ::
-
-            wxclient.create_js_pay_params(
-                body=标题, out_trade_no=本地订单号, total_fee=价格单位分,
-                notify_url=通知url,
-                spbill_create_ip=建议为支付人ip,
-            )
-
-        :param package: 需要签名的的参数
-        :return: 支付需要的对象
-        """
-        pay_param, sign, sign_type = self._pay_sign_dict(
-            package=self.create_js_pay_package(**package)
-        )
-        pay_param['paySign'] = sign
-        pay_param['signType'] = sign_type
-
-        # 腾讯这个还得转成大写 JS 才认
-        for key in ['appId', 'timeStamp', 'nonceStr']:
-            pay_param[key] = str(pay_param.pop(key.lower()))
-
-        return pay_param
-
-    def create_js_edit_address_param(self, accesstoken, **params):
-        """
-        alpha
-        暂时不建议使用
-        这个接口使用起来十分不友好
-        而且会引起巨大的误解
-
-        url 需要带上 code 和 state (url?code=xxx&state=1)
-        code 和state 是 oauth 时候回来的
-
-        token 要传用户的 token
-
-        这尼玛 你能相信这些支付接口都是腾讯出的？
-        """
-        params.update(
-            {
-                'appId': self.appid,
-                'nonceStr': generate_token(8),
-                'timeStamp': int(time.time())
-            }
-        )
-
-        _params = [(k.lower(), str(v)) for k, v in params.items()]
-        _params += [('accesstoken', accesstoken)]
-        _params.sort()
-
-        string1 = '&'.join(["%s=%s" % (p[0], p[1]) for p in _params])
-        sign = sha1(string1).hexdigest()
-
-        params = dict([(k, str(v)) for k, v in params.items()])
-
-        params['addrSign'] = sign
-        params['signType'] = 'sha1'
-        params['scope'] = params.get('scope', 'jsapi_address')
-
-        return params
-
-    def create_native_pay_url(self, productid):
-        """
-        创建 native pay url
-        详情请参考 支付开发文档
-
-        :param productid: 本地商品ID
-        :return: 返回URL
-        """
-
-        params, sign, = self._pay_sign_dict(productid=productid)
-
-        params['sign'] = sign
-
-        return NATIVE_BASE_URL + urlencode(params)
-
-    def pay_deliver_notify(self, **deliver_info):
-        """
-        通知 腾讯发货
-
-        一般形式 ::
-            wxclient.pay_delivernotify(
-                openid=openid,
-                transid=transaction_id,
-                out_trade_no=本地订单号,
-                deliver_timestamp=int(time.time()),
-                deliver_status="1",
-                deliver_msg="ok"
-            )
-
-        :param 需要签名的的参数
-        :return: 支付需要的对象
-        """
-        params, sign, _ = self._pay_sign_dict(
-            add_noncestr=False, add_timestamp=False, **deliver_info
-        )
-
-        params['app_signature'] = sign
-        params['sign_method'] = 'sha1'
-
-        return self.post(
-            url="https://api.weixin.qq.com/pay/delivernotify", data=params
-        )
-
-    def pay_order_query(self, out_trade_no):
-        """
-        查询订单状态
-        一般用于无法确定 订单状态时候补偿
-
-        :param out_trade_no: 本地订单号
-        :return: 订单信息dict
-        """
-
-        package = {
-            'partner': self.pay_partner_id,
-            'out_trade_no': out_trade_no,
-        }
-
-        _package = package.items()
-        _package.sort()
-
-        s = '&'.join(
-            [
-                "%s=%s" % (p[0], str(p[1]))
-                for p in (_package + [('key', self.pay_partner_key)])
-            ]
-        )
-        package['sign'] = md5(s).hexdigest().upper()
-
-        package = '&'.join(["%s=%s" % (p[0], p[1]) for p in package.items()])
-
-        params, sign, _ = self._pay_sign_dict(
-            add_noncestr=False, package=package
-        )
-
-        params['app_signature'] = sign
-        params['sign_method'] = 'sha1'
-
-        return self.post(
-            url="https://api.weixin.qq.com/pay/orderquery", data=params
-        )
+        with open(apiclient_key_path, 'rb') as f:
+            private_key = f.read()
+        
+        sign_str = methon + '\n' + url + '\n' + timestamp + '\n' + nonce_str + '\n' + data  + '\n'
+        signature = sha256(sign_str.encode("utf-8")).digest()
+        rsa_signature = base64.b64encode(private_key.sign(signature, "sha256"))
+        authorization = f'WECHATPAY2-SHA256-RSA2048 mchid="{self.mchid}",nonce_str="{nonce_str}",signature="{rsa_signature}",timestamp="{timestamp}",serial_no="{self.serial_no}"'
+        result = httpx.get(url="https://api.mch.weixin.qq.com/v3/certificates",
+                  headers={
+                      'Authentication': authorization
+                  })
+        return result.content

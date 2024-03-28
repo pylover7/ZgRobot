@@ -27,6 +27,7 @@ nav:
       - 消息: api/messages/messages.md
       - 事件: api/messages/events.md
     - 客户端: api/client.md
+    - 支付: api/pay.md
     - 工具: api/utils.md
 theme:
   name: material
