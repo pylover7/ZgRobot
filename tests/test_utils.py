@@ -93,22 +93,23 @@ def test_check_file_type_and_size():
 def test_str2button():
     assert type(str2button(button_txt="123", reply_txt="456")) is str
 
+
 def test_timeout():
     import time
     from zgrobot.utils import timeout
-    
+
     @timeout(5)
     def func():
         time.sleep(4)
         return "sleep"
-    
+
     @timeout(5)
     def func2():
         time.sleep(6)
         return "sleep"
-    
+
     r = func()
     r2 = func2()
-    
+
     assert r == "sleep"
     assert r2 == "success"

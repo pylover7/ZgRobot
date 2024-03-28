@@ -167,14 +167,14 @@ class BaseRoBot(object):
     @cached_property
     def client(self):
         return Client(self.config)
-    
+
     @cached_property
-    def payClient(self, mchid, serial_no):
+    def payClient(self, mchid: str, serial_no: str):
         """获取支付客户端
 
         Args:
-            mchid (str): _description_
-            serial_no (str): _description_
+            mchid (str): 商户的商户号mchid
+            serial_no (str): 商户API证书序列号serial_no
 
         Returns:
             WeixinPayClient (zgrobot.pay.WeixinPayClient): WeixinPayClient 实例
