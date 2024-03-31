@@ -1,6 +1,6 @@
 import time
 import uvicorn as uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 
 from zgrobot import ZgRoBot
 from zgrobot.contrib.fastapi import make_view
@@ -27,8 +27,12 @@ def key_reply(message):
 async def index(request: Request):
     return await (await fastapi_router.make_view(robot=robot))(request)
 
+@app.get("/pay")
+async def pay_code(response: Response):
+    print(response.body, response.status_code)
+
 
 # app.add_route("/", make_view(robot=robot), methods=["GET", "POST"])
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="127.0.0.1", port=8077)
+    uvicorn.run('fastapi_example:app', host="127.0.0.1", port=8077, reload=True)

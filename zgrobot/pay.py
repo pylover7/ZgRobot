@@ -29,6 +29,7 @@ class WeixinPayClient(Client):
         super().__init__(config)
         self.mchid = mchid
         self.serial_no = serial_no
+        self.main_url = 'https://api.mch.weixin.qq.com'
 
     def __get_order_code():
         """生成订单号
@@ -63,7 +64,7 @@ class WeixinPayClient(Client):
             data (dict, optional): 请求报文主体，默认为 None.
 
         Returns:
-            rsa_signature (str): 签名值
+            authorization (str): 签名值
         """
         with open(apiclient_key_path, 'rb') as f:
             private_key = f.read()
@@ -72,8 +73,28 @@ class WeixinPayClient(Client):
         signature = sha256(sign_str.encode("utf-8")).digest()
         rsa_signature = base64.b64encode(private_key.sign(signature, "sha256"))
         authorization = f'WECHATPAY2-SHA256-RSA2048 mchid="{self.mchid}",nonce_str="{nonce_str}",signature="{rsa_signature}",timestamp="{timestamp}",serial_no="{self.serial_no}"'
-        result = httpx.get(
-            url="https://api.mch.weixin.qq.com/v3/certificates",
-            headers={'Authentication': authorization}
+        return authorization    
+    
+    def check_signature(self):
+        pass
+    
+    def payment(self, signature: str, order_code: str, description: str, total: int):
+            httpx.post(
+            url=self.main_url + '/v3/pay/partner/transactions/native',
+            headers={
+                'Authorization': signature,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data={
+                'appid': self.config.appid,
+                'mchid': self.mchid,
+                'description': description,
+                'out_trade_no': order_code,
+                'notify_url': '',
+                'amount': {
+                    'total': total,
+                    'currency': 'CNY'
+                }
+            }
         )
-        return result.content
