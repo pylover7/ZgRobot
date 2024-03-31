@@ -73,13 +73,15 @@ class WeixinPayClient(Client):
         signature = sha256(sign_str.encode("utf-8")).digest()
         rsa_signature = base64.b64encode(private_key.sign(signature, "sha256"))
         authorization = f'WECHATPAY2-SHA256-RSA2048 mchid="{self.mchid}",nonce_str="{nonce_str}",signature="{rsa_signature}",timestamp="{timestamp}",serial_no="{self.serial_no}"'
-        return authorization    
-    
+        return authorization
+
     def check_signature(self):
         pass
-    
-    def payment(self, signature: str, order_code: str, description: str, total: int):
-            httpx.post(
+
+    def payment(
+        self, signature: str, order_code: str, description: str, total: int
+    ):
+        httpx.post(
             url=self.main_url + '/v3/pay/partner/transactions/native',
             headers={
                 'Authorization': signature,
